@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:7f923d0a66bc5825886d7924ee8910f2:0fa03eb6fec952a047be5ccb3bab7c65:cde709370900f12288f3449eded86f07$ -->
+<TextureAtlas imagePath="atlas.png">
+	<SubTexture name="sandbox_ball_3x" x="0" y="0" width="240" height="240"/>
+	<SubTexture name="play_ball_3x" x="240" y="0" width="240" height="240"/>
+	<SubTexture name="exit_ball_3x" x="480" y="0" width="240" height="240"/>
+
+	<SubTexture name="sandbox_ball_2x" x="0" y="246" width="160" height="160"/>
+	<SubTexture name="play_ball_2x" x="160" y="246" width="160" height="160"/>
+	<SubTexture name="exit_ball_2x" x="320" y="246" width="160" height="160"/>
+
+	<SubTexture name="sandbox_ball_1x" x="0" y="423" width="80" height="80"/>
+	<SubTexture name="play_ball_1x" x="80" y="423" width="80" height="80"/>
+	<SubTexture name="exit_ball_1x" x="160" y="423" width="80" height="80"/>
+
+	<SubTexture name="playtext_1x" x="0" y="514" width="54" height="19"/>
+	<SubTexture name="sandboxtext_1x" x="0" y="533" width="90" height="21"/>
+	<SubTexture name="exittext_1x" x="0" y="554" width="43" height="21"/>
+
+	<SubTexture name="playtext_3x" x="0" y="575" width="149" height="53"/>
+	<SubTexture name="sandboxtext_3x" x="0" y="628" width="255" height="53"/>
+	<SubTexture name="exittext_3x" x="0" y="681" width="121" height="53"/>
+
+	<SubTexture name="playtext_2x" x="0" y="734" width="101" height="36"/>
+	<SubTexture name="sandboxtext_2x" x="0" y="770" width="171" height="37"/>
+	<SubTexture name="exittext_2x" x="0" y="807" width="81" height="38"/>
+
+</TextureAtlas>

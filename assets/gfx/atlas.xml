@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:7f923d0a66bc5825886d7924ee8910f2:0fa03eb6fec952a047be5ccb3bab7c65:cde709370900f12288f3449eded86f07$ -->
+<TextureAtlas imagePath="atlas.png">
+	<SubTexture name="sun" x="748" y="0" width="49" height="50"/>
+	<SubTexture name="projectile" x="797" y="0" width="25" height="25"/>
+	<SubTexture name="background" x="0" y="272" width="800" height="480"/>
+	<SubTexture name="play_ball" x="0" y="753" width="100" height="100"/>
+	<SubTexture name="exit_ball" x="100" y="753" width="100" height="100"/>
+
+	<SubTexture name="playtext" x="87" y="856" width="94" height="39"/>
+	<SubTexture name="exittext" x="0" y="856" width="86" height="44"/>
+</TextureAtlas>
