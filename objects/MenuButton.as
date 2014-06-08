@@ -33,7 +33,7 @@
 			_cy = cy;
 			
 			// Default sound effect
-			_touchCallbackSound = Assets.blackHoleCollisionSound;
+			_touchCallbackSound = Game.INSTANCE.blackHoleCollisionSound;
 			
 			addEventListener(TouchEvent.TOUCH, onTouch); 
 		}

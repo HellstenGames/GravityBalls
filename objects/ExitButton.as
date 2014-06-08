@@ -38,30 +38,29 @@
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
             if (scalingFactor == 1) {
-				return new MovieClip(Assets.mpAtlasMenu.getTextures("exit_ball_1x"), 1);
+				return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("exit_ball_1x"), 1);
             } 
             else if (scalingFactor == 2) {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("exit_ball_2x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("exit_ball_2x"), 2);
             } 
             else {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("exit_ball_3x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("exit_ball_3x"), 3);
             }
-            // If you have a 4x version of the graphics, here is the place to add some code..
+
         }
 		
 		private function getCorrectTextImage():MovieClip {
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
             if (scalingFactor == 1) {
-				return new MovieClip(Assets.mpAtlasMenu.getTextures("exittext_1x"), 1);
+				return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("exittext_1x"), 1);
             } 
             else if (scalingFactor == 2) {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("exittext_2x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("exittext_2x"), 2);
             } 
             else {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("exittext_3x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("exittext_3x"), 3);
             }
-            // If you have a 4x version of the graphics, here is the place to add some code..
         }
 		
 		override protected function onTouch(event:TouchEvent):void

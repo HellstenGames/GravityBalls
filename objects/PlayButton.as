@@ -38,13 +38,13 @@
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
             if (scalingFactor == 1) {
-				return new MovieClip(Assets.mpAtlasMenu.getTextures("play_ball_1x"), 1);
+				return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("play_ball_1x"), 1);
             } 
             else if (scalingFactor == 2) {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("play_ball_2x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("play_ball_2x"), 1);
             } 
             else {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("play_ball_3x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("play_ball_3x"), 1);
             }
             // If you have a 4x version of the graphics, here is the place to add some code..
         }
@@ -53,13 +53,13 @@
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
             if (scalingFactor == 1) {
-				return new MovieClip(Assets.mpAtlasMenu.getTextures("playtext_1x"), 1);
+				return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("playtext_1x"), 1);
             } 
             else if (scalingFactor == 2) {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("playtext_2x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("playtext_2x"), 1);
             } 
             else {
-                return new MovieClip(Assets.mpAtlasMenu.getTextures("playtext_3x"), 1);
+                return new MovieClip(AssetResources.ASSETS_MANAGER.getTextures("playtext_3x"), 1);
             }
             // If you have a 4x version of the graphics, here is the place to add some code..
         }

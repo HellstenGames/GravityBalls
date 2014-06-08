@@ -39,34 +39,19 @@
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
             
-            if (scalingFactor == 1) {
-				if (_color == "red") {
-					return new Image(Assets.redprojectile1xTexture);
-				} else if (_color == "green") {
-					return new Image(Assets.greenprojectile1xTexture);
-				} else { // default is blue
-					return new Image(Assets.blueprojectile1xTexture);
-				}
-            } 
-            else if (scalingFactor == 2) {
-				if (_color == "red") {
-					return new Image(Assets.redprojectile2xTexture);
-				} else if (_color == "green") {
-					return new Image(Assets.greenprojectile2xTexture);
-				} else { // default is blue
-					return new Image(Assets.blueprojectile2xTexture);
-				}
-            } 
-            else {
-				if (_color == "red") {
-					return new Image(Assets.redprojectile3xTexture);
-				} else if (_color == "green") {
-					return new Image(Assets.greenprojectile3xTexture);
-				} else { // default is blue
-					return new Image(Assets.blueprojectile3xTexture);
-				}
-            }
-            // If you have a 4x version of the graphics, here is the place to add some code..
+			if (_color == "red")
+			{
+				return new Image(Game.INSTANCE.redProjectileTextures[scalingFactor]);
+			}
+			else if (_color == "green")
+			{
+				return new Image(Game.INSTANCE.greenProjectileTextures[scalingFactor]);
+			}
+			else
+			{
+				return new Image(Game.INSTANCE.blueProjectileTextures[scalingFactor]);
+			}
+
         }
 		
 		public function set color(setValue:String):void {

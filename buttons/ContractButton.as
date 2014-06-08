@@ -32,13 +32,13 @@
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
             
             if (scalingFactor == 1) {
-				return new Image(Assets.contractButtonTexture);
+				return new Image(Game.INSTANCE.contractButtonTexture);
             } 
             else if (scalingFactor == 2) {
-				return new Image(Assets.contractButtonTexture);
+				return new Image(Game.INSTANCE.contractButtonTexture);
             } 
             else {
-				return new Image(Assets.contractButtonTexture);
+				return new Image(Game.INSTANCE.contractButtonTexture);
             }
             // If you have a 4x version of the graphics, here is the place to add some code..
         }

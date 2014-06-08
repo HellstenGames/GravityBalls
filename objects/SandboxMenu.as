@@ -47,17 +47,8 @@
 			
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
-            
-            if (scalingFactor == 1) {
-				_sun.addChild(new Image(Assets.sun1xTexture));
-            } 
-            else if (scalingFactor == 2) {
-				_sun.addChild(new Image(Assets.sun2xTexture));
-            } 
-            else {
-				_sun.addChild(new Image(Assets.sun3xTexture));
-            }
-   
+            _sun.addChild(new Image(Game.INSTANCE.sunTextures[scalingFactor]));
+
 		}
 		
 		override public function update(timeDelta:Number):void {

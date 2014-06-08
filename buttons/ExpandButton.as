@@ -30,17 +30,7 @@
 		private function getCorrectImage():Image {
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
-            
-            if (scalingFactor == 1) {
-				return new Image(Assets.contractButtonTexture);
-            } 
-            else if (scalingFactor == 2) {
-				return new Image(Assets.contractButtonTexture);
-            } 
-            else {
-				return new Image(Assets.contractButtonTexture);
-            }
-            // If you have a 4x version of the graphics, here is the place to add some code..
+            return new Image(Game.INSTANCE.contractButtonTexture);
         }
 		
 		override public function update(timeDelta:Number):void

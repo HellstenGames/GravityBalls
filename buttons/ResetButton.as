@@ -28,17 +28,7 @@
 		private function getCorrectImage():Image {
             // Get the scaling factor (1, 2, 3 etc)
             var scalingFactor:int = Math.round(Starling.contentScaleFactor);
-            
-            if (scalingFactor == 1) {
-				return new Image(Assets.resetButtonTexture);
-            } 
-            else if (scalingFactor == 2) {
-				return new Image(Assets.resetButtonTexture);
-            } 
-            else {
-				return new Image(Assets.resetButtonTexture);
-            }
-            // If you have a 4x version of the graphics, here is the place to add some code..
+            return new Image(Game.INSTANCE.resetButtonTexture);
         }
 		
 		override public function update(timeDelta:Number):void

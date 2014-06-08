@@ -86,9 +86,9 @@
 			addEventListener(TouchEvent.TOUCH, onTouch); 	
 			
 			// Play Theme
-			_themeChannel = Assets.menuSound.play();	
-			var transform:SoundTransform = new SoundTransform(1, 0.5);
-			_themeChannel.soundTransform = transform;
+			//_themeChannel = Assets.menuSound.play();	
+			//var transform:SoundTransform = new SoundTransform(1, 0.5);
+			//_themeChannel.soundTransform = transform;
 		}
 		
 		override public function destroy():void {
