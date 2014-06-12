@@ -4,7 +4,6 @@
 	import flash.display.Stage;
 
 	public class GameEntity extends Sprite {
-
 		protected var _nativeStage:Stage;
 		protected var _dx:Number, _dy:Number;
 		protected var _ax:Number, _ay:Number;

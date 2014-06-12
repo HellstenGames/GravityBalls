@@ -44,10 +44,8 @@
 			addEntity(_contractButton);
 			_resetButton = new ResetButton(_backboard.width / 2, Starling.current.stage.stageHeight - 25);
 			addEntity(_resetButton);
-			
-            // Get the scaling factor (1, 2, 3 etc)
-            var scalingFactor:int = Math.round(Starling.contentScaleFactor);
-            _sun.addChild(new Image(Game.INSTANCE.sunTextures[scalingFactor]));
+
+            _sun.addChild(new Image(Game.INSTANCE.sunTexture));
 
 		}
 		

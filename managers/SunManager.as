@@ -14,8 +14,9 @@
 		
 		private var _leftBoundary:Number, _topBoundary:Number, _rightBoundary:Number, _bottomBoundary:Number;
 		private var _gravitate:Boolean;
+		public var projectileManager:ProjectileManager;
 		
-		public function SunManager(layer:Sprite, len:int) {
+		public function SunManager(layer:Sprite, len:int=100) {
 			_layer = layer;
 			
 			// Create sprite pool + suns array, and set reference layer.
@@ -27,6 +28,8 @@
 			_rightBoundary = Starling.current.nativeStage.stageWidth;
 			_bottomBoundary = Starling.current.nativeStage.stageHeight;
 			_gravitate = false;
+			projectileManager = null;
+			
 		}
 		
 		public function addSun(cx:Number, cy:Number, dx:Number, dy:Number):void {
@@ -34,14 +37,13 @@
 			var s:Sun = _pool.getSprite() as Sun;
 			s.x = cx - s.width / 2;
 			s.y = cy - s.height / 2;
-			s.dx = dx;
-			s.dy = dy;
+			s.velocity[0] = dx;
+			s.velocity[1] = dy;
 			_layer.addChild(s);
 			suns.push(s);
 		}
 		
 		public function removeSun(i:int):void {
-
 			
 			var s:Sun = suns[i];
 			
@@ -96,6 +98,8 @@
 					}
 				}
 			}	
+			
+			handleProjectiles();
 
 		}
 		
@@ -106,7 +110,10 @@
 			_bottomBoundary = bottomBoundary;
 		}
 		
-		public function applyProjectileManager(projectileManager:ProjectileManager):void {
+		private function handleProjectiles():void {
+			
+			if (projectileManager == null)
+				return;
 			
 			// Loop through all the suns and apply gravity onto the projectiles
 			for (var s:int = 0; s < suns.length; ++s) {
@@ -116,13 +123,13 @@
 					
 					Physics.applyGravity(sun, projectile, sun.mass, projectile.mass);
 					// Do collision check
-					if (Physics.circleDetection(sun, projectile)) { 
+					if (Physics.circleDetection(sun, projectile)) 
+					{ 
 						projectileManager.removeProjectile(p);
 						//Assets.projectileCollisionSound.play();								
 					}
 					
 				}
-
 			}
 			
 		}

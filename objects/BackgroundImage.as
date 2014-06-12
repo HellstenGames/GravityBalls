@@ -1,26 +1,14 @@
 ﻿package objects {
-	import starling.core.Starling;
-	import starling.display.MovieClip;
-	import starling.display.Image;
+
+	// Import project stuff
+	import components.gbGraphicsComponent;
 	
-	public class BackgroundImage extends GameEntity  {
+	public class BackgroundImage extends GameObject  {
 
-		private var _image:Image;
-		
-		public function BackgroundImage() {
-			super();
-			
-			_image = getCorrectImage();
-			addChild(_image);
-			
-			x = y = 0;
+		public function BackgroundImage() 
+		{
+			super(null, null, new gbGraphicsComponent());
 		}
-
-		private function getCorrectImage():Image {
-            // Get the scaling factor (1, 2, 3 etc)
-            var scalingFactor:int = Math.round(Starling.contentScaleFactor);
-			return new Image(Game.INSTANCE.backgroundTextures[scalingFactor]);
-        }
 		
 	}
 	

@@ -37,8 +37,8 @@
 			var p:Projectile = _pool.getSprite() as Projectile;
 			p.x = cx - p.width / 2;
 			p.y = cy - p.height / 2
-			p.dx = dx;
-			p.dy = dy;
+			p.velocity[0] = dx;
+			p.velocity[1] = dy;
 			
 			p.color = color;
 			_layer.addChild(p);
@@ -53,7 +53,7 @@
 			projectiles.splice(i, 1);
 			_layer.removeChild(p);
 			_pool.returnSprite(p);
-
+	
 		}
 		
 		public function removeAll():void 

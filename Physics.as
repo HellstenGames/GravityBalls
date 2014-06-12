@@ -1,5 +1,5 @@
 ﻿package  {
-	import objects.GameEntity;
+	import objects.GameObject;
 	import starling.display.DisplayObject;
 	
 	import starling.utils.rad2deg;
@@ -32,14 +32,14 @@
 		}
 		
 		// WARNING, THIS FUNCTION ASSUMES BOTH ENTITIES ARE CIRCLES, THUS WIDTH AND HEIGHT EQUALS THE DIAMETER
-		public static function circleDetection(e1:GameEntity, e2:GameEntity):Boolean {
+		public static function circleDetection(e1:GameObject, e2:GameObject):Boolean {
 			var radius:Number = Physics.calculateRadius(e1.x + e1.width / 2, e1.y + e1.height / 2, 
 														e2.x + e2.width / 2, e2.y + e2.height / 2);
 			var totalDiameter:Number = e1.width / 2 + e2.width / 2;
 			return (totalDiameter - radius >= 0) ? true : false;
 		}
 		
-		public static function applyGravity(e1:GameEntity, e2:GameEntity, m1:Number, m2:Number):void {
+		public static function applyGravity(e1:GameObject, e2:GameObject, m1:Number, m2:Number):void {
 			
 			// Get radius
 			var radius:Number = Physics.calculateRadius(e1.x+e1.width/2, e1.y+e1.height/2, 
@@ -52,8 +52,8 @@
 										  (e1.x + e1.width / 2) - (e2.x + e2.width / 2));
 					
 
-			e2.ax += Physics.hComponent(acceleration, angle);
-			e2.ay += Physics.vComponent(acceleration, angle);
+			e2.velocity[0] += Physics.hComponent(acceleration, angle);
+			e2.velocity[1] += Physics.vComponent(acceleration, angle);
 
 		}
 		

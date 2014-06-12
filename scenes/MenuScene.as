@@ -1,7 +1,13 @@
 ﻿package scenes {
+	
+	// Import project stuff
 	import objects.Projectile;
 	import objects.BlackHole;
 	import objects.Sun;
+	
+	import components.gbInputComponent;
+	import components.gbGraphicsComponent;
+	import components.gbPhysicsComponent;
 	
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -16,16 +22,18 @@
 	import objects.ExitButton;
 	import starling.display.Sprite;
 
-	import scenes.PlayScene;
+	//import scenes.PlayScene;
 	import starling.display.Image;
 
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
 	import objects.SandboxButton;
+	import objects.GameObject;
 	
-	public class MenuScene extends Scene {
+	public class MenuScene extends Scene 
+	{
 
-		private static var MAX_NUM_PROJECTILES:int = 20;
+		private static var MAX_NUM_PROJECTILES:int = 50;
 		private static var MAX_NUM_SUNS:int = 3;
 		private static var MAX_SHOOT:Number = 30;
 		private static var MIN_SHOOT:Number = 25;
@@ -39,75 +47,69 @@
 		
 		private var _backgroundImage:BackgroundImage;
 		private var _playButton:PlayButton, _exitButton:ExitButton, _sandBoxButton:SandboxButton;
+
+		public var projectileManager:ProjectileManager;
+		public var sunManager:SunManager;
 		
-		private var _projectileManager:ProjectileManager;
-		private var _sunManager:SunManager;
-		
-		private var _themeChannel:SoundChannel;
-		
-		public function MenuScene() {
-			super();
-			
-			nextScene = new PlayScene();
-			
+		public function MenuScene() 
+		{
+			super(new gbInputComponent(), new gbPhysicsComponent(), new gbGraphicsComponent());
 		}
 		
-		override public function init():void {
+		override public function init():void
+		{		
 			super.init();
 
-			_backgroundLayer = new Sprite();
-			_backgroundLayer.alpha = BACKGROUND_ALPHA;
-			addChild(_backgroundLayer);
+
+			// Create and position menu objects
+			_backgroundImage = new BackgroundImage();
+			_playButton = new PlayButton();
+			_sandBoxButton = new SandboxButton();
+			_exitButton = new ExitButton();
 			
+			_playButton.x = Starling.current.stage.stageWidth / 2 - _sandBoxButton.width / 2 - _sandBoxButton.width * 1.5;
+			_playButton.y = Starling.current.stage.stageHeight / 2 - _playButton.height / 2;
+
+			_sandBoxButton.x = Starling.current.stage.stageWidth / 2 - _sandBoxButton.width / 2;
+			_sandBoxButton.y = Starling.current.stage.stageHeight / 2 - _sandBoxButton.height / 2;			
+
+			_exitButton.x = Starling.current.stage.stageWidth / 2 - _sandBoxButton.width / 2 + _sandBoxButton.width * 1.5;
+			_exitButton.y = Starling.current.stage.stageHeight / 2 - _exitButton.height / 2;
+			
+			
+			// Set up layers
+			_backgroundLayer = new Sprite();
+			addChild(_backgroundLayer);
 			_menuLayer = new Sprite();
 			addChild(_menuLayer);
 			
-			_backgroundImage = new BackgroundImage();
+			// Add to layers
 			_backgroundLayer.addChild(_backgroundImage);
 			
-			// Create managers and set their boundaries
-			_sunManager = new SunManager(_backgroundLayer, MAX_NUM_SUNS);
-			_sunManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
-				Starling.current.nativeStage.stageWidth + OUT_OF_BOUNDS,
-				Starling.current.nativeStage.stageHeight + OUT_OF_BOUNDS);
-			_sunManager.gravitate = true;
-			
-			_projectileManager = new ProjectileManager(_backgroundLayer, MAX_NUM_PROJECTILES);
-			_projectileManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
-				Starling.current.nativeStage.stageWidth + OUT_OF_BOUNDS,
-				Starling.current.nativeStage.stageHeight + OUT_OF_BOUNDS);
-			//_projectileManager.gravitate = true;
-			
-			
-			/* Set menu buttons. */
-			trace(Starling.current.nativeStage.stageWidth);
-			_playButton = new PlayButton(this, 240, 160);
-			_playButton.cx -= _playButton.width * MENU_SPACE_RATIO;
 			_menuLayer.addChild(_playButton);
-			
-			_sandBoxButton = new SandboxButton(this, 240, 160);
 			_menuLayer.addChild(_sandBoxButton);
-			
-			_exitButton = new ExitButton(this, 240, 160);
-			_exitButton.cx += _exitButton.width * MENU_SPACE_RATIO;
 			_menuLayer.addChild(_exitButton);
 			
-
+			// Create managers
+			projectileManager = new ProjectileManager(_backgroundLayer, MAX_NUM_PROJECTILES);
+			sunManager = new SunManager(_backgroundLayer, MAX_NUM_SUNS);
 			
-			// Play Theme
-			//_themeChannel = Assets.menuSound.play();	
-			//var transform:SoundTransform = new SoundTransform(1, 0.5);
-			//_themeChannel.soundTransform = transform;
-		}
-		
-		override public function destroy():void {
-			super.destroy();
-			_themeChannel.stop();
+			AssetResources.menuTheme.play();		
 		}
 
-		override public function update(timeDelta:Number):void { 
+		override public function update(timeDelta:Number):void 
+		{ 
+			super.update(timeDelta);
+			
+			projectileManager.update(timeDelta);
+			sunManager.update(timeDelta);
+			
+			/*
+			Game.INSTANCE.projectileManager.update(timeDelta);
+			Game.INSTANCE.sunManager.update(timeDelta);
 			
 			// Update Menu Items
+	
 			_playButton.update(timeDelta);
 			_exitButton.update(timeDelta);
 			_sandBoxButton.update(timeDelta);
@@ -115,13 +117,13 @@
 			_projectileManager.update(timeDelta);
 			_sunManager.update(timeDelta);
 			_sunManager.applyProjectileManager(_projectileManager);
-			
+		
 			var randomSide:int;
 			var startXPosition:Number, startYPosition:Number;
 			var shootXSpeed:Number, shootYSpeed:Number;
-			
+		
 			// Create projectiles
-			if (_projectileManager.projectileCount < MAX_NUM_PROJECTILES) {
+			if (Game.INSTANCE.projectileManager.projectileCount < MAX_NUM_PROJECTILES) {
 				
 				randomSide = 4 * Math.random();
 				
@@ -150,13 +152,13 @@
 
 				// Get random color
 				var random_color:int = Math.random() * Projectile.COLORS.length;
-				_projectileManager.addProjectile(startXPosition, startYPosition, shootXSpeed, shootYSpeed, Projectile.COLORS[random_color]);
+				Game.INSTANCE.projectileManager.addProjectile(startXPosition, startYPosition, shootXSpeed, shootYSpeed, Projectile.COLORS[random_color]);
 				
 	
 			}
 			
 			// Create suns
-			if (_sunManager.sunCount < MAX_NUM_SUNS) {
+			if (Game.INSTANCE.sunManager.sunCount < MAX_NUM_SUNS) {
 				
 				randomSide = 4 * Math.random();
 				
@@ -183,8 +185,9 @@
 					shootYSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 				}
 
-				_sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
+				Game.INSTANCE.sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
 			}
+	*/
 	
 		}
 
