@@ -39,7 +39,7 @@
 			p.y = cy - p.height / 2
 			p.velocity[0] = dx;
 			p.velocity[1] = dy;
-			
+
 			p.color = color;
 			_layer.addChild(p);
 			projectiles.push(p);
@@ -53,7 +53,7 @@
 			projectiles.splice(i, 1);
 			_layer.removeChild(p);
 			_pool.returnSprite(p);
-	
+
 		}
 		
 		public function removeAll():void 

@@ -26,7 +26,7 @@ package
 	import flash.media.SoundChannel;
 	import flash.display3D.textures.Texture;
 	import flash.geom.Point;
-
+	import flash.desktop.NativeApplication;
 	
 	public class Game extends Sprite
 	{
@@ -43,7 +43,7 @@ package
 		public static var MAX_SHOOT:Number = 30;
 		public static var MIN_SHOOT:Number = 25;
 		public static var OUT_OF_BOUNDS:Number = 100;
-		public static var SPAWN_BOUNDARY:Number = 25;
+		public static var SPAWN_BOUNDARY:Number = 0;
 		public static var BACKGROUND_ALPHA:Number = 1.0;
 		public static var MENU_SPACE_RATIO:Number = 1.5;
 
@@ -120,8 +120,17 @@ package
 			} else {
 				removeChild(scene);
 				scene = scene.nextScene;
-				scene.init();
-				addChild(scene);				
+				
+				if (scene == null)
+				{
+					// Leave application
+					NativeApplication.nativeApplication.exit();
+					removeEventListener(Event.ENTER_FRAME, update);	
+				}
+				else {
+					scene.init();
+					addChild(scene);
+				}			
 			}
 
 		}

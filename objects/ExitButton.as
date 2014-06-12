@@ -5,7 +5,7 @@
 	import components.gbGraphicsComponent;	
 	import components.gbInputComponent;
 	
-	public class ExitButton extends GameObject {
+	public class ExitButton extends MenuButton {
 
 		public function ExitButton() 
 		{

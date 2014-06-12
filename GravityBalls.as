@@ -44,7 +44,7 @@ package
             _starling = new Starling(Game, stage, viewport);
             
 			_starling.simulateMultitouch = true;
-            //_starling.showStats = true;
+            _starling.showStats = true;
             _starling.antiAliasing = 1;
 			
 			_starling.stage.stageWidth = STAGE_WIDTH;

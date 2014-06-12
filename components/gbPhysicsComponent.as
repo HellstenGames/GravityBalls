@@ -16,13 +16,9 @@
 			super.init(gameObject);
 		}
 		
-		override public function update(gameObject:*):void
+		override public function update(gameObject:*, timeDelta:Number):void
 		{
-			if (gameObject is GameObject)
-			{
-				gameObject.x += gameObject.velocity[0];
-				gameObject.y += gameObject.velocity[1];
-			}
+			super.update(gameObject, timeDelta);
 		}
 		
 	}

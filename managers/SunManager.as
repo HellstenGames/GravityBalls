@@ -111,13 +111,14 @@
 		}
 		
 		private function handleProjectiles():void {
-			
+
 			if (projectileManager == null)
 				return;
-			
+
 			// Loop through all the suns and apply gravity onto the projectiles
 			for (var s:int = 0; s < suns.length; ++s) {
 				var sun:Sun = suns[s];
+
 				for (var p:int = 0; p < projectileManager.projectiles.length; ++p) {
 					var projectile:Projectile = projectileManager.projectiles[p];
 					
@@ -131,6 +132,7 @@
 					
 				}
 			}
+	
 			
 		}
 		

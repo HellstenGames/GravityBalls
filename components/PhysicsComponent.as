@@ -13,8 +13,10 @@
 		{
 		}
 		
-		public function update(gameObject:*):void
+		public function update(gameObject:*, timeDelta:Number):void
 		{
+			gameObject.x += gameObject.velocity[0] * timeDelta;
+			gameObject.y += gameObject.velocity[1] * timeDelta;		
 		}
 		
 	}

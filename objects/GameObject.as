@@ -22,7 +22,7 @@
 			_input = input;
 			_physics = physics;
 			_graphics = graphics;
-			velocity = new Array(0, 0);
+			velocity = new Array(0.0, 0.0);
 			
 			if (_input != null) _input.init(this);
 			if (_physics != null) _physics.init(this);
@@ -32,7 +32,7 @@
 		public function update(timeDelta:Number):void
 		{
 			if (_input != null) _input.update(this);
-			if (_physics != null) _physics.update(this);
+			if (_physics != null) _physics.update(this, timeDelta);
 			if (_graphics != null) _graphics.update(this);
 		}
 		

@@ -31,7 +31,11 @@
     <fullScreen>false</fullScreen>
     <aspectRatio>landscape</aspectRatio>
     <renderMode>direct</renderMode>
-    <autoOrients>false</autoOrients></initialWindow>
+    <autoOrients>false</autoOrients>
+    <maximizable>true</maximizable>
+    <minimizable>true</minimizable>
+    <resizable>true</resizable>
+  </initialWindow>
   <icon>
     
   </icon>
@@ -42,4 +46,5 @@
 </manifest>]]></manifestAdditions>
   </android>
   <versionLabel/>
-  <supportedLanguages>en</supportedLanguages></application>
+  <supportedLanguages>en</supportedLanguages>
+</application>

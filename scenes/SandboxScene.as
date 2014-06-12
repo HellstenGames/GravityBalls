@@ -27,10 +27,12 @@
 
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
+
+	
 	import objects.SandboxButton;
 	import objects.GameObject;
 	
-	public class MenuScene extends Scene 
+	public class SandboxScene extends Scene 
 	{
 
 		private static var MAX_NUM_PROJECTILES:int = 25;
@@ -53,7 +55,7 @@
 		
 		private var themeChannel:SoundChannel;
 		
-		public function MenuScene() 
+		public function SandboxScene() 
 		{
 			super(new gbInputComponent(), new gbPhysicsComponent(), new gbGraphicsComponent());
 		}

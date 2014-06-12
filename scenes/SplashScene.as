@@ -42,7 +42,9 @@
 			_splashDelayComplete = false;
 			// Load splash screen
 			var loader:Loader = new Loader();
-			loader.load ( new URLRequest ("assets/x3/splashscreen_x3.png") );
+			var sf:String = String(Starling.contentScaleFactor);
+			trace("assets/x3/splashscreen_x" + String(Starling.contentScaleFactor) + ".png");
+			loader.load ( new URLRequest ("assets/x"+sf+"/splashscreen.png") );
 			loader.contentLoaderInfo.addEventListener ( Event.COMPLETE, onComplete );				
 		}
 		

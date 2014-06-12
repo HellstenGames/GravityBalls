@@ -40,6 +40,10 @@
 					gameObject.addChild(new Image(AssetResources.blueProjectileTexture));
 				}
 			}
+			else if (gameObject is Sun)
+			{
+				gameObject.addChild(new Image(AssetResources.sunTexture));
+			}
 			else if (gameObject is PlayButton)
 			{
 				gameObject.addChild(new Image(AssetResources.playBallTexture));
