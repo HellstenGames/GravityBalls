@@ -6,6 +6,7 @@
 	import starling.events.Touch;
 	import starling.core.Starling;
 	import starling.animation.DelayedCall;
+	import starling.display.DisplayObject;
 	
 	// Import project stuff
 	import objects.MenuButton;
@@ -13,10 +14,12 @@
 	import objects.ExitButton;
 	import objects.SandboxButton;
 	import scenes.*;
+	import objects.Projectile;
 	
 	// Import flash stuff
 	import flash.geom.Point;
-	import starling.animation.DelayedCall;
+	import graphics.Line;
+	
 	
 	public class gbInputComponent extends InputComponent {
 
@@ -44,6 +47,7 @@
 		private function onMenuButtonTouch(event:TouchEvent):void
 		{
 			var menuButton:MenuButton = event.currentTarget as MenuButton;
+		
 			// Scale button if touched
 			var touchBagan:Touch = event.getTouch(menuButton, TouchPhase.BEGAN);
 			var touchEnded:Touch = event.getTouch(menuButton, TouchPhase.ENDED);
@@ -71,12 +75,52 @@
 				}
 			}
 
-
 		}
 		
 		private function menuButtonDelay():void
 		{
 			Game.INSTANCE.scene.destroy();
+		}
+		
+		
+		var beginPos:Point = new Point(0, 0), endPos:Point = new Point(0, 0), movingPos:Point = new Point(0, 0);
+		var line:Line;
+		var col:uint;
+		
+		private function onBackgroundTouch(event:TouchEvent):void
+		{
+			var dObj:DisplayObject = event.currentTarget as DisplayObject;
+			var touchBegan:Touch = event.getTouch(dObj, TouchPhase.BEGAN);
+			var touchEnded:Touch = event.getTouch(dObj, TouchPhase.ENDED);
+			var touchMoving:Touch = event.getTouch(dObj, TouchPhase.MOVED);
+			var touchHover:Touch = event.getTouch(dObj, TouchPhase.HOVER);
+
+			if (touchBegan)
+			{
+				beginPos = touchBegan.getLocation(dObj);
+			}
+
+			if (touchEnded) 
+			{
+				endPos = touchEnded.getLocation(dObj);
+				col = Math.floor(Math.random() * Projectile.COLORS.length);
+				projectileManager.addProjectile(beginPos.x, beginPos.y, (beginPos.x-endPos.x)*3, (beginPos.y-endPos.y)*2, Projectile.COLORS[col]);
+				removeChild(line);
+			}
+
+			if (touchMoving)
+			{
+				removeChild(line);
+				movingPos = touchMoving.getLocation(dObj);
+				line = new Line(beginPos.x, beginPos.y, movingPos.x, movingPos.y, 
+					((Projectile.COLORS[col] == "blue") ? Color.BLUE : ((Projectile.COLORS[col] == "red") ? Color.RED : Color.GREEN)));
+				addChild(line);				
+			}
+
+			if (touchHover)
+			{
+				var hoverPos:Point = touchHover.getLocation(this);
+			}
 		}
 		
 	}

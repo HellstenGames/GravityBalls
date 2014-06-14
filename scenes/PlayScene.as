@@ -4,33 +4,30 @@
 	import objects.Projectile;
 	import objects.BlackHole;
 	import objects.Sun;
+	import objects.BackgroundImage;
+	import objects.PlayButton;
+	import objects.ExitButton;
+	import objects.SandboxButton;
+	import objects.GameObject;
+
+	import managers.ProjectileManager;
+	import managers.SunManager;
 	
 	import components.gbInputComponent;
 	import components.gbGraphicsComponent;
 	import components.gbPhysicsComponent;
 	
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
-	import starling.events.Touch;
+	// Import starling stuff
 	import starling.core.Starling;
-	
-	import flash.geom.Point;
-	import managers.ProjectileManager;
-	import managers.SunManager;
-	import objects.BackgroundImage;
-	import objects.PlayButton;
-	import objects.ExitButton;
 	import starling.display.Sprite;
-
-	//import scenes.PlayScene;
 	import starling.display.Image;
-
+	
+	// Import flash stuff
+	import flash.geom.Point;
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
 
-	
-	import objects.SandboxButton;
-	import objects.GameObject;
+
 	
 	public class PlayScene extends Scene 
 	{
@@ -39,16 +36,14 @@
 		private static var MAX_NUM_SUNS:int = 3;
 		private static var MAX_SHOOT:Number = 30;
 		private static var MIN_SHOOT:Number = 25;
-		private static var OUT_OF_BOUNDS:Number = 100;
-		private static var SPAWN_BOUNDARY:Number = 25;
-		private static var BACKGROUND_ALPHA:Number = 1.0;
-		private static var MENU_SPACE_RATIO:Number = 1.5;
+
 		
 		private var _backgroundLayer:Sprite;
 		private var _menuLayer:Sprite;
+		private var _playLayer:Sprite;
 		
 		private var _backgroundImage:BackgroundImage;
-
+		
 		public var projectileManager:ProjectileManager;
 		public var sunManager:SunManager;
 		
@@ -70,6 +65,8 @@
 			// Set up layers
 			_backgroundLayer = new Sprite();
 			addChild(_backgroundLayer);
+			_playLayer = new Sprite();
+			addChild(_playLayer);			
 			_menuLayer = new Sprite();
 			addChild(_menuLayer);
 			
