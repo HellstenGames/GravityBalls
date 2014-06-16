@@ -53,14 +53,14 @@
 			
 			// Create buttons
 			playButton = new PlayButton(this);
-			playButton.cx = Starling.current.nativeStage.stageWidth / 2 - MENU_BUTTON_OFFSET;
-			playButton.cy = Starling.current.nativeStage.stageHeight / 2;
+			playButton.cx = Starling.current.stage.stageWidth / 2 - MENU_BUTTON_OFFSET;
+			playButton.cy = Starling.current.stage.stageHeight / 2;
 			sandboxButton = new SandboxButton(this);
-			sandboxButton.cx = Starling.current.nativeStage.stageWidth / 2;
-			sandboxButton.cy = Starling.current.nativeStage.stageHeight / 2;			
+			sandboxButton.cx = Starling.current.stage.stageWidth / 2;
+			sandboxButton.cy = Starling.current.stage.stageHeight / 2;			
 			exitButton = new ExitButton(this);
-			exitButton.cx = Starling.current.nativeStage.stageWidth / 2 + MENU_BUTTON_OFFSET;
-			exitButton.cy = Starling.current.nativeStage.stageHeight / 2;			
+			exitButton.cx = Starling.current.stage.stageWidth / 2 + MENU_BUTTON_OFFSET;
+			exitButton.cy = Starling.current.stage.stageHeight / 2;			
 			// Add buttons
 			addEntity(playButton);
 			addEntity(sandboxButton);
@@ -69,13 +69,13 @@
 			// Create Managers
 			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
 			projectileManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
-				Starling.current.nativeStage.stageWidth + OUT_OF_BOUNDS,
-				Starling.current.nativeStage.stageHeight + OUT_OF_BOUNDS);
+				Starling.current.stage.stageWidth + OUT_OF_BOUNDS,
+				Starling.current.stage.stageHeight + OUT_OF_BOUNDS);
 
 			sunManager = new SunManager(backgroundLayer, projectileManager, MAX_PROJECTILES);
 			sunManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
-				Starling.current.nativeStage.stageWidth + OUT_OF_BOUNDS,
-				Starling.current.nativeStage.stageHeight + OUT_OF_BOUNDS);
+				Starling.current.stage.stageWidth + OUT_OF_BOUNDS,
+				Starling.current.stage.stageHeight + OUT_OF_BOUNDS);
 			sunManager.gravitate = true;	
 			
 		}
@@ -99,22 +99,22 @@
 				// Spawn random projectiles + suns
 				if (randomSide == 0) {
 					startXPosition = -SPAWN_BOUNDARY;
-					startYPosition = Math.random() * Starling.current.nativeStage.stageHeight;
+					startYPosition = Math.random() * Starling.current.stage.stageWidth;
 					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 					shootXSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
 				} else if (randomSide == 1) {
-					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
+					startXPosition = Math.random() * Starling.current.stage.stageWidth;
 					startYPosition = -SPAWN_BOUNDARY;
 					shootYSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
 					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 				} else if (randomSide == 2) {
 					startXPosition = Starling.current.nativeStage.stageWidth + SPAWN_BOUNDARY;
-					startYPosition = Math.random() *  Starling.current.nativeStage.stageHeight;	
+					startYPosition = Math.random() *  Starling.current.stage.stageHeight;	
 					shootXSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;	
 					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;			
 				} else {
-					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
-					startYPosition = Starling.current.nativeStage.stageHeight + SPAWN_BOUNDARY;
+					startXPosition = Math.random() * Starling.current.stage.stageWidth;
+					startYPosition = Starling.current.stage.stageHeight + SPAWN_BOUNDARY;
 					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 					shootYSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 				}
@@ -134,22 +134,22 @@
 				// Spawn random projectiles + suns
 				if (randomSide == 0) {
 					startXPosition = -SPAWN_BOUNDARY;
-					startYPosition = Math.random() * Starling.current.nativeStage.stageHeight;
+					startYPosition = Math.random() * Starling.current.stage.stageWidth;
 					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 					shootXSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
 				} else if (randomSide == 1) {
-					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
+					startXPosition = Math.random() * Starling.current.stage.stageWidth;
 					startYPosition = -SPAWN_BOUNDARY;
 					shootYSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
 					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 				} else if (randomSide == 2) {
 					startXPosition = Starling.current.nativeStage.stageWidth + SPAWN_BOUNDARY;
-					startYPosition = Math.random() *  Starling.current.nativeStage.stageHeight;	
+					startYPosition = Math.random() *  Starling.current.stage.stageHeight;	
 					shootXSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;	
 					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;		
 				} else {
-					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
-					startYPosition = Starling.current.nativeStage.stageHeight + SPAWN_BOUNDARY;
+					startXPosition = Math.random() * Starling.current.stage.stageWidth;
+					startYPosition = Starling.current.stage.stageHeight + SPAWN_BOUNDARY;
 					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 					shootYSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
 				}
