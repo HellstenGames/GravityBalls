@@ -1,19 +1,19 @@
 ﻿package scenes {
 	
 	// Import project stuff
-	import objects.GameObject;
 	
 	import components.*;
+	import objects.Entity;
 	
-	public class Scene extends GameObject 
+	public class Scene extends Entity 
 	{
 
 		public var isDone:Boolean;
 		public var nextScene:Scene;
 		
-		public function Scene(input:InputComponent, physics:PhysicsComponent, graphics:GraphicsComponent) 
+		public function Scene() 
 		{
-			super(input, physics, graphics);
+			super();
 			nextScene = this;
 		}
 

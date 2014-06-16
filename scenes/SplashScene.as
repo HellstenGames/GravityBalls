@@ -1,11 +1,7 @@
 ﻿package scenes {
 	
 	// Import project stuff
-	import scenes.MenuScene;
-	import objects.GameObject;
-	import components.gbInputComponent;
-	import components.gbGraphicsComponent;
-	import components.gbPhysicsComponent;
+
 	
 	// Import starling stuff
 	import starling.display.Image;
@@ -32,7 +28,7 @@
 		
 		public function SplashScene() 
 		{
-			super(new gbInputComponent(), new gbPhysicsComponent(), new gbGraphicsComponent());
+			super();
 			nextScene = new MenuScene();
 		}
 
@@ -57,8 +53,12 @@
 			// Load Sound
 			var sound:Sound = new Sound();    
 			sound.load( new URLRequest ("assets/sfx/splashtheme.mp3") );
-			sound.play();
-
+			/*
+			var soundChannel:SoundChannel = sound.play();
+			var transform:SoundTransform = new SoundTransform(0.25, 0.5);
+			soundChannel.soundTransform = transform;
+			*/
+			
 			// Set splash delay
 			_delayedCall = new DelayedCall(splashDelay, SplashScene.SPLASH_DELAY);
 			_delayedCall.repeatCount = 1;
@@ -70,9 +70,9 @@
 			super.destroy();
 		}
 		
-		override public function update(timeDelta:Number):void 
+		override public function update():void 
 		{ 
-			super.update(timeDelta);
+			super.update();
 			
 			if (_splashDelayComplete && Game.INSTANCE.doneLoading)
 				destroy();
