@@ -14,7 +14,8 @@
 		public function Scene() 
 		{
 			super();
-			nextScene = this;
+			nextScene = null;
+			entities = [];
 		}
 
 		public function init():void

@@ -76,7 +76,7 @@ package
 			_lastTime = now;
 			
 			if (!scene.isDone) {
-				scene.update();
+				scene.update(delta / 1000);
 			} else {
 				removeChild(scene);
 				scene = scene.nextScene;

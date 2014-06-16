@@ -70,9 +70,9 @@
 			super.destroy();
 		}
 		
-		override public function update():void 
+		override public function update(timeDelta:Number):void 
 		{ 
-			super.update();
+			super.update(timeDelta);
 			
 			if (_splashDelayComplete && Game.INSTANCE.doneLoading)
 				destroy();

@@ -10,36 +10,24 @@
 	public class Entity extends Sprite 
 	{
 
-		public var componentList:Array;
+		public var velocity:Array;
 		public var entities:Array;
 		
-		public function Entity()  
+		public function Entity(xPos:Number=0, yPos:Number=0, dx:Number=0, dy:Number=0)  
 		{
-			componentList = [];
+			velocity = new Array(dx, dy);
 			entities = [];
+			x = xPos;
+			y = yPos;
 		}
-		
-		public function addComponent(component:Component):void
+
+
+		public function addEntity(... args):void
 		{
-			component.init(this);
-			componentList.push(component);
-		}
-		
-		public function removeComponent(component:Component):void
-		{
-			componentList.splice(component);
-		}
-		
-		public function addEntity(entity:Entity):void
-		{
-			addChild(entity);
-			entities.push(entity);
-			// Apply change to components
-			var cll:int = componentList.length;
-			for (var i:int = cll - 1; i >= 0; --i)
-			{
-				componentList[i].changed(this);
-			}			
+			for (var i:uint = 0; i < args.length; i++) {
+				addChild(args[i]);
+				entities.push(args[i]);	
+			}	
 		}
 		
 		public function removeEntity(entity:Entity):void
@@ -48,20 +36,58 @@
 			entities.splice(entity);
 		}
 		
-		public function update():void
+		public function update(timeDelta:Number):void
 		{
-			// Update Components of this entity
-			var cll:int = componentList.length;
-			for (var i:int = cll - 1; i >= 0; --i)
-			{
-				componentList[i].update(this);
-			}
+			// Update entity position
+			x += velocity[0] * timeDelta;
+			y += velocity[1] * timeDelta;
+
 			// Update entities inside this entity
 			var el:int = entities.length;
 			for (var e:int = el - 1; e >=0; --e)
 			{
-				entities[e].update();
+				entities[e].update(timeDelta);
 			}
+		}
+		
+		public function get cx():Number
+		{
+			return x + width / 2;
+		}
+		
+		public function get cy():Number
+		{
+			return y + height / 2;
+		}
+		
+		public function set cx(value:Number):void
+		{
+			x = value - width / 2;
+		}
+		
+		public function set cy(value:Number):void
+		{
+			y = value - height / 2;
+		}
+		
+		public function set dx(value:Number):void
+		{
+			velocity[0] = value;
+		}
+		
+		public function set dy(value:Number):void
+		{
+			velocity[1] = value;
+		}
+		
+		public function get dx():Number
+		{
+			return velocity[0];
+		}
+		
+		public function get dy():Number
+		{
+			return velocity[1];
 		}
 		
 	}

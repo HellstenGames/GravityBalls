@@ -1,23 +1,41 @@
 ﻿package scenes {
 	
 	// Import starling stuff
+	import starling.display.Sprite;
 	import starling.core.Starling;
-	import starling.events.TouchEvent;
 	
+	// Import project stuff
 	import objects.Entity;
-	import components.GraphicsComponent;
-	import components.PhysicsComponent;
-	import components.InputComponent;
-	import components.MBGraphicsComponent;
-	import components.PBInputComponent;
-	import components.MBInputComponent;
+	import objects.Background;
+	import buttons.PlayButton;
+	import buttons.SandboxButton;
+	import buttons.ExitButton;
+	import managers.ProjectileManager;
+	import managers.SunManager;
+	import objects.Projectile;
+	import objects.Sun;
+	
 	
 	public class MenuScene extends Scene {
 
-		public var playButton:Entity, sandboxButton:Entity, exitButton:Entity;
-		public var background:Entity;
+		public static var MENU_BUTTON_OFFSET:int = 125;
+		public static var MAX_PROJECTILES:int = 25;
+		public static var MAX_SUNS:int = 3;
+		private static var MAX_SHOOT:Number = 30;
+		private static var MIN_SHOOT:Number = 25;
+		private static var OUT_OF_BOUNDS:Number = 100;
+		private static var SPAWN_BOUNDARY:Number = 25;
 		
-		public function MenuScene() 
+		public var playButton:PlayButton, sandboxButton:SandboxButton, exitButton:ExitButton;
+		public var background:Sprite;
+		
+		public var projectileManager:ProjectileManager;
+		public var sunManager:SunManager;
+		
+		// Layers
+		public var backgroundLayer:Sprite;
+		
+		public function MenuScene()
 		{
 			super();
 		}
@@ -26,96 +44,118 @@
 		{		
 			super.init();
 			
-			// Add Background
-			background = new Entity();
-			var backgroundPC:PhysicsComponent = new PhysicsComponent();
-			background.addComponent(new GraphicsComponent(AssetResources.backgroundTexture, backgroundPC, new InputComponent()));
-			background.addComponent(backgroundPC);
-			addChild(background);
+			backgroundLayer = new Sprite();
+			addChild(backgroundLayer);
 			
-			// Create button texts
-			/* Play Button Text */
-			var playButtonText:Entity = new Entity();
-			var playButtonTextPC:PhysicsComponent = new PhysicsComponent(AssetResources.playBallTexture.width / 2 - AssetResources.playTextTexture.width / 2,
-																		 AssetResources.playBallTexture.height / 2 - AssetResources.playTextTexture.height / 2);
-			playButtonText.addComponent(new GraphicsComponent(AssetResources.playTextTexture, 
-															  playButtonTextPC, 
-														      new InputComponent));
-			playButtonText.addComponent(playButtonTextPC);
-			/* Sandbox Button Text */
-			var sandboxButtonText:Entity = new Entity();
-			var sandboxButtonTextPC:PhysicsComponent = new PhysicsComponent(AssetResources.sandboxBallTexture.width / 2 - AssetResources.sandboxTextTexture.width / 2,
-																				   AssetResources.sandboxBallTexture.height / 2 - AssetResources.sandboxTextTexture.height / 2);
-			sandboxButtonText.addComponent(new GraphicsComponent(AssetResources.sandboxTextTexture, 
-																 sandboxButtonTextPC,
-																 new InputComponent()));
-			sandboxButtonText.addComponent(sandboxButtonTextPC);
-			/* Exit Button Text */
-			var exitButtonText:Entity = new Entity();
-			var exitButtonTextPC:PhysicsComponent = new PhysicsComponent(AssetResources.exitBallTexture.width / 2 - AssetResources.exitTextTexture.width / 2,
-																				   AssetResources.exitBallTexture.height / 2 - AssetResources.exitTextTexture.height / 2);
-			exitButtonText.addComponent(new GraphicsComponent(AssetResources.exitTextTexture, 
-														      exitButtonTextPC,
-															  new InputComponent()));
-			exitButtonText.addComponent(exitButtonTextPC);
+			// Create/Add background
+			background = new Background();
+			backgroundLayer.addChild(background);
 			
+			// Create buttons
+			playButton = new PlayButton(this);
+			playButton.cx = Starling.current.nativeStage.stageWidth / 2 - MENU_BUTTON_OFFSET;
+			playButton.cy = Starling.current.nativeStage.stageHeight / 2;
+			sandboxButton = new SandboxButton(this);
+			sandboxButton.cx = Starling.current.nativeStage.stageWidth / 2;
+			sandboxButton.cy = Starling.current.nativeStage.stageHeight / 2;			
+			exitButton = new ExitButton(this);
+			exitButton.cx = Starling.current.nativeStage.stageWidth / 2 + MENU_BUTTON_OFFSET;
+			exitButton.cy = Starling.current.nativeStage.stageHeight / 2;			
+			// Add buttons
+			addEntity(playButton);
+			addEntity(sandboxButton);
+			addEntity(exitButton);
 			
-			// Add Play Button
-			playButton = new Entity();
-			var playIC:MBInputComponent = new MBInputComponent();
-			var playPC:PhysicsComponent = new PhysicsComponent(Starling.current.nativeStage.stageWidth / 2 - AssetResources.playBallTexture.width / 2 - 125,
-														 Starling.current.nativeStage.stageHeight / 2 - AssetResources.playBallTexture.height / 2);
-			playButton.addComponent(playPC);			
-			playPC.rotationSpeed = 1;
+			// Create Managers
+			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
+			projectileManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
+				Starling.current.nativeStage.stageWidth + OUT_OF_BOUNDS,
+				Starling.current.nativeStage.stageHeight + OUT_OF_BOUNDS);
+
+			sunManager = new SunManager(backgroundLayer, projectileManager, MAX_PROJECTILES);
+			sunManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
+				Starling.current.nativeStage.stageWidth + OUT_OF_BOUNDS,
+				Starling.current.nativeStage.stageHeight + OUT_OF_BOUNDS);
+			sunManager.gravitate = true;	
 			
-			var playGC:GraphicsComponent = new MBGraphicsComponent(AssetResources.playBallTexture, playPC, playIC);
-			playButton.addComponent(playGC);
-			
-			playButton.addEntity(playButtonText);
-			
-			playButton.addComponent(playIC);
-			addChild(playButton);
-			
-			// Add Sandbox Button
-			sandboxButton = new Entity();
-			var sandboxIC:MBInputComponent = new MBInputComponent();
-			var sandboxPC:PhysicsComponent = new PhysicsComponent(Starling.current.nativeStage.stageWidth / 2 - AssetResources.playBallTexture.width / 2,
-														 Starling.current.nativeStage.stageHeight / 2 - AssetResources.playBallTexture.height / 2);
-			sandboxButton.addComponent(sandboxPC);											 
-			sandboxPC.rotationSpeed = 1;
-			
-			var sandboxGC:GraphicsComponent = new MBGraphicsComponent(AssetResources.sandboxBallTexture, sandboxPC, sandboxIC);
-			sandboxButton.addComponent(sandboxGC);
-											 
-			sandboxButton.addEntity(sandboxButtonText);
-			
-			sandboxButton.addComponent(sandboxIC);
-			addChild(sandboxButton);
-			
-			// Add Exit Button
-			exitButton = new Entity();
-			var exitIC:MBInputComponent = new MBInputComponent();
-			var exitPC:PhysicsComponent = new PhysicsComponent(Starling.current.nativeStage.stageWidth / 2 - AssetResources.playBallTexture.width / 2 + 125,
-														 Starling.current.nativeStage.stageHeight / 2 - AssetResources.playBallTexture.height / 2);
-			exitButton.addComponent(exitPC);
-			exitPC.rotationSpeed = 1;
-			
-			var exitGC:GraphicsComponent = new MBGraphicsComponent(AssetResources.exitBallTexture, exitPC, exitIC);
-			exitButton.addComponent(exitGC);
-			
-			exitButton.addEntity(exitButtonText);
-			
-			exitButton.addComponent(exitIC);
-			addChild(exitButton);			
 		}
 		
-		override public function update():void 
+		override public function update(timeDelta:Number):void 
 		{ 
-			super.update();
+			super.update(timeDelta);
+			projectileManager.update(timeDelta);
+			sunManager.update(timeDelta);
 			
-			playButton.update();
-			sandboxButton.update();
-			exitButton.update();
+			// Prepare to shoot projectiles and suns
+			var randomSide:int;
+			var startXPosition:Number, startYPosition:Number;
+			var shootXSpeed:Number, shootYSpeed:Number;
+
+			// Create projectiles
+			if (projectileManager.projectileCount < MAX_PROJECTILES) {
+
+				randomSide = 4 * Math.random();
+
+				// Spawn random projectiles + suns
+				if (randomSide == 0) {
+					startXPosition = -SPAWN_BOUNDARY;
+					startYPosition = Math.random() * Starling.current.nativeStage.stageHeight;
+					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+					shootXSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
+				} else if (randomSide == 1) {
+					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
+					startYPosition = -SPAWN_BOUNDARY;
+					shootYSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
+					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+				} else if (randomSide == 2) {
+					startXPosition = Starling.current.nativeStage.stageWidth + SPAWN_BOUNDARY;
+					startYPosition = Math.random() *  Starling.current.nativeStage.stageHeight;	
+					shootXSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;	
+					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;			
+				} else {
+					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
+					startYPosition = Starling.current.nativeStage.stageHeight + SPAWN_BOUNDARY;
+					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+					shootYSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+				}
+
+				// Get random color
+				var random_color:int = Math.random() * Projectile.COLORS.length;
+				projectileManager.addProjectile(startXPosition, startYPosition, shootXSpeed, shootYSpeed, Projectile.COLORS[random_color]);
+
+
+			}
+
+			// Create suns
+			if (sunManager.sunCount < MAX_SUNS) {
+
+				randomSide = 4 * Math.random();
+
+				// Spawn random projectiles + suns
+				if (randomSide == 0) {
+					startXPosition = -SPAWN_BOUNDARY;
+					startYPosition = Math.random() * Starling.current.nativeStage.stageHeight;
+					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+					shootXSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
+				} else if (randomSide == 1) {
+					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
+					startYPosition = -SPAWN_BOUNDARY;
+					shootYSpeed = Math.random() * (MAX_SHOOT - MIN_SHOOT) + MIN_SHOOT;
+					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+				} else if (randomSide == 2) {
+					startXPosition = Starling.current.nativeStage.stageWidth + SPAWN_BOUNDARY;
+					startYPosition = Math.random() *  Starling.current.nativeStage.stageHeight;	
+					shootXSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;	
+					shootYSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;		
+				} else {
+					startXPosition = Math.random() * Starling.current.nativeStage.stageWidth;
+					startYPosition = Starling.current.nativeStage.stageHeight + SPAWN_BOUNDARY;
+					shootXSpeed = Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+					shootYSpeed = -Math.random() * (MAX_SHOOT + MIN_SHOOT) - MIN_SHOOT;
+				}
+
+				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
+			}			
 		}
 		
 	}
