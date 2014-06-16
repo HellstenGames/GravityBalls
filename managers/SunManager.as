@@ -4,6 +4,8 @@
 	import objects.Projectile;
 	import starling.display.Sprite;
 	import utils.SpritePool;
+	import objects.Player;
+	import objects.Entity;
 
 	public class SunManager {
 
@@ -25,7 +27,7 @@
 			_pool = new SpritePool(Sun, len);
 			suns = []
 			_layer = layer;
-
+			
 			_leftBoundary = _topBoundary = 0;
 			_rightBoundary = Starling.current.nativeStage.stageWidth;
 			_bottomBoundary = Starling.current.nativeStage.stageHeight;
@@ -54,6 +56,7 @@
 
 		}
 
+		
 		public function update(timeDelta:Number):void {
 			var slength:int = suns.length; 
 
@@ -147,7 +150,7 @@
 			}
 
 		}
-
+		
 		// =========================================================================================================================================================
 		// Properties
 		// =========================================================================================================================================================

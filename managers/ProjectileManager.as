@@ -45,7 +45,7 @@
 			projectiles.push(p);
 
 		}
-
+		
 		public function removeProjectile(i:int):void {
 
 			var p:Projectile = projectiles[i];

@@ -1,1 +1,40 @@
-300, 200,
+[
+{
+	"item": "sun",
+	"position" : { "cx":240, "cy":160 }
+},
+{
+	"item": "projectile",
+	"position": { "cx":10, "cy":10 }
+},
+{
+
+	"item": "projectile",
+	"position": { "cx":200, "cy":50 }
+},
+{
+
+	"item": "projectile",
+	"position": { "cx":200, "cy":200 }
+},
+{
+
+	"item": "player",
+	"position": { "cx":400, "cy":160 }
+},
+{
+
+	"item": "blackhole",
+	"position": { "cx":50, "cy":160 }
+},
+{
+
+	"item": "point",
+	"position": { "cx":75, "cy":200 }
+},
+{
+
+	"item": "point",
+	"position": { "cx":100, "cy":200 }
+}
+]

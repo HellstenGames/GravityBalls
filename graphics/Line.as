@@ -1,8 +1,5 @@
 ﻿package graphics {
 	
-	// Import project stuff
-	import graphics.Line;
-	
 	// Import starling stuff
 	import starling.utils.Color;	
 	import starling.display.Quad;
@@ -14,7 +11,7 @@
 		private var _thickness:Number = 1;
 		private var _color:uint = 0x000000;
  
-		public function Line(x1:Number, y1:Number, x2:Number, y2:Number, color:uint=Color.BLACK, thickness:Number =1)
+		public function Line(x1:Number=0, y1:Number=0, x2:Number=0, y2:Number=0, color:uint=Color.BLACK, thickness:Number =1)
 		{
 			_thickness = thickness;
 			_color = color;

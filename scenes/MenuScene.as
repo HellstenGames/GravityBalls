@@ -15,6 +15,9 @@
 	import objects.Projectile;
 	import objects.Sun;
 	
+	// Import flash stuff
+	import flash.media.SoundChannel;
+	
 	
 	public class MenuScene extends Scene {
 
@@ -34,6 +37,8 @@
 		
 		// Layers
 		public var backgroundLayer:Sprite;
+		
+		private var _themeChannel:SoundChannel;
 		
 		public function MenuScene()
 		{
@@ -78,6 +83,7 @@
 				Starling.current.stage.stageHeight + OUT_OF_BOUNDS);
 			sunManager.gravitate = true;	
 			
+			_themeChannel = AssetResources.menuTheme.play();
 		}
 		
 		override public function update(timeDelta:Number):void 
@@ -156,6 +162,12 @@
 
 				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
 			}			
+		}
+		
+		override public function destroy():void
+		{
+			super.destroy();
+			_themeChannel.stop();
 		}
 		
 	}

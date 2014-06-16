@@ -12,6 +12,9 @@
 	
 	public class AssetResources {
 
+		// Constants
+		public static var NUM_OF_LEVELS:uint = 2;
+		
 		private static var ASSETS_MANAGER:AssetManager;
 		private static var CALL_BACK:Function;
 		
@@ -25,6 +28,8 @@
 		public static var resetButtonTexture:Texture, contractButtonTexture:Texture;
 		public static var exitBallTexture:Texture, playBallTexture:Texture, sandboxBallTexture:Texture;
 		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture;
+		
+		public static var levels:Array;
 		
 		public static function setOnLoadComplete(f:Function)
 		{
@@ -42,7 +47,7 @@
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/x" + String(Starling.contentScaleFactor)));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/sfx"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/gfx"));
-			
+			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/levels"));
 			
 			ASSETS_MANAGER.loadQueue(function(ratio:Number):void
 			{
@@ -71,6 +76,7 @@
 					AssetResources.greenProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("green_projectile_x" + sf);
 					AssetResources.redProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("red_projectile_x" + sf);
 					AssetResources.sunTexture = AssetResources.ASSETS_MANAGER.getTexture("sun_x" + sf);
+					AssetResources.blackHoleTexture = AssetResources.ASSETS_MANAGER.getTexture("sun_x" + sf);
 					
 					AssetResources.exitBallTexture = AssetResources.ASSETS_MANAGER.getTexture("exit_ball_x" + sf);
 					AssetResources.playBallTexture = AssetResources.ASSETS_MANAGER.getTexture("play_ball_x" + sf);
@@ -82,6 +88,13 @@
 
 					AssetResources.resetButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("reset_button");
 					AssetResources.contractButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("contract_button");
+					
+					// Set up levels
+					AssetResources.levels = new Array(NUM_OF_LEVELS);
+					for (var lcount:int = NUM_OF_LEVELS; lcount > 0; --lcount)
+					{
+						AssetResources.levels[lcount] = AssetResources.ASSETS_MANAGER.getObject("level" + lcount);
+					}
 					
 					AssetResources.CALL_BACK();
 									
