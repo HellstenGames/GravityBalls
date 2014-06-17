@@ -4,6 +4,7 @@
 	import objects.Player;
 	import scenes.PlayScene;
 	import objects.Projectile;
+	import objects.Collectible;
 	
 	// Import starling stuff
 	import starling.display.Sprite;
@@ -11,6 +12,7 @@
 	
 	// Import flash stuff
 	import flash.geom.Point;
+	
 	
 	public class PlayerManager {
 
@@ -39,7 +41,11 @@
 			_originalPos = new Point(_player.x, _player.y);
 		}
 		
-
+		public function removePlayer():void
+		{
+			_layer.removeChild(_player);
+		}
+		
 		public function setBoundary(leftBoundary:Number, topBoundary:Number, rightBoundary:Number, bottomBoundary:Number):void 
 		{
 			_leftBoundary = leftBoundary;
@@ -102,9 +108,25 @@
 					{
 						resetPlayer();
 						AssetResources.blackHoleCollisionSound.play();
+						_scene.nextLevel();
 						return;
 					}
 						
+				}
+				
+				
+				// Check if player collides with points
+				var collectibles:Array = _scene.collectibleManager.collectibles;
+				var clength:int = collectibles.length; 
+				for (var c:int = clength - 1; c >= 0; --c)
+				{
+					var collectible:Collectible = collectibles[c]; 
+					if (Physics.circleDetection(collectible.x, collectible.y, collectible.width / 2, 
+												_player.x, _player.y, _player.height / 2))
+					{
+						AssetResources.pointCollisionSound.play();
+						_scene.collectibleManager.removeCollectible(c);
+					}
 				}
 				
 			}

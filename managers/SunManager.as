@@ -56,6 +56,16 @@
 
 		}
 
+		public function removeAll():void 
+		{
+			var slength:int = suns.length; 
+			for (var i:int = slength - 1; i >= 0; --i) 
+			{
+				_layer.removeChild(suns[i]);
+				_pool.returnSprite(suns[i]);
+			}
+			suns.splice(0);
+		}
 		
 		public function update(timeDelta:Number):void {
 			var slength:int = suns.length; 

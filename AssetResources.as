@@ -13,7 +13,7 @@
 	public class AssetResources {
 
 		// Constants
-		public static var NUM_OF_LEVELS:uint = 2;
+		public static var NUM_OF_LEVELS:uint = 4;
 		
 		private static var ASSETS_MANAGER:AssetManager;
 		private static var CALL_BACK:Function;

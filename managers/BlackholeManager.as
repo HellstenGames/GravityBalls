@@ -46,6 +46,17 @@
 
 		}
 
+		public function removeAll():void 
+		{
+			var bhLength:int = blackHoles.length; 
+			for (var i:int = bhLength - 1; i >= 0; --i) 
+			{
+				_layer.removeChild(blackHoles[i]);
+				_pool.returnSprite(blackHoles[i]);
+			}
+			blackHoles.splice(0);
+		}
+		
 		public function update(timeDelta:Number):void {
 			var bhlength:int = blackHoles.length; 
 
@@ -55,6 +66,8 @@
 
 			}
 
+			// Check if player hits the black hole
+			
 			handleProjectileManager();
 		}
 

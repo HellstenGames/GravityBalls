@@ -1,10 +1,14 @@
 ﻿package objects {
+	import starling.display.Image;
 	
-	public class collectible extends Entity  {
-
-		public function collectible() 
+	public class Collectible extends Entity {
+	
+		public function Collectible() 
 		{
 			super();
+			
+			addChild(new Image(AssetResources.redProjectileTexture));
+			
 		}
 
 	}

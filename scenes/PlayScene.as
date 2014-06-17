@@ -11,6 +11,7 @@
 	import managers.SunManager;
 	import managers.PlayerManager;
 	import managers.BlackholeManager;
+	import managers.CollectibleManager;
 	import objects.Background;
 	import objects.Player;
 	import utils.LevelLoader;
@@ -19,14 +20,12 @@
 	// Import flash stuff
 	import flash.media.SoundChannel;
 	
-	
-	
 	public class PlayScene extends Scene {
 
 		// Constants
 		public static var MAX_PROJECTILES:int = 25;
-		public static var MAX_SUNS:int = 3;
-		public static var MAX_BLACKHOLES:int = 1;
+		public static var MAX_SUNS:int = 10;
+		public static var MAX_BLACKHOLES:int = 10;
 		public static var SCORE_OFFSET:int = 10;
 		public static var SCORE_WIDTH:int = 100;
 		public static var SCORE_HEIGHT:int = 25;
@@ -41,6 +40,7 @@
 		public var sunManager:SunManager;
 		public var blackholeManager:BlackholeManager;
 		public var playerManager:PlayerManager;
+		public var collectibleManager:CollectibleManager;
 		
 		// Objects
 		public var player:Player;
@@ -87,7 +87,7 @@
 			sunManager = new SunManager(backgroundLayer, projectileManager, MAX_PROJECTILES);
 			blackholeManager = new BlackholeManager(backgroundLayer, projectileManager, MAX_BLACKHOLES);
 			playerManager = new PlayerManager(backgroundLayer, this);
-
+			collectibleManager = new CollectibleManager(backgroundLayer);
 			// Load Level
 			_level = 1;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
@@ -124,6 +124,30 @@
 			return _deathCount;
 		}
 		
+		public function nextLevel():void
+		{
+			_level ++;
+			if (_level > AssetResources.NUM_OF_LEVELS)
+			{
+				nextScene = new SplashScene();
+				destroy();	
+			}
+			else{
+				clearLevel();
+				LevelLoader.load_level(AssetResources.levels[_level], this);		
+				_themeChannel.stop();
+				_themeChannel = AssetResources.playTheme.play();
+			}
+		}
+		
+		public function clearLevel():void
+		{
+			projectileManager.removeAll();
+			sunManager.removeAll();
+			blackholeManager.removeAll();
+			collectibleManager.removeAll();
+			playerManager.removePlayer();
+		}
 	}
 	
 }

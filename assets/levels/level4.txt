@@ -1,0 +1,12 @@
+[
+{
+
+	"item": "player",
+	"position": { "cx":100, "cy":160 }
+},
+{
+
+	"item": "blackhole",
+	"position": { "cx":300, "cy":160 }
+}
+]
