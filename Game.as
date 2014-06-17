@@ -50,7 +50,6 @@ package
 			Game.INSTANCE = this;
 			doneLoading = false;
 			
-
 			// Load resources
 			AssetResources.setOnLoadComplete(onLoadComplete);
 			AssetResources.init();

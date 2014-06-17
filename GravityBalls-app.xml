@@ -16,7 +16,7 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/3.6">
+<application xmlns="http://ns.adobe.com/air/application/4.0">
   <id>GravityBalls</id>
   <versionNumber>1.0</versionNumber>
   <filename>GravityBalls</filename>
@@ -38,10 +38,11 @@
   </initialWindow>
   <icon>
     
-  </icon>
+    <image72x72>AppIconsForPublish/ic_launcher_72.png</image72x72></icon>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
   <android>
+	  <colorDepth>16bit</colorDepth> 
     <manifestAdditions><![CDATA[<manifest>
 </manifest>]]></manifestAdditions>
   </android>

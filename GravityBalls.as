@@ -49,9 +49,9 @@ package
 			
 			_starling.stage.stageWidth = STAGE_WIDTH;
 			_starling.stage.stageHeight = STAGE_HEIGHT;
-            
-			Starling.current.nativeStage.frameRate = FRAME_RATE;
 			
+			Starling.current.nativeStage.frameRate = FRAME_RATE;
+
             _starling.start();
         }
 

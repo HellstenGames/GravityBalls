@@ -8,6 +8,7 @@
 	import starling.core.Starling;
 	import starling.animation.DelayedCall;
 	import starling.textures.Texture;
+	import starling.utils.Color;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -17,8 +18,12 @@
 	import flash.display.Bitmap;
 	import flash.net.URLRequest;
 	import flash.media.Sound;
+	import flash.system.LoaderContext;
+	import flash.system.ImageDecodingPolicy;
 	
-
+	import starling.text.TextField;
+	import flash.filesystem.File;
+	
 	public class SplashScene extends Scene {
 
 		public static var SPLASH_DELAY:Number = 1.0;
@@ -36,12 +41,17 @@
 		{		
 			super.init();
 			_splashDelayComplete = false;
+
+			var sf:String = String(Math.round(Starling.contentScaleFactor));
+			var appDir:File = File.applicationDirectory;
+
 			// Load splash screen
+			var loaderContext:LoaderContext = new LoaderContext();
+			loaderContext.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
 			var loader:Loader = new Loader();
-			var sf:String = String(Starling.contentScaleFactor);
-			trace("assets/x3/splashscreen_x" + String(Starling.contentScaleFactor) + ".png");
-			loader.load ( new URLRequest ("assets/x"+sf+"/splashscreen.png") );
-			loader.contentLoaderInfo.addEventListener ( Event.COMPLETE, onComplete );				
+			loader.load ( new URLRequest (appDir.resolvePath("assets/x" + sf + "/splashscreen.png").url) , loaderContext);
+			loader.contentLoaderInfo.addEventListener ( Event.COMPLETE, onComplete );	
+	
 		}
 		
 		private function onComplete( e:Event ):void
@@ -51,8 +61,9 @@
 			addChild(new Image(Texture.fromBitmap ( loadedBitmap, true, false, scalingFactor)));
 
 			// Load Sound
+			var appDir:File = File.applicationDirectory;
 			var sound:Sound = new Sound();    
-			sound.load( new URLRequest ("assets/sfx/splashtheme.mp3") );
+			sound.load( new URLRequest (appDir.resolvePath("assets/sfx/splashtheme.mp3").url) );
 			/*
 			var soundChannel:SoundChannel = sound.play();
 			var transform:SoundTransform = new SoundTransform(0.25, 0.5);

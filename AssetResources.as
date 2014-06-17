@@ -44,7 +44,8 @@
 			
 			// Load assets/textures/sounds/etc using asset manager
 			var appDir:File = File.applicationDirectory;
-			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/x" + String(Starling.contentScaleFactor)));
+
+			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/x" + String(Math.floor(Starling.contentScaleFactor))));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/sfx"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/gfx"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/levels"));
@@ -55,7 +56,7 @@
 				
 				if (ratio == 1.0)
 				{
-					var sf:String = String(Starling.contentScaleFactor);
+					var sf:String = String(Math.floor(Starling.contentScaleFactor));
 					
 					// Set up themes
 					AssetResources.splashTheme = AssetResources.ASSETS_MANAGER.getSound("splashtheme");
@@ -97,7 +98,7 @@
 					}
 					
 					AssetResources.CALL_BACK();
-									
+						
 				}
 				
 			});

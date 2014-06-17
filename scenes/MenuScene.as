@@ -84,6 +84,9 @@
 			sunManager.gravitate = true;	
 			
 			_themeChannel = AssetResources.menuTheme.play();
+			
+
+			
 		}
 		
 		override public function update(timeDelta:Number):void 
