@@ -4,7 +4,7 @@
 	import objects.Player;
 	import scenes.PlayScene;
 	import objects.Projectile;
-	import objects.Collectible;
+	import objects.Star;
 	
 	// Import starling stuff
 	import starling.display.Sprite;
@@ -116,16 +116,16 @@
 				
 				
 				// Check if player collides with points
-				var collectibles:Array = _scene.collectibleManager.collectibles;
-				var clength:int = collectibles.length; 
+				var stars:Array = _scene.starManager.stars;
+				var clength:int = stars.length; 
 				for (var c:int = clength - 1; c >= 0; --c)
 				{
-					var collectible:Collectible = collectibles[c]; 
-					if (Physics.circleDetection(collectible.x, collectible.y, collectible.width / 2, 
+					var star:Star = stars[c]; 
+					if (Physics.circleDetection(star.x, star.y, star.width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
 						AssetResources.pointCollisionSound.play();
-						_scene.collectibleManager.removeCollectible(c);
+						_scene.starManager.removeStar(c);
 					}
 				}
 				

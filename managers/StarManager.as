@@ -1,46 +1,53 @@
 ﻿package managers  {
-	import objects.Collectible;
+	import objects.Star;
 
 	import starling.core.Starling;
 	import starling.display.Sprite;
 	import utils.SpritePool;
 
-	public class CollectibleManager {
+	public class StarManager {
 
 		public static var PROJECTILE_HIDDEN_XOFFSET:Number = -10000;
 		public static var PROJECTILE_HIDDEN_YOFFSET:Number = -10000;
 
-		public var collectibles:Array;
+		public var stars:Array;
 		private var _pool:SpritePool;
 		private var _counter:int;
 
 		private var _layer:Sprite;
 
-		public function CollectibleManager(layer:Sprite, len:int=100) {
+		public function StarManager(layer:Sprite, len:int=100) {
 			super();
 
 			// Create sprite pool + points array, and set reference layer.
-			_pool = new SpritePool(Collectible, len);
-			collectibles = []
+			_pool = new SpritePool(Star, len);
+			stars = []
 			_layer = layer;
 		}
 
-		public function addCollectible(cx:Number, cy:Number):void {
+		public function addStar(cx:Number, cy:Number):void {
 
-			var p:Collectible = _pool.getSprite() as Collectible;
+			var p:Star = _pool.getSprite() as Star;
 			p.x = cx - p.width / 2;
 			p.y = cy - p.height / 2
 
+			// Set original center points, prevent the scaling from looking off
+			p.originalCX = p.cx;
+			p.originalCY = p.cy;
+				
+			// Set scale randomly so all stars are not identical
+			p.scaleX = p.scaleY = (Math.random() * (Star.SCALE_MAX - Star.SCALE_MIN) + Star.SCALE_MIN);
+			
 			_layer.addChild(p);
-			collectibles.push(p);
+			stars.push(p);
 
 		}
 		
-		public function removeCollectible(i:int):void {
+		public function removeStar(i:int):void {
 
-			var p:Collectible = collectibles[i];
+			var p:Star = stars[i];
 
-			collectibles.splice(i, 1);
+			stars.splice(i, 1);
 			_layer.removeChild(p);
 			_pool.returnSprite(p);
 
@@ -48,25 +55,29 @@
 
 		public function removeAll():void 
 		{
-			var plength:int = collectibles.length; 
+			var plength:int = stars.length; 
 			for (var i:int = plength - 1; i >= 0; --i) 
 			{
-				_layer.removeChild(collectibles[i]);
-				_pool.returnSprite(collectibles[i]);
+				_layer.removeChild(stars[i]);
+				_pool.returnSprite(stars[i]);
 			}
-			collectibles.splice(0);
+			stars.splice(0);
 		}
 
 		public function update(timeDelta:Number):void 
 		{
-			
+			var plength:int = stars.length; 
+			for (var i:int = plength - 1; i >= 0; --i) 
+			{
+				stars[i].update(timeDelta);
+			}
 		}
 
 		// =========================================================================================================================================================
 		// Properties
 		// =========================================================================================================================================================
-		public function get collectibleCount():int {
-			return collectibles.length;
+		public function get starsCount():int {
+			return stars.length;
 		}
 
 	}

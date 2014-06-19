@@ -11,27 +11,27 @@
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":150, "cy":160 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":200, "cy":160 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":250, "cy":160 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":300, "cy":160 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":350, "cy":160 }
 }
 ]

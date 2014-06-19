@@ -11,7 +11,7 @@
 	import managers.SunManager;
 	import managers.PlayerManager;
 	import managers.BlackholeManager;
-	import managers.CollectibleManager;
+	import managers.StarManager;
 	import objects.Background;
 	import objects.Player;
 	import utils.LevelLoader;
@@ -40,7 +40,7 @@
 		public var sunManager:SunManager;
 		public var blackholeManager:BlackholeManager;
 		public var playerManager:PlayerManager;
-		public var collectibleManager:CollectibleManager;
+		public var starManager:StarManager;
 		
 		// Objects
 		public var player:Player;
@@ -87,7 +87,7 @@
 			sunManager = new SunManager(backgroundLayer, projectileManager, MAX_PROJECTILES);
 			blackholeManager = new BlackholeManager(backgroundLayer, projectileManager, MAX_BLACKHOLES);
 			playerManager = new PlayerManager(backgroundLayer, this);
-			collectibleManager = new CollectibleManager(backgroundLayer);
+			starManager = new StarManager(backgroundLayer);
 			// Load Level
 			_level = 1;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
@@ -105,6 +105,7 @@
 			sunManager.update(timeDelta);
 			blackholeManager.update(timeDelta);
 			playerManager.update(timeDelta);
+			starManager.update(timeDelta);
 		}
 		
 		override public function destroy():void
@@ -145,7 +146,7 @@
 			projectileManager.removeAll();
 			sunManager.removeAll();
 			blackholeManager.removeAll();
-			collectibleManager.removeAll();
+			starManager.removeAll();
 			playerManager.removePlayer();
 		}
 	}

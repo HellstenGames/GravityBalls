@@ -29,9 +29,9 @@
 					pscene.player = new Player(data[i].position.cx, data[i].position.cy, "blue");
 					pscene.playerManager.setPlayer(pscene.player);
 				}				
-				else if (data[i].item == "collectible")
+				else if (data[i].item == "star")
 				{
-					pscene.collectibleManager.addCollectible(data[i].position.cx, data[i].position.cy);
+					pscene.starManager.addStar(data[i].position.cx, data[i].position.cy);
 				}								
 			}
 		

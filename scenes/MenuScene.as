@@ -3,7 +3,7 @@
 	// Import starling stuff
 	import starling.display.Sprite;
 	import starling.core.Starling;
-	
+
 	// Import project stuff
 	import objects.Entity;
 	import objects.Background;
@@ -18,9 +18,12 @@
 	// Import flash stuff
 	import flash.media.SoundChannel;
 	
+	// BRINKBIT ADS
+	/*
 	import com.brinkbit.admob.AdMobAd;
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.constants.AdMobAdType;
+	*/
 	
 	public class MenuScene extends Scene {
 
@@ -90,10 +93,12 @@
 			
 			_themeChannel = AssetResources.menuTheme.play();
 			
+			// BRINKBIT ADS
+			/*
 			var banner:AdMobAd = new AdMobAd(AdMobAdType.BANNER, "pub-2753474656261978");
 			banner.showAd();
 			banner.verticalGravity = AdMobAdPosition.CENTER;
-
+			*/
 	
 		}
 
@@ -109,8 +114,8 @@
 			var shootXSpeed:Number, shootYSpeed:Number;
 
 			// Create projectiles
-			if (projectileManager.projectileCount < MAX_PROJECTILES) {
-
+			if (projectileManager.projectileCount < MAX_PROJECTILES) 
+			{
 				randomSide = 4 * Math.random();
 
 				// Spawn random projectiles + suns
@@ -144,8 +149,8 @@
 			}
 
 			// Create suns
-			if (sunManager.sunCount < MAX_SUNS) {
-
+			if (sunManager.sunCount < MAX_SUNS) 
+			{
 				randomSide = 4 * Math.random();
 
 				// Spawn random projectiles + suns

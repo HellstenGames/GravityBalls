@@ -11,37 +11,37 @@
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":90, "cy":100 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":110, "cy":130 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":150, "cy":160 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":150, "cy":150 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":300, "cy":180 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":350, "cy":160 }
 },
 {
 
-	"item": "collectible",
+	"item": "star",
 	"position": { "cx":400, "cy":140 }
 }
 ]
