@@ -2,7 +2,7 @@
 {
 
 	"item": "player",
-	"position": { "cx":400, "cy":160 }
+	"position": { "cx":430, "cy":160 }
 },
 {
 
@@ -23,5 +23,15 @@
 
 	"item": "collectible",
 	"position": { "cx":250, "cy":160 }
+},
+{
+
+	"item": "collectible",
+	"position": { "cx":300, "cy":160 }
+},
+{
+
+	"item": "collectible",
+	"position": { "cx":350, "cy":160 }
 }
 ]

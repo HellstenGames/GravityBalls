@@ -9,7 +9,7 @@
 		{
 			super();
 			
-			mass = 2.0*10e+3;
+			mass = 15.0*10e+3;
 			
 			addChild(new Image(AssetResources.blackHoleTexture));
 			
@@ -18,3 +18,4 @@
 	}
 	
 }
+	

@@ -18,6 +18,9 @@
 	// Import flash stuff
 	import flash.media.SoundChannel;
 	
+	import com.brinkbit.admob.AdMobAd;
+	import com.brinkbit.admob.constants.AdMobAdPosition;
+	import com.brinkbit.admob.constants.AdMobAdType;
 	
 	public class MenuScene extends Scene {
 
@@ -39,6 +42,8 @@
 		public var backgroundLayer:Sprite;
 		
 		private var _themeChannel:SoundChannel;
+		
+
 		
 		public function MenuScene()
 		{
@@ -85,10 +90,13 @@
 			
 			_themeChannel = AssetResources.menuTheme.play();
 			
+			var banner:AdMobAd = new AdMobAd(AdMobAdType.BANNER, "pub-2753474656261978");
+			banner.showAd();
+			banner.verticalGravity = AdMobAdPosition.CENTER;
 
-			
+	
 		}
-		
+
 		override public function update(timeDelta:Number):void 
 		{ 
 			super.update(timeDelta);

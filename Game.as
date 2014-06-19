@@ -24,6 +24,8 @@ package
 	import flash.display3D.textures.Texture;
 	import flash.geom.Point;
 	import flash.desktop.NativeApplication;
+
+	
 	
 	public class Game extends Sprite
 	{
@@ -43,8 +45,7 @@ package
 		//public var playScene:PlayScene;
 		//public var sandboxScene:SandboxScene;
 		public var scene:Scene;
-		
-		
+
 		public function Game()
 		{
 			Game.INSTANCE = this;

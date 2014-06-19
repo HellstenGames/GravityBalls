@@ -22,7 +22,7 @@
 		public static var sunCollisionSound:Sound, projectileCollisionSound:Sound, 
 						  pointCollisionSound:Sound, blackHoleCollisionSound:Sound;
 		
-		public static var splashTexture:Texture, backgroundTexture:Texture;
+		public static var splashTexture:Texture, backgroundTexture:Texture, nebulaTexture:Texture;
 		public static var blueProjectileTexture:Texture, greenProjectileTexture:Texture, redProjectileTexture:Texture;
 		public static var sunTexture:Texture, blackHoleTexture:Texture;
 		public static var resetButtonTexture:Texture, contractButtonTexture:Texture;
@@ -73,11 +73,12 @@
 					// Set up textures
 					AssetResources.splashTexture = AssetResources.ASSETS_MANAGER.getTexture("splashscreen_x" + sf);
 					AssetResources.backgroundTexture = AssetResources.ASSETS_MANAGER.getTexture("background_x" + sf);
+					AssetResources.nebulaTexture = AssetResources.ASSETS_MANAGER.getTexture("nebula_x" + sf);
 					AssetResources.blueProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("blue_projectile_x" + sf);
 					AssetResources.greenProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("green_projectile_x" + sf);
 					AssetResources.redProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("red_projectile_x" + sf);
 					AssetResources.sunTexture = AssetResources.ASSETS_MANAGER.getTexture("sun_x" + sf);
-					AssetResources.blackHoleTexture = AssetResources.ASSETS_MANAGER.getTexture("sun_x" + sf);
+					AssetResources.blackHoleTexture = AssetResources.ASSETS_MANAGER.getTexture("blackhole_x" + sf);
 					
 					AssetResources.exitBallTexture = AssetResources.ASSETS_MANAGER.getTexture("exit_ball_x" + sf);
 					AssetResources.playBallTexture = AssetResources.ASSETS_MANAGER.getTexture("play_ball_x" + sf);

@@ -10,7 +10,7 @@
 		{
 			super();
 			
-			addChild(new Image(AssetResources.backgroundTexture));
+			addChild(new Image(AssetResources.nebulaTexture));
 			
 		}
 
