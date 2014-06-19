@@ -30,6 +30,9 @@
 			p.cx = cx;
 			p.cy = cy;
 			
+			// Set text
+			p.text = text;
+			
 			// Set original center points, prevent the scaling from looking off
 			p.originalCX = p.cx;
 			p.originalCY = p.cy;
@@ -40,6 +43,7 @@
 		public function removePopupText(index:int):void
 		{
 			var p:PopupText = puTexts[index];
+			resetPopupText(p);
 			puTexts.splice(index, 1);
 			_layer.removeChild(p);
 			_puPool.returnSprite(p);
@@ -50,6 +54,7 @@
 			var plength:int = puTexts.length; 
 			for (var i:int = plength - 1; i >= 0; --i) 
 			{
+				resetPopupText(puTexts[i]);
 				_layer.removeChild(puTexts[i]);
 				_puPool.returnSprite(puTexts[i]);
 			}
@@ -62,7 +67,22 @@
 			for (var i:int = plength - 1; i >= 0; --i) 
 			{
 				puTexts[i].update(timeDelta);
+				
+				// Make text fade away
+				puTexts[i].alpha -= PopupText.DISAPPEAR_SPEED;
+				puTexts[i].scaleX = puTexts[i].scaleY += PopupText.SCALE_SPEED;
+				
+				// Remove pop up text when its invisible
+				if (puTexts[i].alpha <= 0)
+					removePopupText(i);
+				
 			}
+		}
+		
+		private function resetPopupText(p:PopupText):void
+		{
+			p.alpha = 1;
+			p.scaleX = p.scaleY = 1;
 		}
 		
 	}

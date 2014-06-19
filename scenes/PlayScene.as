@@ -35,7 +35,7 @@
 		
 		public static var FONT_SIZE:int = 16;
 		public static var FONT_COLOR:uint = Color.SILVER;
-		public static var FONT_TYPE:String = "Arial";
+		public static var FONT_TYPE:String = "Verdana";
 		public static var FONT_ISBOLD:Boolean = true;
 		
 		// Managers
@@ -90,7 +90,7 @@
 			blackholeManager = new BlackholeManager(backgroundLayer, projectileManager, MAX_BLACKHOLES);
 			playerManager = new PlayerManager(backgroundLayer, player, this);
 			starManager = new StarManager(backgroundLayer);
-			textManager = new TextManager(backgroundLayer);
+			textManager = new TextManager(textLayer);
 			
 			// Load Level
 			_level = 1;
