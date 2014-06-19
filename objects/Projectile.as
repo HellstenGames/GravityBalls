@@ -36,16 +36,11 @@
 		
 		private function getImage(color:String):Image
 		{
-			trace(color);
-			trace(_color);
 			if (color == "blue") {
-				trace("blue");
 				return new Image(AssetResources.blueProjectileTexture);
 			} else if (color == "green") {
-				trace("green");
 				return new Image(AssetResources.greenProjectileTexture);
 			} else { // default is red
-			trace("red");
 				return new Image(AssetResources.redProjectileTexture);
 			}
 		}

@@ -66,6 +66,7 @@
 										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary))
 				{
 					resetPlayer();
+					_scene.livesCounter.deductLife();
 					AssetResources.projectileCollisionSound.play();
 					return;
 				}
@@ -129,6 +130,7 @@
 						AssetResources.pointCollisionSound.play();
 						_scene.starManager.removeStar(c);
 						_scene.scoreCounter += Constants.STAR_SCORE;
+						_scene.textManager.addPopupText(star.cx, star.cy, String(Constants.STAR_SCORE));
 					}
 				}
 				

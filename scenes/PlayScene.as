@@ -12,6 +12,7 @@
 	import managers.PlayerManager;
 	import managers.BlackholeManager;
 	import managers.StarManager;
+	import managers.TextManager;
 	import objects.Background;
 	import objects.Player;
 	import utils.LevelLoader;
@@ -43,6 +44,7 @@
 		public var blackholeManager:BlackholeManager;
 		public var playerManager:PlayerManager;
 		public var starManager:StarManager;
+		public var textManager:TextManager;
 		
 		// Objects
 		public var player:Player;
@@ -88,6 +90,7 @@
 			blackholeManager = new BlackholeManager(backgroundLayer, projectileManager, MAX_BLACKHOLES);
 			playerManager = new PlayerManager(backgroundLayer, player, this);
 			starManager = new StarManager(backgroundLayer);
+			textManager = new TextManager(backgroundLayer);
 			
 			// Load Level
 			_level = 1;
@@ -118,6 +121,7 @@
 			blackholeManager.update(timeDelta);
 			playerManager.update(timeDelta);
 			starManager.update(timeDelta);
+			textManager.update(timeDelta);
 		}
 		
 		override public function destroy():void
@@ -159,6 +163,7 @@
 			sunManager.removeAll();
 			blackholeManager.removeAll();
 			starManager.removeAll();
+			textManager.removeAll();
 		}
 	}
 	
