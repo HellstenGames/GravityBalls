@@ -23,27 +23,28 @@
 		private var _leftBoundary:Number, _topBoundary:Number, _rightBoundary:Number, _bottomBoundary:Number;
 		private var _originalPos:Point;
 		
-		public function PlayerManager(layer:Sprite, scene:*) 
+		public function PlayerManager(layer:Sprite, player, scene:*) 
 		{
 			_layer = layer;
 			_scene = scene;
+			_player = player;
+			_layer.addChild(_player);
+			
+			_originalPos = new Point(_player.x, _player.y);
 			
 			_leftBoundary = _topBoundary = 0;
 			_rightBoundary = Starling.current.stage.stageWidth;
 			_bottomBoundary = Starling.current.stage.stageHeight;			
 		}
 
-		public function setPlayer(value:Player):void
+		public function setPlayer(cx:Number, cy:Number):void
 		{
-			_player = value;
-			_layer.addChild(value);	
+			// Position player
+			_player.cx = cx;
+			_player.cy = cy;
 			// Set original positions
-			_originalPos = new Point(_player.x, _player.y);
-		}
-		
-		public function removePlayer():void
-		{
-			_layer.removeChild(_player);
+			_originalPos.x = _player.x;
+			_originalPos.y = _player.y;
 		}
 		
 		public function setBoundary(leftBoundary:Number, topBoundary:Number, rightBoundary:Number, bottomBoundary:Number):void 
@@ -85,6 +86,7 @@
 												_player.x, _player.y, _player.height / 2))
 					{
 						resetPlayer();
+						_scene.livesCounter.deductLife();
 						AssetResources.projectileCollisionSound.play();
 						return;
 					}
@@ -126,6 +128,7 @@
 					{
 						AssetResources.pointCollisionSound.play();
 						_scene.starManager.removeStar(c);
+						_scene.scoreCounter += Constants.STAR_SCORE;
 					}
 				}
 				
@@ -134,19 +137,12 @@
 		
 		private function resetPlayer():void
 		{
-			// Add to death counter
-			_scene.deathCount ++;
-			
 			// Reset player
 			_player.x = _originalPos.x;
 			_player.y = _originalPos.y;
 			_player.released = false;
 			_player.velocity[0] = 0;
 			_player.velocity[1] = 0;
-			
-			// Random color
-			var rc:int = Math.random() * Projectile.COLORS.length;
-			_player.color = Projectile.COLORS[rc];
 		}
 	}
 	

@@ -26,8 +26,7 @@
 				}
 				else if (data[i].item == "player")
 				{
-					pscene.player = new Player(data[i].position.cx, data[i].position.cy, "blue");
-					pscene.playerManager.setPlayer(pscene.player);
+					pscene.playerManager.setPlayer(data[i].position.cx, data[i].position.cy);
 				}				
 				else if (data[i].item == "star")
 				{

@@ -28,8 +28,8 @@
 	public class MenuScene extends Scene {
 
 		public static var MENU_BUTTON_OFFSET:int = 125;
-		public static var MAX_PROJECTILES:int = 25;
-		public static var MAX_SUNS:int = 3;
+		public static var MAX_PROJECTILES:int = 16;
+		public static var MAX_SUNS:int = 2;
 		private static var MAX_SHOOT:Number = 30;
 		private static var MIN_SHOOT:Number = 25;
 		private static var OUT_OF_BOUNDS:Number = 100;

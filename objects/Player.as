@@ -18,7 +18,7 @@
 		public var released:Boolean;
 		public var died:Boolean;
 		
-		public function Player(cx:Number, cy:Number, color:String="blue") 
+		public function Player(cx:Number=0, cy:Number=0, color:String="blue") 
 		{
 			super(color);
 			x = cx - width / 2;

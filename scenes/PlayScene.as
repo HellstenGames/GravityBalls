@@ -16,6 +16,7 @@
 	import objects.Player;
 	import utils.LevelLoader;
 	import graphics.Line;
+	import objects.LivesCounter;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -29,6 +30,7 @@
 		public static var SCORE_OFFSET:int = 10;
 		public static var SCORE_WIDTH:int = 100;
 		public static var SCORE_HEIGHT:int = 25;
+		public static var MAX_LIVES:int = 3;
 		
 		public static var FONT_SIZE:int = 16;
 		public static var FONT_COLOR:uint = Color.SILVER;
@@ -47,7 +49,8 @@
 		public var background:Sprite;
 		
 		// Texts
-		public var deathText:TextField;
+		public var scoreText:TextField;
+		public var livesCounter:LivesCounter;
 		
 		// Layers
 		public var backgroundLayer:Sprite;
@@ -55,7 +58,7 @@
 		
 		private var _themeChannel:SoundChannel;
 		private var _level:int;
-		private var _deathCount:int;
+		private var _scoreCount:int;
 		
 		public function PlayScene()
 		{
@@ -75,24 +78,33 @@
 			// Create/Add background
 			background = new Background();
 			backgroundLayer.addChild(background);
+		
+			// Create other stuff
+			player = new Player();
 			
-			// Create/add other objects
-			deathText  = new TextField(SCORE_WIDTH, SCORE_HEIGHT, "Deaths: 0", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
-			deathText.x = Starling.current.stage.stageWidth - SCORE_WIDTH - SCORE_OFFSET;
-			deathText.y = SCORE_OFFSET;
-			textLayer.addChild(deathText);
-
 			// Create Managers
 			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
 			sunManager = new SunManager(backgroundLayer, projectileManager, MAX_PROJECTILES);
 			blackholeManager = new BlackholeManager(backgroundLayer, projectileManager, MAX_BLACKHOLES);
-			playerManager = new PlayerManager(backgroundLayer, this);
+			playerManager = new PlayerManager(backgroundLayer, player, this);
 			starManager = new StarManager(backgroundLayer);
+			
 			// Load Level
 			_level = 1;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
 			
-			_deathCount = 0;
+			// Create/add other objects
+			scoreText  = new TextField(SCORE_WIDTH, SCORE_HEIGHT, "Score: 0", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
+			scoreText.x = SCORE_OFFSET;
+			scoreText.y = SCORE_OFFSET;
+			textLayer.addChild(scoreText);
+			
+			livesCounter = new LivesCounter(MAX_LIVES, player);
+			livesCounter.x = Starling.current.nativeStage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
+			livesCounter.y = SCORE_OFFSET;
+			textLayer.addChild(livesCounter);
+			
+			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();
 		}
 
@@ -114,15 +126,15 @@
 			_themeChannel.stop();
 		}		
 		
-		public function set deathCount(value:int):void
+		public function set scoreCounter(value:int):void
 		{		
-			_deathCount = value;
-			deathText.text = "Deaths: " + _deathCount;
+			_scoreCount = value;
+			scoreText.text = "Score: " + _scoreCount;
 		}
 		
-		public function get deathCount():int
+		public function get scoreCounter():int
 		{
-			return _deathCount;
+			return _scoreCount;
 		}
 		
 		public function nextLevel():void
@@ -147,7 +159,6 @@
 			sunManager.removeAll();
 			blackholeManager.removeAll();
 			starManager.removeAll();
-			playerManager.removePlayer();
 		}
 	}
 	
