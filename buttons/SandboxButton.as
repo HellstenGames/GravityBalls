@@ -34,7 +34,7 @@
 		
 		override protected function _touchCallBack():void {
 			_scene.nextScene = new MenuScene();
-			_scene.destroy();
+			_scene.fadeOut();
 		}
 		
 	}

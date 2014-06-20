@@ -38,6 +38,8 @@
 		public static var FONT_TYPE:String = "Verdana";
 		public static var FONT_ISBOLD:Boolean = true;
 		
+		public static var START_LEVEL:int = 1;
+		
 		// Managers
 		public var projectileManager:ProjectileManager;
 		public var sunManager:SunManager;
@@ -61,7 +63,7 @@
 		private var _themeChannel:SoundChannel;
 		private var _level:int;
 		private var _scoreCount:int;
-		
+
 		public function PlayScene()
 		{
 			super();
@@ -93,7 +95,7 @@
 			textManager = new TextManager(textLayer);
 			
 			// Load Level
-			_level = 1;
+			_level = START_LEVEL;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
 			
 			// Create/add other objects
@@ -122,6 +124,14 @@
 			playerManager.update(timeDelta);
 			starManager.update(timeDelta);
 			textManager.update(timeDelta);
+			
+			// Fade the level out
+			if (fadedOut)
+			{
+				nextLevel();
+				fadeIn();
+			} 
+
 		}
 		
 		override public function destroy():void
@@ -155,6 +165,7 @@
 				_themeChannel.stop();
 				_themeChannel = AssetResources.playTheme.play();
 			}
+			playerManager.resetPlayer();
 		}
 		
 		public function clearLevel():void

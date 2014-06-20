@@ -24,8 +24,8 @@
 			_layer = layer;
 		}
 
-		public function addBlackHole(cx:Number, cy:Number, dx:Number, dy:Number):void {
-
+		public function addBlackHole(cx:Number, cy:Number, dx:Number, dy:Number):void 
+		{
 			var bh:BlackHole = _pool.getSprite() as BlackHole;
 			bh.x = cx - bh.width / 2;
 			bh.y = cy - bh.height / 2;

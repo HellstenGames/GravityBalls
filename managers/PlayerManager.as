@@ -57,6 +57,9 @@
 		
 		public function update(timeDelta:Number):void 
 		{
+			if (!_player.visible)
+				return;
+			
 			_player.update(timeDelta);
 			
 			if (_player.released)
@@ -86,6 +89,7 @@
 					if (Physics.circleDetection(suns[s].x, suns[s].y, suns[s].width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
+						_scene.textManager.addPopupText(_player.cx, _player.cy, "Burn!");
 						resetPlayer();
 						_scene.livesCounter.deductLife();
 						AssetResources.projectileCollisionSound.play();
@@ -109,14 +113,14 @@
 					if (Physics.circleDetection(blackHoles[bh].x, blackHoles[bh].y, blackHoles[bh].width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
-						resetPlayer();
+						_scene.textManager.addPopupText(_player.cx, _player.cy, "Zonk!");
 						AssetResources.blackHoleCollisionSound.play();
-						_scene.nextLevel();
+						_player.visible = false;
+						_scene.fadeOut();
 						return;
 					}
 						
 				}
-				
 				
 				// Check if player collides with points
 				var stars:Array = _scene.starManager.stars;
@@ -137,7 +141,8 @@
 			}
 		}
 		
-		private function resetPlayer():void
+	
+		public function resetPlayer():void
 		{
 			// Reset player
 			_player.x = _originalPos.x;
@@ -145,6 +150,7 @@
 			_player.released = false;
 			_player.velocity[0] = 0;
 			_player.velocity[1] = 0;
+			_player.visible = true;
 		}
 	}
 	

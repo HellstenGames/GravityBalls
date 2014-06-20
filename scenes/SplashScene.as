@@ -86,7 +86,13 @@
 			super.update(timeDelta);
 			
 			if (_splashDelayComplete && Game.INSTANCE.doneLoading)
-				destroy();
+			{
+				fadeOut();
+				if (fadedOut) {
+					destroy();
+					fadeIn();
+				}
+			}
 
 		}
 		

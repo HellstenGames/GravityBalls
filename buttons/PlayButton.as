@@ -33,9 +33,10 @@
 			super.update(timeDelta);		
 		}		
 		
-		override protected function _touchCallBack():void {
+		override protected function _touchCallBack():void 
+		{
 			_scene.nextScene = new PlayScene();
-			_scene.destroy();
+			_scene.fadeOut();
 		}
 		
 	}

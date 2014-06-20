@@ -40,7 +40,7 @@
 		public static function init():void
 		{
 			// Set up assets manager
-			ASSETS_MANAGER = new AssetManager(Starling.contentScaleFactor);
+			ASSETS_MANAGER = new AssetManager(Math.floor(Starling.contentScaleFactor));
 			ASSETS_MANAGER.verbose = true;
 			
 			// Load assets/textures/sounds/etc using asset manager

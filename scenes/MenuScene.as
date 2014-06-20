@@ -30,10 +30,13 @@
 		public static var MENU_BUTTON_OFFSET:int = 125;
 		public static var MAX_PROJECTILES:int = 16;
 		public static var MAX_SUNS:int = 2;
-		private static var MAX_SHOOT:Number = 30;
-		private static var MIN_SHOOT:Number = 25;
-		private static var OUT_OF_BOUNDS:Number = 100;
-		private static var SPAWN_BOUNDARY:Number = 25;
+		public static var MAX_SHOOT:Number = 30;
+		public static var MIN_SHOOT:Number = 25;
+		public static var OUT_OF_BOUNDS:Number = 100;
+		public static var SPAWN_BOUNDARY:Number = 25;
+		
+		public static var FADE_OUT_SPEED:Number = 0.02;
+		public static var FADE_IN_SPEED:Number = 0.02;
 		
 		public var playButton:PlayButton, sandboxButton:SandboxButton, exitButton:ExitButton;
 		public var background:Sprite;
@@ -45,9 +48,7 @@
 		public var backgroundLayer:Sprite;
 		
 		private var _themeChannel:SoundChannel;
-		
 
-		
 		public function MenuScene()
 		{
 			super();
@@ -99,7 +100,6 @@
 			banner.showAd();
 			banner.verticalGravity = AdMobAdPosition.CENTER;
 			*/
-	
 		}
 
 		override public function update(timeDelta:Number):void 
@@ -177,8 +177,16 @@
 				}
 
 				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
-			}			
+			}		
+			
+
+			// if faded out destroy scene
+			if (fadedOut) {
+				destroy();
+				fadeIn();
+			}
 		}
+		
 		
 		override public function destroy():void
 		{

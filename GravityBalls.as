@@ -10,9 +10,10 @@ package
     import starling.core.Starling;
     import starling.utils.RectangleUtil;
     import starling.utils.ScaleMode;
-	
+
 	import starling.events.ResizeEvent;
 	
+	[SWF(backgroundColor="0x000000")]
 	public class GravityBalls extends Sprite {
         private static const STAGE_WIDTH:int = 480;
         private static const STAGE_HEIGHT:int = 320;
@@ -51,7 +52,7 @@ package
 			_starling.stage.stageHeight = STAGE_HEIGHT;
 			
 			Starling.current.nativeStage.frameRate = FRAME_RATE;
-
+			
             _starling.start();
         }
 
