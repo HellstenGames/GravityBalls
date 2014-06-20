@@ -28,7 +28,7 @@
 		public static var resetButtonTexture:Texture, contractButtonTexture:Texture;
 		public static var exitBallTexture:Texture, playBallTexture:Texture, sandboxBallTexture:Texture;
 		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture;
-		public static var starTexture:Texture, trailTexture:Texture;
+		public static var starTexture:Texture, trailTexture:Texture, asteroidTexture:Texture;
 		
 		
 		public static var levels:Array;
@@ -83,7 +83,8 @@
 					AssetResources.blackHoleTexture = AssetResources.ASSETS_MANAGER.getTexture("blackhole_x" + sf);
 					AssetResources.starTexture = AssetResources.ASSETS_MANAGER.getTexture("star_x" + sf);
 					AssetResources.trailTexture = AssetResources.ASSETS_MANAGER.getTexture("trail_x" + sf);
-					
+					AssetResources.asteroidTexture = AssetResources.ASSETS_MANAGER.getTexture("asteroid_x" + sf);
+
 					AssetResources.exitBallTexture = AssetResources.ASSETS_MANAGER.getTexture("exit_ball_x" + sf);
 					AssetResources.playBallTexture = AssetResources.ASSETS_MANAGER.getTexture("play_ball_x" + sf);
 					AssetResources.sandboxBallTexture = AssetResources.ASSETS_MANAGER.getTexture("sandbox_ball_x" + sf);

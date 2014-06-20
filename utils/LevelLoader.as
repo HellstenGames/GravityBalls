@@ -31,7 +31,11 @@
 				else if (data[i].item == "star")
 				{
 					pscene.starManager.addStar(data[i].position.cx, data[i].position.cy);
-				}								
+				}		
+				else if (data[i].item == "asteroid")
+				{
+					pscene.asteroidManager.addAsteroid(data[i].position.cx, data[i].position.cy, data[i].dx, data[i].dy);
+				}
 			}
 		
 		}

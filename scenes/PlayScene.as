@@ -24,6 +24,7 @@
 	// Import flash stuff
 	import flash.media.SoundChannel;
 	import managers.TrailManager;
+	import managers.AsteroidManager;
 	
 	public class PlayScene extends Scene {
 
@@ -51,6 +52,7 @@
 		public var starManager:StarManager;
 		public var textManager:TextManager;
 		public var trailManager:TrailManager;
+		public var asteroidManager:AsteroidManager;
 		
 		// Objects
 		public var player:Player;
@@ -62,7 +64,9 @@
 		
 		// Layers
 		public var backgroundLayer:Sprite;
+		public var playLayer:Sprite;
 		public var textLayer:Sprite;
+		public var trailLayer:Sprite;
 		
 		private var _themeChannel:SoundChannel;
 		private var _level:int;
@@ -80,6 +84,10 @@
 			// Create/Add Layers
 			backgroundLayer = new Sprite();
 			addChild(backgroundLayer);
+			trailLayer = new Sprite();
+			addChild(trailLayer);				
+			playLayer = new Sprite();
+			addChild(playLayer);													
 			textLayer = new Sprite();
 			addChild(textLayer);
 			
@@ -91,13 +99,14 @@
 			player = new Player();
 			
 			// Create Managers
-			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
-			sunManager = new SunManager(backgroundLayer, projectileManager, MAX_PROJECTILES);
-			blackholeManager = new BlackholeManager(backgroundLayer, projectileManager, MAX_BLACKHOLES);
-			playerManager = new PlayerManager(backgroundLayer, player, this);
-			starManager = new StarManager(backgroundLayer);
 			textManager = new TextManager(textLayer);
-			trailManager = new TrailManager(backgroundLayer);
+			projectileManager = new ProjectileManager(playLayer, MAX_PROJECTILES);
+			sunManager = new SunManager(playLayer, projectileManager, MAX_PROJECTILES);
+			blackholeManager = new BlackholeManager(playLayer, projectileManager, MAX_BLACKHOLES);
+			playerManager = new PlayerManager(playLayer, player, this);
+			starManager = new StarManager(playLayer);
+			trailManager = new TrailManager(trailLayer);
+			asteroidManager = new AsteroidManager(playLayer);
 			
 			// Load Level
 			_level = START_LEVEL;
@@ -130,7 +139,7 @@
 			starManager.update(timeDelta);
 			textManager.update(timeDelta);
 			trailManager.update(timeDelta);
-			
+			asteroidManager.update(timeDelta);
 			
 			// Fade the level out
 			if (fadedOut)
@@ -183,6 +192,7 @@
 			starManager.removeAll();
 			textManager.removeAll();
 			trailManager.removeAll();
+			asteroidManager.removeAll();
 		}
 	}
 	

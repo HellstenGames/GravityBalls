@@ -5,6 +5,7 @@
 	import scenes.PlayScene;
 	import objects.Projectile;
 	import objects.Star;
+	import objects.Asteroid;
 	
 	// Import starling stuff
 	import starling.display.Sprite;
@@ -13,8 +14,6 @@
 	
 	// Import flash stuff
 	import flash.geom.Point;
-	
-	
 	
 	public class PlayerManager {
 
@@ -161,6 +160,24 @@
 						_scene.starManager.removeStar(c);
 						_scene.scoreCounter += Constants.STAR_SCORE;
 						_scene.textManager.addPopupText(star.cx, star.cy, String(Constants.STAR_SCORE));
+					}
+				}
+				
+				// Check if player collides with asteroids
+				var asteroids:Array = _scene.asteroidManager.asteroids;
+				var alength:int = asteroids.length; 
+				for (var a:int = alength - 1; a >= 0; --a)
+				{
+					var asteroid:Asteroid = asteroids[a]; 
+					if (Physics.circleDetection(asteroid.x, asteroid.y, asteroid.width / 2, 
+												_player.x, _player.y, _player.height / 2))
+					{
+						// Get random sun death message
+						var radm:int = Math.random() * Constants.DEATH_ASTEROID_MESSAGES.length;
+						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.DEATH_ASTEROID_MESSAGES[radm]);
+						resetPlayer();
+						_scene.livesCounter.deductLife();
+						AssetResources.projectileCollisionSound.play();
 					}
 				}
 				

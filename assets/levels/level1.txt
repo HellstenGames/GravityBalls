@@ -33,5 +33,17 @@
 
 	"item": "star",
 	"position": { "cx":350, "cy":160 }
+},
+{
+	"item": "asteroid",
+	"position": { "cx": -100, "cy":80 },
+	"dx":50,
+	"dy":0
+},
+{
+	"item": "asteroid",
+	"position": { "cx": 500, "cy":240 },
+	"dx":-50,
+	"dy":0
 }
 ]
