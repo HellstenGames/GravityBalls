@@ -8,7 +8,7 @@
 		
 		public var mass:Number;
 		
-		public var originalCX:Number, originalCY:Number, originalDX:Number, originalDY:Number;
+		public var startCX:Number, startCY:Number, startDX:Number, startDY:Number;
 		public var rotationSpeed:Number;
 		
 		public function Asteroid() 

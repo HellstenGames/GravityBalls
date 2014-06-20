@@ -25,6 +25,7 @@
 	import flash.media.SoundChannel;
 	import managers.TrailManager;
 	import managers.AsteroidManager;
+	import managers.WallManager;
 	
 	public class PlayScene extends Scene {
 
@@ -53,6 +54,7 @@
 		public var textManager:TextManager;
 		public var trailManager:TrailManager;
 		public var asteroidManager:AsteroidManager;
+		public var wallManager:WallManager;
 		
 		// Objects
 		public var player:Player;
@@ -107,6 +109,7 @@
 			starManager = new StarManager(playLayer);
 			trailManager = new TrailManager(trailLayer);
 			asteroidManager = new AsteroidManager(playLayer);
+			wallManager = new WallManager(playLayer);
 			
 			// Load Level
 			_level = START_LEVEL;
@@ -119,7 +122,7 @@
 			textLayer.addChild(scoreText);
 			
 			livesCounter = new LivesCounter(MAX_LIVES, player);
-			livesCounter.x = Starling.current.nativeStage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
+			livesCounter.x = Starling.current.stage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
 			livesCounter.y = SCORE_OFFSET;
 			textLayer.addChild(livesCounter);
 			
@@ -140,6 +143,7 @@
 			textManager.update(timeDelta);
 			trailManager.update(timeDelta);
 			asteroidManager.update(timeDelta);
+			wallManager.update(timeDelta);
 			
 			// Fade the level out
 			if (fadedOut)
@@ -193,6 +197,7 @@
 			textManager.removeAll();
 			trailManager.removeAll();
 			asteroidManager.removeAll();
+			wallManager.removeAll();
 		}
 	}
 	

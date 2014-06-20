@@ -38,10 +38,10 @@
 			asteroids.push(asteroid);
 			
 			// Set original positions and speed for reference
-			asteroid.originalCX = cx;
-			asteroid.originalCY = cy;
-			asteroid.originalDX = dx;
-			asteroid.originalDY = dy;
+			asteroid.startCX = cx;
+			asteroid.startCY = cy;
+			asteroid.startDX = dx;
+			asteroid.startDY = dy;
 			
 			// Set rotation speed
 			var rs:Number = Math.random() * (Asteroid.ROTATION_MAX - Asteroid.ROTATION_MIN) + Asteroid.ROTATION_MIN;
@@ -76,20 +76,23 @@
 				asteroids[i].update(timeDelta);
 				
 				// Check if out of bounds
+				var origRotation:Number = asteroids[i].rotation;
+				asteroids[i].rotation = 0;
 				if (Physics.isOutOfBounds(asteroids[i].x, asteroids[i].y, asteroids[i].width, asteroids[i].height,
 							OUT_OF_BOUNDS_LEFT, OUT_OF_BOUNDS_TOP, OUT_OF_BOUNDS_RIGHT, OUT_OF_BOUNDS_BOTTOM))	
 				{
 					resetAsteroid(asteroids[i]);
 				}
+				asteroids[i].rotation = origRotation;
 			}
 		}
 		
 		private function resetAsteroid(asteroid:Asteroid):void
 		{
-			asteroid.cx = asteroid.originalCX;
-			asteroid.cy = asteroid.originalCY;
-			asteroid.dx = asteroid.originalDX;
-			asteroid.dy = asteroid.originalDY;
+			asteroid.cx = asteroid.startCX;
+			asteroid.cy = asteroid.startCY;
+			asteroid.dx = asteroid.startDX;
+			asteroid.dy = asteroid.startDY;
 			// Set rotation speed
 			var rs:Number = Math.random() * (Asteroid.ROTATION_MAX - Asteroid.ROTATION_MIN) + Asteroid.ROTATION_MIN;
 			asteroid.rotationSpeed = rs;			

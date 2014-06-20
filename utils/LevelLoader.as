@@ -36,6 +36,10 @@
 				{
 					pscene.asteroidManager.addAsteroid(data[i].position.cx, data[i].position.cy, data[i].dx, data[i].dy);
 				}
+				else if (data[i].item == "wall")
+				{
+					pscene.wallManager.addWall(data[i].coordinates.x1, data[i].coordinates.y1, data[i].coordinates.x2, data[i].coordinates.y2, uint(data[i].color));
+				}
 			}
 		
 		}

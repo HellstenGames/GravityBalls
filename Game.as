@@ -25,17 +25,13 @@ package
 	import flash.geom.Point;
 	import flash.desktop.NativeApplication;
 
-	
-	
 	public class Game extends Sprite
 	{
 
 		public static var INSTANCE:Game;
 		
-		
 		private var _lastTime:Number;
 		public var doneLoading:Boolean;
-
 
 		// Game Sprites/Objects
 		public var backgroundLayer:Sprite, menuLayer:Sprite;
@@ -87,15 +83,15 @@ package
 					NativeApplication.nativeApplication.exit();
 					removeEventListener(Event.ENTER_FRAME, update);	
 				}
-				else {
+				else 
+				{
 					scene.init();
 					addChild(scene);
 				}			
 			}
 
 		}
-		
-		
+
 		private function onLoadComplete():void 
 		{
 			doneLoading = true;

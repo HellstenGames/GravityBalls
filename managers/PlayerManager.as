@@ -6,6 +6,7 @@
 	import objects.Projectile;
 	import objects.Star;
 	import objects.Asteroid;
+	import objects.Wall;
 	
 	// Import starling stuff
 	import starling.display.Sprite;
@@ -14,6 +15,7 @@
 	
 	// Import flash stuff
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	public class PlayerManager {
 
@@ -77,7 +79,35 @@
 					poopTrail();
 				}
 				
+				/*
 				// Check if player is hitting boundaries
+				var wall:int = Physics.wallCollision(_player.x, _player.y, _player.width, _player.height, 
+										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary);
+				if (wall == Physics.DIR_LEFT)
+				{
+					_player.x = 0;
+					_player.dx *= -1;
+					trace("left");
+				}
+				else if (wall == Physics.DIR_TOP)
+				{
+					_player.y = 0;
+					_player.dy *= -1;
+					trace("top");
+				}
+				else if (wall == Physics.DIR_RIGHT)
+				{
+					_player.x = _rightBoundary - _player.width;
+					_player.dx *= -1;
+					trace("right");
+				}
+				else if (wall == Physics.DIR_BOTTOM)
+				{
+					_player.y = _bottomBoundary - _player.height;
+					_player.dy *= -1;
+					trace("bottom");
+				}*/
+		
 				if (Physics.isOutOfBounds(_player.x, _player.y, _player.width, _player.height, 
 										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary))
 				{
@@ -88,6 +118,7 @@
 
 					return;
 				}
+	
 				
 				// Apply gravity to player due to the suns
 				var suns:Array = _scene.sunManager.suns;
@@ -169,6 +200,8 @@
 				for (var a:int = alength - 1; a >= 0; --a)
 				{
 					var asteroid:Asteroid = asteroids[a]; 
+					var origRotation:Number = asteroid.rotation;
+					asteroid.rotation = 0;					
 					if (Physics.circleDetection(asteroid.x, asteroid.y, asteroid.width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
@@ -179,6 +212,34 @@
 						_scene.livesCounter.deductLife();
 						AssetResources.projectileCollisionSound.play();
 					}
+					asteroid.rotation = origRotation;
+				}
+				
+				// Check if player collides with walls
+				var walls:Array = _scene.wallManager.walls;
+				var wlength:int = walls.length; 
+				for (var w:int = wlength - 1; w >= 0; --w)
+				{
+					var wall:Wall = walls[w]; 	
+					
+					// Rectangle collision check
+					var bounds1:Rectangle = wall.bounds;
+					var bounds2:Rectangle = _player.bounds;
+
+					if (bounds1.intersects(bounds2))
+					{
+						if (wall.height == 1)
+						{
+							_player.dy *= -1;
+						}
+						else if (wall.width == 1)
+						{
+							_player.dx *= -1;
+						}
+						AssetResources.projectileCollisionSound.play();
+						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.spitRandomMessage(Constants.WALL_MESSAGES));
+					}
+					
 				}
 				
 			}

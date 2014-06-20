@@ -4,6 +4,12 @@
 	
 	public class Physics {
 
+		public static var DIR_LEFT:int = 0;
+		public static var DIR_TOP:int = 1;
+		public static var DIR_RIGHT:int = 2;
+		public static var DIR_BOTTOM:int = 3;
+		public static var DIR_NONE:int = -1;
+		
 		public static var GRAVITY_CONSTANT:Number = 1;
 		public static var GRAVITATIONAL_CONSTANT:Number = 6.67*10e-11;
 		
@@ -65,6 +71,29 @@
 											 leftBound:Number, topBound:Number, rightBound:Number, bottomBound:Number) {
 			return (objx < leftBound || objy < topBound || 
 					objx + objwidth > rightBound || objy + objheight > bottomBound) ? true : false;		
+		}
+		
+		public static function boundaryCollision(objx:Number, objy:Number, objwidth:Number, objheight:Number, 
+											 leftBound:Number, topBound:Number, rightBound:Number, bottomBound:Number):int
+		{
+			if (objx < leftBound)
+			{
+				return Physics.DIR_LEFT;
+			}
+			else if (objy < topBound)
+			{
+				return Physics.DIR_TOP;
+			}
+			else if (objx + objwidth > rightBound)
+			{
+				return Physics.DIR_RIGHT;
+			}
+			else if (objy + objheight > bottomBound)
+			{
+				return Physics.DIR_BOTTOM;
+			} else {
+				return Physics.DIR_NONE;
+			}
 		}
 		
 	}

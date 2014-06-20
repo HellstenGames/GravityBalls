@@ -38,5 +38,27 @@
 
 	"item": "star",
 	"position": { "cx":400, "cy":190 }
+},
+{
+	"item": "asteroid",
+	"position": { "cx":300, "cy":-100 },
+	"dx":0,
+	"dy":50
+},
+{
+	"item": "asteroid",
+	"position": { "cx": 500, "cy":240 },
+	"dx":-50,
+	"dy":0
+},
+{
+	"item": "wall",
+	"coordinates": { "x1":130, "y1":50, "x2":130, "y2":100 },
+	"color": "0x0000FF"
+},
+{
+	"item": "wall",
+	"coordinates": { "x1":200, "y1":250, "x2":200, "y2":300 },
+	"color": "0xFF00FF"
 }
 ]

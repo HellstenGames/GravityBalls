@@ -5,8 +5,11 @@
 	import starling.events.TouchEvent;
 	import starling.events.Touch;
 	import starling.events.TouchPhase;
+	import starling.display.DisplayObject;
+	
 	// Import flash stuff
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	public class Player extends Projectile {
 
@@ -14,7 +17,8 @@
 		public static var SHOOT_RATIO:Number = 3.0;
 
 		private var _began:Point;
-
+		private var _padding:Number;
+		
 		public var released:Boolean;
 		public var died:Boolean;
 		
@@ -25,6 +29,7 @@
 			y = cy - width / 2;
 			released = false;
 			addEventListener(TouchEvent.TOUCH, onTouch);
+			padding = width;
 		}
 
 		private function onTouch(event:TouchEvent):void
@@ -57,8 +62,24 @@
 				}
 			
 			}
+			
 		}
+	
+			public function get padding():Number { return _padding; }
+			public function set padding(value:Number):void { _padding = value; }
 		
+			public override function hitTest(localPoint:Point, forTouch:Boolean = false):DisplayObject 
+			{
+				// on a touch test, invisible or untouchable objects cause the test to fail
+				if (forTouch && (!visible || !touchable)) return null;
+				 
+				var theBounds:Rectangle = getBounds(this);
+				theBounds.inflate(_padding, _padding);
+				 
+				if (theBounds.containsPoint(localPoint)) return this;
+				return null;
+			}			
+			
 	}
 	
 }

@@ -7,12 +7,17 @@ package
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.geom.Rectangle;
+	
     import starling.core.Starling;
     import starling.utils.RectangleUtil;
     import starling.utils.ScaleMode;
 
 	import starling.events.ResizeEvent;
 	
+	import starling.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+
+
 	[SWF(backgroundColor="0x000000")]
 	public class GravityBalls extends Sprite {
         private static const STAGE_WIDTH:int = 480;
@@ -29,6 +34,7 @@ package
 		
 			stage.addEventListener(Event.DEACTIVATE, deactivate);
 			stage.addEventListener(ResizeEvent.RESIZE, resizeStage);
+			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN, nativeOnKeyDown, false, 0, true);
 			
 			setupStarling();
 		}
@@ -64,8 +70,35 @@ package
 			Starling.current.viewPort = viewPortRectangle;
 		}
 
-		
-        private function deactivate(e:Event):void {
+
+                 
+		protected function nativeOnKeyDown(e:KeyboardEvent):void
+		{
+			
+			if(e.keyCode == Keyboard.BACK)
+			{
+				e.preventDefault();
+				e.stopImmediatePropagation();
+			}
+			else if(e.keyCode == Keyboard.HOME)
+			{
+				e.preventDefault();
+				e.stopImmediatePropagation();
+			}
+			else if(e.keyCode == Keyboard.MENU)
+			{
+				e.preventDefault();
+				e.stopImmediatePropagation();
+			} 
+			else if (e.keyCode == Keyboard.SEARCH)
+			{
+				e.preventDefault();
+				e.stopImmediatePropagation();
+			}
+		}
+
+        private function deactivate(e:Event):void 
+		{
             NativeApplication.nativeApplication.exit();
         }
 		
