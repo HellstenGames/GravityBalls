@@ -13,6 +13,8 @@
 	import managers.BlackholeManager;
 	import managers.StarManager;
 	import managers.TextManager;
+	import managers.TrailManager;
+	
 	import objects.Background;
 	import objects.Player;
 	import utils.LevelLoader;
@@ -21,6 +23,7 @@
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
+	import managers.TrailManager;
 	
 	public class PlayScene extends Scene {
 
@@ -47,6 +50,7 @@
 		public var playerManager:PlayerManager;
 		public var starManager:StarManager;
 		public var textManager:TextManager;
+		public var trailManager:TrailManager;
 		
 		// Objects
 		public var player:Player;
@@ -93,6 +97,7 @@
 			playerManager = new PlayerManager(backgroundLayer, player, this);
 			starManager = new StarManager(backgroundLayer);
 			textManager = new TextManager(textLayer);
+			trailManager = new TrailManager(backgroundLayer);
 			
 			// Load Level
 			_level = START_LEVEL;
@@ -124,6 +129,8 @@
 			playerManager.update(timeDelta);
 			starManager.update(timeDelta);
 			textManager.update(timeDelta);
+			trailManager.update(timeDelta);
+			
 			
 			// Fade the level out
 			if (fadedOut)
@@ -175,6 +182,7 @@
 			blackholeManager.removeAll();
 			starManager.removeAll();
 			textManager.removeAll();
+			trailManager.removeAll();
 		}
 	}
 	

@@ -9,19 +9,26 @@
 	// Import starling stuff
 	import starling.display.Sprite;
 	import starling.core.Starling;
+	import starling.animation.DelayedCall;
 	
 	// Import flash stuff
 	import flash.geom.Point;
 	
 	
+	
 	public class PlayerManager {
 
+		public static var TRAIL_DELAY:Number = 0.1;
+		
+		
 		private var _player:Player;
 		private var _layer:Sprite;
 		private var _scene:*;
 		
 		private var _leftBoundary:Number, _topBoundary:Number, _rightBoundary:Number, _bottomBoundary:Number;
 		private var _originalPos:Point;
+
+		private var _trailDelayCall:DelayedCall;
 		
 		public function PlayerManager(layer:Sprite, player, scene:*) 
 		{
@@ -34,7 +41,8 @@
 			
 			_leftBoundary = _topBoundary = 0;
 			_rightBoundary = Starling.current.stage.stageWidth;
-			_bottomBoundary = Starling.current.stage.stageHeight;			
+			_bottomBoundary = Starling.current.stage.stageHeight;
+			_trailDelayCall = null;
 		}
 
 		public function setPlayer(cx:Number, cy:Number):void
@@ -64,13 +72,21 @@
 			
 			if (_player.released)
 			{
+				// Poop trail
+				if (!_trailDelayCall)
+				{
+					poopTrail();
+				}
+				
 				// Check if player is hitting boundaries
 				if (Physics.isOutOfBounds(_player.x, _player.y, _player.width, _player.height, 
 										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary))
 				{
+					removeTrail();
 					resetPlayer();
 					_scene.livesCounter.deductLife();
 					AssetResources.projectileCollisionSound.play();
+
 					return;
 				}
 				
@@ -89,6 +105,8 @@
 					if (Physics.circleDetection(suns[s].x, suns[s].y, suns[s].width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
+						removeTrail();
+						
 						// Get random sun death message
 						var rsdm:int = Math.random() * Constants.DEATH_SUN_MESSAGES.length;
 						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.DEATH_SUN_MESSAGES[rsdm]);
@@ -115,11 +133,15 @@
 					if (Physics.circleDetection(blackHoles[bh].x, blackHoles[bh].y, blackHoles[bh].width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
+						removeTrail();
+						
 						// Get random win message
 						var rwm:int = Math.random() * Constants.WIN_MESSAGES.length;
 						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.WIN_MESSAGES[rwm]);
 						AssetResources.blackHoleCollisionSound.play();
+						
 						_player.visible = false;
+						
 						_scene.fadeOut();
 						return;
 					}
@@ -156,6 +178,23 @@
 			_player.velocity[1] = 0;
 			_player.visible = true;
 		}
+		
+		private function poopTrailDelay():void
+		{
+			_scene.trailManager.addTrail(_player.cx, _player.cy);
+		}
+		private function poopTrail():void
+		{
+			_trailDelayCall = new DelayedCall(poopTrailDelay, PlayerManager.TRAIL_DELAY);
+			_trailDelayCall.repeatCount = 0;
+			Starling.juggler.add(_trailDelayCall);	
+		}
+		private function removeTrail():void
+		{
+			Starling.juggler.remove(_trailDelayCall);	
+			_trailDelayCall = null;
+		}
+
 	}
 	
 }
