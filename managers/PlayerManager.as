@@ -89,7 +89,9 @@
 					if (Physics.circleDetection(suns[s].x, suns[s].y, suns[s].width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
-						_scene.textManager.addPopupText(_player.cx, _player.cy, "Burn!");
+						// Get random sun death message
+						var rsdm:int = Math.random() * Constants.DEATH_SUN_MESSAGES.length;
+						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.DEATH_SUN_MESSAGES[rsdm]);
 						resetPlayer();
 						_scene.livesCounter.deductLife();
 						AssetResources.projectileCollisionSound.play();
@@ -113,7 +115,9 @@
 					if (Physics.circleDetection(blackHoles[bh].x, blackHoles[bh].y, blackHoles[bh].width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
-						_scene.textManager.addPopupText(_player.cx, _player.cy, "Zonk!");
+						// Get random win message
+						var rwm:int = Math.random() * Constants.WIN_MESSAGES.length;
+						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.WIN_MESSAGES[rwm]);
 						AssetResources.blackHoleCollisionSound.play();
 						_player.visible = false;
 						_scene.fadeOut();

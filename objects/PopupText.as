@@ -6,9 +6,9 @@
 	public class PopupText extends Entity {
 
 		public static var SCALE_SPEED:Number = 0.02;
-		public static var DISAPPEAR_SPEED:Number = 0.05;
+		public static var DISAPPEAR_SPEED:Number = 0.03;
 		public static var FONT_TYPE:String = "Arial";
-		public static var FONT_SIZE:int = 18;
+		public static var FONT_SIZE:int = 16;
 		public static var FONT_COLOR:uint = Color.RED;
 		public static var FONT_ISBOLD:Boolean = true;
 		
@@ -20,7 +20,7 @@
 		public function PopupText() 
 		{
 			super();
-			_textSprite = new TextField(100, 100, "", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
+			_textSprite = new TextField(200, 200, "", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
 			addChild(_textSprite);
 		}
 

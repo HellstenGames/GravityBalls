@@ -8,8 +8,8 @@
 	public class Scene extends Entity 
 	{
 
-		public static var FADE_OUT_SPEED:Number = 0.02;
-		public static var FADE_IN_SPEED:Number = 0.02;
+		public static var FADE_OUT_SPEED:Number = 0.015;
+		public static var FADE_IN_SPEED:Number = 0.015;
 		
 		public var isDone:Boolean;
 		public var nextScene:Scene;
