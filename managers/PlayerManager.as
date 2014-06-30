@@ -112,8 +112,7 @@
 										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary))
 				{
 					removeTrail();
-					resetPlayer();
-					_scene.livesCounter.deductLife();
+					killPlayer();
 					AssetResources.projectileCollisionSound.play();
 
 					return;
@@ -140,8 +139,7 @@
 						// Get random sun death message
 						var rsdm:int = Math.random() * Constants.DEATH_SUN_MESSAGES.length;
 						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.DEATH_SUN_MESSAGES[rsdm]);
-						resetPlayer();
-						_scene.livesCounter.deductLife();
+						killPlayer();
 						AssetResources.projectileCollisionSound.play();
 						return;
 					}
@@ -208,8 +206,7 @@
 						// Get random sun death message
 						var radm:int = Math.random() * Constants.DEATH_ASTEROID_MESSAGES.length;
 						_scene.textManager.addPopupText(_player.cx, _player.cy, Constants.DEATH_ASTEROID_MESSAGES[radm]);
-						resetPlayer();
-						_scene.livesCounter.deductLife();
+						killPlayer();
 						AssetResources.projectileCollisionSound.play();
 					}
 					asteroid.rotation = origRotation;
@@ -255,6 +252,14 @@
 			_player.velocity[0] = 0;
 			_player.velocity[1] = 0;
 			_player.visible = true;
+		}
+		
+		public function killPlayer():void
+		{
+			resetPlayer();
+			_scene.livesCounter.deductLife();
+			// Change arrow color
+			_scene.arrow.changeImage(Projectile.COLORS.indexOf(_player.color));			
 		}
 		
 		private function poopTrailDelay():void

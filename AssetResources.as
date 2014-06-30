@@ -29,7 +29,7 @@
 		public static var exitBallTexture:Texture, playBallTexture:Texture, sandboxBallTexture:Texture;
 		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture;
 		public static var starTexture:Texture, trailTexture:Texture, asteroidTexture:Texture;
-		
+		public static var arrowTextures:Array;		
 		
 		public static var levels:Array;
 		
@@ -85,6 +85,12 @@
 					AssetResources.trailTexture = AssetResources.ASSETS_MANAGER.getTexture("trail_x" + sf);
 					AssetResources.asteroidTexture = AssetResources.ASSETS_MANAGER.getTexture("asteroid_x" + sf);
 
+					// Arrow assets
+					AssetResources.arrowTextures = [];
+					AssetResources.arrowTextures.push(AssetResources.ASSETS_MANAGER.getTexture("arrow_red_x" + sf));
+					AssetResources.arrowTextures.push(AssetResources.ASSETS_MANAGER.getTexture("arrow_green_x" + sf));
+					AssetResources.arrowTextures.push(AssetResources.ASSETS_MANAGER.getTexture("arrow_blue_x" + sf));
+					
 					AssetResources.exitBallTexture = AssetResources.ASSETS_MANAGER.getTexture("exit_ball_x" + sf);
 					AssetResources.playBallTexture = AssetResources.ASSETS_MANAGER.getTexture("play_ball_x" + sf);
 					AssetResources.sandboxBallTexture = AssetResources.ASSETS_MANAGER.getTexture("sandbox_ball_x" + sf);

@@ -1,6 +1,5 @@
 ﻿package objects {
-	
-	
+
 	// Import starling stuff
 	import starling.events.TouchEvent;
 	import starling.events.Touch;
@@ -16,11 +15,14 @@
 		public static var TOUCH_SCALE_AMOUNT:Number = 2.0;
 		public static var SHOOT_RATIO:Number = 3.0;
 
-		private var _began:Point;
+		public var began:Point, currentPos:Point;
 		private var _padding:Number;
 		
 		public var released:Boolean;
 		public var died:Boolean;
+		public var beingTouched:Boolean;
+		
+		// Cursor positions
 		
 		public function Player(cx:Number=0, cy:Number=0, color:String="blue") 
 		{
@@ -35,7 +37,7 @@
 		private function onTouch(event:TouchEvent):void
 		{
 			if (!released)
-			{
+			{								
 				// Get touch beginning and ending
 				var touchBagan:Touch = event.getTouch(this, TouchPhase.BEGAN);
 				var touchEnded:Touch = event.getTouch(this, TouchPhase.ENDED);
@@ -50,15 +52,23 @@
 				
 				if (touchBagan)
 				{
-					_began = touchBagan.getLocation(this);
+					began = touchBagan.getLocation(this);
+					currentPos = began;
+					beingTouched = true;
+				}
+								
+				if (touchEnded)
+				{					
+					currentPos = touchEnded.getLocation(this);
+					dx = (began.x - currentPos.x) * SHOOT_RATIO;
+					dy = (began.y - currentPos.y) * SHOOT_RATIO;
+					released = true;
+					beingTouched = false;
 				}
 				
-				if (touchEnded)
+				if (touchMoved)
 				{
-					var currentPos:Point = touchEnded.getLocation(this);
-					dx = (_began.x - currentPos.x) * SHOOT_RATIO;
-					dy = (_began.y - currentPos.y) * SHOOT_RATIO;
-					released = true;
+					currentPos = touchMoved.getLocation(this);
 				}
 			
 			}

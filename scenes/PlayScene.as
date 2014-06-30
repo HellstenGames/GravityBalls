@@ -17,9 +17,11 @@
 	
 	import objects.Background;
 	import objects.Player;
+	import objects.Arrow;
 	import utils.LevelLoader;
 	import graphics.Line;
 	import objects.LivesCounter;
+	import objects.Projectile;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -59,6 +61,7 @@
 		// Objects
 		public var player:Player;
 		public var background:Sprite;
+		public var arrow:Arrow;
 		
 		// Texts
 		public var scoreText:TextField;
@@ -99,6 +102,9 @@
 		
 			// Create other stuff
 			player = new Player();
+			arrow = new Arrow(Arrow.ARROW_BLUE);
+			arrow.visible = false;
+			playLayer.addChild(arrow);
 			
 			// Create Managers
 			textManager = new TextManager(textLayer);
@@ -152,6 +158,30 @@
 				fadeIn();
 			} 
 
+			// If player is being touched, show the arrow
+			if (player.beingTouched)
+			{
+				// Rotate arrow accordingly
+				var angle:Number = Math.atan2(player.began.y - player.currentPos.y, player.began.x - player.currentPos.x) + Math.PI;
+				if (angle % Math.PI == 0)
+					angle = 0;
+					
+				arrow.image.rotation = angle;
+				// Get radius of player
+				var pradius:Number = player.width;
+	
+				var bottom:Number = Math.sin(angle) * pradius;
+				var right:Number = Math.cos(angle) * pradius;
+				arrow.cx = player.cx + arrow.width / 2 - right;
+				arrow.cy = player.cy + arrow.height / 2 - bottom;
+				arrow.visible = true;						
+				
+			}
+			else
+			{
+				arrow.visible = false;
+			}
+			
 		}
 		
 		override public function destroy():void
