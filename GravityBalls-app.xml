@@ -14,7 +14,7 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/14.0">
+<application xmlns="http://ns.adobe.com/air/application/3.8">
   <id>GravityBalls</id>
   <versionNumber>1.0</versionNumber>
   <filename>GravityBalls</filename>
@@ -49,6 +49,32 @@
   </android>
   <versionLabel/>
   <supportedLanguages>en</supportedLanguages>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <extensions>
     <extensionID>com.brinkbit.admob</extensionID>
   </extensions>
