@@ -14,7 +14,7 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/3.8">
+<application xmlns="http://ns.adobe.com/air/application/4.0">
   <id>GravityBalls</id>
   <versionNumber>1.0</versionNumber>
   <filename>GravityBalls</filename>
@@ -39,16 +39,46 @@
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
   <android>
-    <manifestAdditions>
-      <![CDATA[<manifest>
+    <manifestAdditions><![CDATA[<manifest>
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-</manifest>]]>
-    </manifestAdditions>
+</manifest>]]></manifestAdditions>
   </android>
   <versionLabel/>
   <supportedLanguages>en</supportedLanguages>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

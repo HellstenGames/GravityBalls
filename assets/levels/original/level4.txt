@@ -1,0 +1,52 @@
+[
+{
+
+	"item": "player",
+	"position": { "cx":400, "cy":160 }
+},
+{
+
+	"item": "blackhole",
+	"position": { "cx":50, "cy":160 }
+},
+{
+
+	"item": "sun",
+	"position": { "cx":250, "cy":80 }
+},
+{
+
+	"item": "sun",
+	"position": { "cx":250, "cy":240 }
+},
+{
+
+	"item": "star",
+	"position": { "cx":100, "cy":160 }
+},
+{
+
+	"item": "star",
+	"position": { "cx":150, "cy":160 }
+},
+{
+
+	"item": "star",
+	"position": { "cx":200, "cy":160 }
+},
+{
+
+	"item": "star",
+	"position": { "cx":250, "cy":160 }
+},
+{
+
+	"item": "star",
+	"position": { "cx":300, "cy":160 }
+},
+{
+
+	"item": "star",
+	"position": { "cx":350, "cy":160 }
+}
+]
