@@ -28,7 +28,7 @@
 
 	public class SplashScene extends Scene {
 
-		public static var SPLASH_DELAY:Number = 5.0;
+		public static var SPLASH_DELAY:Number = 1.0;
 		public static var LOAD_DOT_SIZE:Number = 4;
 		public static var LOAD_DOT_SPACE:Number = 4;
 		public static var LOAD_DOT_TOP:Number = 305;

@@ -30,7 +30,7 @@
 		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture;
 		public static var starTexture:Texture, trailTexture:Texture, asteroidTexture:Texture;
 		public static var arrowTextures:Array;	
-		
+		public static var menuPickTexture:Texture;	
 		
 		public static var levels:Array;
 		
@@ -107,6 +107,9 @@
 					AssetResources.cbTexture = AssetResources.ASSETS_MANAGER.getTexture("cb_x" + sf);
 					AssetResources.ebTexture = AssetResources.ASSETS_MANAGER.getTexture("eb_x" + sf);
 					
+					// Menu Assets
+					AssetResources.menuPickTexture = AssetResources.ASSETS_MANAGER.getTexture("menupick");
+
 					// Set up levels
 					AssetResources.levels = new Array(NUM_OF_LEVELS);
 					for (var lcount:int = NUM_OF_LEVELS; lcount > 0; --lcount)

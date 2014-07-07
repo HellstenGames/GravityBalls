@@ -17,6 +17,7 @@
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
+	import buttons.MenuPick;
 	
 	// BRINKBIT ADS
 	/*
@@ -49,6 +50,9 @@
 		
 		private var _themeChannel:SoundChannel;
 
+
+		private var menuPick:MenuPick;
+		
 		public function MenuScene()
 		{
 			super();
@@ -80,6 +84,20 @@
 			addEntity(sandboxButton);
 			addEntity(exitButton);
 			
+			// Add menu picks
+			menuPick = new MenuPick();
+			menuPick.x = 100;
+			menuPick.y = 100;
+			addEntity(menuPick);
+			menuPick = new MenuPick();
+			menuPick.x = 200;
+			menuPick.y = 100;
+			addEntity(menuPick);
+			menuPick = new MenuPick();
+			menuPick.x = 300;
+			menuPick.y = 100;
+			addEntity(menuPick);
+			
 			// Create Managers
 			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
 			projectileManager.setBoundary(-OUT_OF_BOUNDS, -OUT_OF_BOUNDS, 
@@ -107,6 +125,7 @@
 			super.update(timeDelta);
 			projectileManager.update(timeDelta);
 			sunManager.update(timeDelta);
+			
 			
 			// Prepare to shoot projectiles and suns
 			var randomSide:int;
