@@ -22,14 +22,15 @@
 		public static var sunCollisionSound:Sound, projectileCollisionSound:Sound, 
 						  pointCollisionSound:Sound, blackHoleCollisionSound:Sound;
 		
-		public static var splashTexture:Texture, backgroundTexture:Texture, nebulaTexture:Texture;
+		public static var splashTexture:Texture, backgroundTexture:Texture, nebulaTexture:Texture, loadTexture:Texture;
 		public static var blueProjectileTexture:Texture, greenProjectileTexture:Texture, redProjectileTexture:Texture;
 		public static var sunTexture:Texture, blackHoleTexture:Texture;
-		public static var resetButtonTexture:Texture, contractButtonTexture:Texture;
+		public static var resetButtonTexture:Texture, cbTexture:Texture, pbTexture:Texture, ebTexture:Texture;
 		public static var exitBallTexture:Texture, playBallTexture:Texture, sandboxBallTexture:Texture;
 		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture;
 		public static var starTexture:Texture, trailTexture:Texture, asteroidTexture:Texture;
-		public static var arrowTextures:Array;		
+		public static var arrowTextures:Array;	
+		
 		
 		public static var levels:Array;
 		
@@ -74,6 +75,7 @@
 
 					// Set up textures
 					AssetResources.splashTexture = AssetResources.ASSETS_MANAGER.getTexture("splashscreen_x" + sf);
+					AssetResources.loadTexture = AssetResources.ASSETS_MANAGER.getTexture("loadscreen_x" + sf);
 					AssetResources.backgroundTexture = AssetResources.ASSETS_MANAGER.getTexture("background_x" + sf);
 					AssetResources.nebulaTexture = AssetResources.ASSETS_MANAGER.getTexture("nebula_x" + sf);
 					AssetResources.blueProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("blue_projectile_x" + sf);
@@ -84,6 +86,7 @@
 					AssetResources.starTexture = AssetResources.ASSETS_MANAGER.getTexture("star_x" + sf);
 					AssetResources.trailTexture = AssetResources.ASSETS_MANAGER.getTexture("trail_x" + sf);
 					AssetResources.asteroidTexture = AssetResources.ASSETS_MANAGER.getTexture("asteroid_x" + sf);
+
 
 					// Arrow assets
 					AssetResources.arrowTextures = [];
@@ -100,7 +103,9 @@
 					AssetResources.sandboxTextTexture = AssetResources.ASSETS_MANAGER.getTexture("sandbox_text_x" + sf);
 
 					AssetResources.resetButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("reset_button");
-					AssetResources.contractButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("contract_button");
+					AssetResources.pbTexture = AssetResources.ASSETS_MANAGER.getTexture("pb_x" + sf);
+					AssetResources.cbTexture = AssetResources.ASSETS_MANAGER.getTexture("cb_x" + sf);
+					AssetResources.ebTexture = AssetResources.ASSETS_MANAGER.getTexture("eb_x" + sf);
 					
 					// Set up levels
 					AssetResources.levels = new Array(NUM_OF_LEVELS);

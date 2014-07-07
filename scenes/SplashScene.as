@@ -23,18 +23,35 @@
 	
 	import starling.text.TextField;
 	import flash.filesystem.File;
-	
+	import graphics.Rectangle;
+
+
 	public class SplashScene extends Scene {
 
-		public static var SPLASH_DELAY:Number = 1.0;
+		public static var SPLASH_DELAY:Number = 5.0;
+		public static var LOAD_DOT_SIZE:Number = 4;
+		public static var LOAD_DOT_SPACE:Number = 4;
+		public static var LOAD_DOT_TOP:Number = 305;
+		public static var LOAD_DOTS_LEFT:Number = 450;
+		public static var LOAD_DOT_DELAY:Number = 0.5;
 		
 		private var _delayedCall:DelayedCall;
 		private var _splashDelayComplete:Boolean;
+		
+		// Images
+		private var _splashImage:Image;
+		private var _loadImage:Image;
+		
+		// Loading dots
+		private var _loadDots:Array;
+		private var _loadDotCounter:Number;
 		
 		public function SplashScene() 
 		{
 			super();
 			nextScene = new MenuScene();
+			_loadDots = null;
+			_loadDotCounter = 0;
 		}
 
 		override public function init():void
@@ -49,7 +66,7 @@
 			var loaderContext:LoaderContext = new LoaderContext();
 			loaderContext.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
 			var loader:Loader = new Loader();
-			loader.load ( new URLRequest (appDir.resolvePath("assets/x" + sf + "/splashscreen.png").url) , loaderContext);
+			loader.load ( new URLRequest (appDir.resolvePath("assets/x" + sf + "/loadscreen.png").url) , loaderContext);
 			loader.contentLoaderInfo.addEventListener ( Event.COMPLETE, onComplete );	
 	
 		}
@@ -58,8 +75,17 @@
 		{
 			var scalingFactor:int = Math.round(Starling.contentScaleFactor);
 			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
-			addChild(new Image(Texture.fromBitmap ( loadedBitmap, true, false, scalingFactor)));
-
+			_loadImage = new Image(Texture.fromBitmap ( loadedBitmap, true, false, scalingFactor));
+			addChild(_loadImage);
+			_loadDots = [];
+			for (var i:int = 0; i < 3; ++i)
+			{
+				_loadDots[i] = new Rectangle(LOAD_DOTS_LEFT + i * LOAD_DOT_SIZE + i * LOAD_DOT_SPACE, LOAD_DOT_TOP, LOAD_DOT_SIZE, LOAD_DOT_SIZE, Color.WHITE);
+				_loadDots[i].visible = false;
+				trace(_loadDots[i].x, _loadDots[i].y);
+				addChild(_loadDots[i]);
+			}
+			
 			// Load Sound
 			var appDir:File = File.applicationDirectory;
 			var sound:Sound = new Sound();    
@@ -92,8 +118,36 @@
 					destroy();
 					fadeIn();
 				}
+			} 
+			else 
+			{
+				if (_loadDots)
+				{
+					_loadDotCounter += timeDelta;
+					if (_loadDotCounter > LOAD_DOT_DELAY)
+					{
+						_loadDotCounter = 0;
+						// Show loading dots
+						for (var i:int = 0; i < 3; ++i)
+						{			
+							if (!_loadDots[i].visible)
+							{
+								_loadDots[i].visible = true;
+								break;
+							} 
+							else if (i == 2)
+							{
+								_loadDots[0].visible = true;
+								_loadDots[1].visible = false;
+								_loadDots[2].visible = false;
+							}
+						}
+					}
+				}
 			}
 
+
+			
 		}
 		
 		public function splashDelay():void

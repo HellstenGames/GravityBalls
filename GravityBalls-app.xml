@@ -14,7 +14,7 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/4.0">
+<application xmlns="http://ns.adobe.com/air/application/3.8">
   <id>GravityBalls</id>
   <versionNumber>1.0</versionNumber>
   <filename>GravityBalls</filename>
@@ -35,7 +35,7 @@
     <resizable>true</resizable>
   </initialWindow>
   <icon>
-    <image72x72>AppIconsForPublish/ic_launcher_72.png</image72x72></icon>
+    </icon>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
   <android>
@@ -47,65 +47,4 @@
   </android>
   <versionLabel/>
   <supportedLanguages>en</supportedLanguages>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <extensions>
-    <extensionID>com.brinkbit.admob</extensionID>
-  </extensions>
 </application>

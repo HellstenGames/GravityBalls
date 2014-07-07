@@ -4,6 +4,7 @@
 	import buttons.MenuButton;
 	import scenes.Scene;
 	import scenes.MenuScene;
+	import scenes.SandboxScene;
 	
 	// Import starling stuff
 	import starling.display.Image;
@@ -32,8 +33,9 @@
 			super.update(timeDelta);		
 		}		
 		
-		override protected function _touchCallBack():void {
-			_scene.nextScene = new MenuScene();
+		override protected function _touchCallBack():void 
+		{
+			_scene.nextScene = new SandboxScene();
 			_scene.fadeOut();
 		}
 		
