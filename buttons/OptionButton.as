@@ -29,7 +29,7 @@
 		public static var BACK_ARROW_SCALE:Number = 0.6;
 		public static var X_OFFSET:Number = 3;
 		public static var Y_OFFSET:Number = 2;
-		public static var ROLL_OUT_SPEED:Number = 5.5;
+		public static var ROLL_OUT_SPEED:Number = 3.5;
 		public static var ROLL_OUT_SCALE_SPEED:Number = 0.05;
 		public static var ROLL_OUT_ALPHA:Number = 0.4;
 		
@@ -44,7 +44,7 @@
 		public function OptionButton(optionRollOut:OptionRollOut) 
 		{
 			_optionRollOut = optionRollOut;
-			_optionRollOut.alpha = ROLL_OUT_ALPHA;
+			_optionRollOut.backboard.alpha = ROLL_OUT_ALPHA;
 			
 			_rollUpDown = false;
 			
@@ -65,10 +65,10 @@
 			if (_rollUpDown)
 			{
 				
-				if (_optionRollOut.scaleY < 1.0)
+				if (_optionRollOut.backboard.scaleY < 1.0)
 				{
-					_optionRollOut.scaleY += ROLL_OUT_SCALE_SPEED;
-					_optionRollOut.y -= ROLL_OUT_SPEED;
+					_optionRollOut.backboard.scaleY += ROLL_OUT_SCALE_SPEED;
+					_optionRollOut.rollOutButtons(-ROLL_OUT_SPEED);
 					_backSprite.rotation += deg2rad(ROTATION_SPEED);
 				}
 				
@@ -76,10 +76,10 @@
 			else
 			{
 				
-				if (_optionRollOut.scaleY > 0)
+				if (_optionRollOut.backboard.scaleY > 0)
 				{
-					_optionRollOut.scaleY -= ROLL_OUT_SCALE_SPEED;
-					_optionRollOut.y += ROLL_OUT_SPEED;
+					_optionRollOut.backboard.scaleY -= ROLL_OUT_SCALE_SPEED;
+					_optionRollOut.rollOutButtons(ROLL_OUT_SPEED);
 					_backSprite.rotation -= deg2rad(ROTATION_SPEED);
 				}
 				

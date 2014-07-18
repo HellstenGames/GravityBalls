@@ -72,7 +72,6 @@
 			
 			// Create option roll out 
 			optionRollOut = new OptionRollOut();
-			optionRollOut.scaleY = 0;
 			optionRollOut.cx = Starling.current.stage.stageWidth - 35;
 			optionRollOut.cy = Starling.current.stage.stageHeight - 35;
 			addEntity(optionRollOut);

@@ -13,16 +13,16 @@
 	// Import flash stuff
 	import flash.geom.Point;
 	
-	public class SoundButton extends Entity {
+	public class CreditButton extends Entity {
 
 		public static var DELAY_PERIOD:Number = 0.1;
 		
 		protected var _delayedCall:DelayedCall;
 		
-		public function SoundButton() 
+		public function CreditButton() 
 		{
 			super();
-			addChild(new Image(AssetResources.soundButtonTexture));	
+			addChild(new Image(AssetResources.creditButtonTexture));	
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 

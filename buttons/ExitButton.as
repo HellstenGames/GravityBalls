@@ -16,6 +16,7 @@
 	
 	// Import flash stuff
 	import flash.geom.Point;
+	import flash.desktop.NativeApplication;
 	
 	public class ExitButton extends Entity {
 
@@ -63,12 +64,6 @@
 			var touchMoved:Touch = event.getTouch(this, TouchPhase.MOVED);
 			var touchHovered:Touch = event.getTouch(this, TouchPhase.HOVER);
 			
-			var currentCX:Number = cx;
-			var currentCY:Number = cy;
-
-			x = currentCX - width / 2;
-			y = currentCY - height / 2;
-
 			// If touched ended trigger call back
 			if (touchEnded) 
 			{
@@ -85,8 +80,9 @@
 			}
 		}
 		
-		protected function _touchCallBack():void {
-			_scene.destroy();
+		protected function _touchCallBack():void 
+		{
+			NativeApplication.nativeApplication.exit();
 		}
 			
 		

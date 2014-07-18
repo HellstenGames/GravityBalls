@@ -34,6 +34,8 @@
 		public static var arrowTextures:Array;	
 		public static var menuPickTexture:Texture, menuScreenTexture:Texture;	
 		
+		public static var soundButtonTexture:Texture, creditButtonTexture:Texture;
+		
 		public static var levels:Array;
 		public static var creditScreen:Object, levelScreen1:Object, levelScreen2:Object, levelScreen3:Object, adScreen:Object;
 		
@@ -127,6 +129,9 @@
 					// Menu Assets
 					AssetResources.menuPickTexture = AssetResources.ASSETS_MANAGER.getTexture("menupick");
 					AssetResources.menuScreenTexture = AssetResources.ASSETS_MANAGER.getTexture("menuscreen_x" + sf);
+					AssetResources.soundButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_x" + sf);
+					AssetResources.creditButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("creditbutton_x" + sf);
+					
 					
 					// Menu Screens
 					AssetResources.creditScreen = AssetResources.ASSETS_MANAGER.getObject("credit_screen");
@@ -146,6 +151,7 @@
 					// Start scene assets
 					AssetResources.startTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("menutitle_x" + sf);
 					AssetResources.playArrowTexture = AssetResources.ASSETS_MANAGER.getTexture("play_arrow_x" + sf);
+					
 					
 					// Set up levels
 					AssetResources.levels = new Array(NUM_OF_LEVELS);

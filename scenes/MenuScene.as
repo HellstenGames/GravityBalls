@@ -78,6 +78,7 @@
 		public function MenuScene()
 		{
 			super();
+			nextScene = new PlayScene();
 		}
 
 		override public function init():void
@@ -98,7 +99,7 @@
 			_creditScreen.x = 0;
 			backgroundLayer.addChild(_creditScreen);
 			
-			_levelSelectScreen1 = ObjectLoader.load_select_screen(AssetResources.levelScreen1);
+			_levelSelectScreen1 = ObjectLoader.load_select_screen(this, AssetResources.levelScreen1);
 			_levelSelectScreen1.x = Starling.current.stage.stageWidth;
 			backgroundLayer.addChild(_levelSelectScreen1);
 			

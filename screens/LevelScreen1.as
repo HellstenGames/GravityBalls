@@ -17,7 +17,7 @@
 			{
 				// Position level pick
 				var menuPick:MenuPick = new MenuPick(i);
-				menuPick
+		
 				addEntity(menuPick);
 				menuPick.addEventListener(TouchEvent.TOUCH, _onLevelSelectTouch);
 			}
