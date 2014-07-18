@@ -17,7 +17,7 @@ package
 	import starling.events.KeyboardEvent;
 	import flash.ui.Keyboard;
 
-	[SWF(backgroundColor="0x000000")]
+	[SWF(backgroundColor="0x052441")]
 	public class GravityBalls extends Sprite {
         private static const STAGE_WIDTH:int = 480;
         private static const STAGE_HEIGHT:int = 320;

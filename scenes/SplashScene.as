@@ -49,7 +49,7 @@
 		public function SplashScene() 
 		{
 			super();
-			nextScene = new MenuScene();
+			nextScene = new StartScene();
 			_loadDots = null;
 			_loadDotCounter = 0;
 		}

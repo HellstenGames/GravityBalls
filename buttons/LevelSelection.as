@@ -4,7 +4,7 @@
 	import starling.text.TextField;
 	import starling.utils.Color;
 	
-	public class MenuPick extends Entity {
+	public class LevelSelection extends Entity {
 
 		public static var ROTATION_SPEED:Number = 0.05;
 		private var _number:int;
@@ -12,7 +12,7 @@
 		private var _backgroundImage:Image;
 		private var _textField:TextField;
 		
-		public function MenuPick(number:int) 
+		public function LevelSelection(number:int) 
 		{
 			super();
 			_backgroundImage = new Image(AssetResources.menuPickTexture)

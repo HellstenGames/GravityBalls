@@ -8,7 +8,6 @@
 
 		public static function load_level(data:Object, pscene:PlayScene):void
 		{
-
 			var dlength:int = data.length;
 			for (var i:int = dlength - 1; i >= 0; --i)
 			{

@@ -1,0 +1,7 @@
+{"selections":[ 
+	{"number":1, "cx":50, "cy":75},
+	{"number":2, "cx":100, "cy":75},
+	{"number":3, "cx":150, "cy":75},
+	{"number":4, "cx":200, "cy":75},
+	{"number":4, "cx":250, "cy":75}
+]}

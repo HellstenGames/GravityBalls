@@ -33,8 +33,6 @@
 		{
 			super();
 			_scene = scene;
-			_ballSprite = new Sprite();
-			addChild(_ballSprite);
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 

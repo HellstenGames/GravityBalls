@@ -4,11 +4,13 @@
 	import starling.core.Starling;
 	import starling.textures.Texture;
 	import starling.display.Image;
+	import starling.text.TextField;
 	
 	// Import flash stuff
 	import flash.media.Sound;
 	import flash.media.SoundTransform;
 	import flash.filesystem.File;
+	import starling.text.BitmapFont;
 	
 	public class AssetResources {
 
@@ -27,13 +29,24 @@
 		public static var sunTexture:Texture, blackHoleTexture:Texture;
 		public static var resetButtonTexture:Texture, cbTexture:Texture, pbTexture:Texture, ebTexture:Texture;
 		public static var exitBallTexture:Texture, playBallTexture:Texture, sandboxBallTexture:Texture;
-		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture;
+		public static var exitTextTexture:Texture, playTextTexture:Texture, sandboxTextTexture:Texture, backBallTexture:Texture, optionBallTexture:Texture;
 		public static var starTexture:Texture, trailTexture:Texture, asteroidTexture:Texture;
 		public static var arrowTextures:Array;	
-		public static var menuPickTexture:Texture;	
+		public static var menuPickTexture:Texture, menuScreenTexture:Texture;	
 		
 		public static var levels:Array;
+		public static var creditScreen:Object, levelScreen1:Object, levelScreen2:Object, levelScreen3:Object, adScreen:Object;
 		
+		public static var blackPentagonTexture:Texture;
+		public static var startTitleTexture:Texture, playArrowTexture:Texture;
+		
+		// Fonts
+		public static var blueLitteraFNT_Texture:Texture;
+		public static var blueLitteraXML:XML;
+		
+		[Embed(source="assets/fonts/bluelittera.xml", mimeType="application/octet-stream")]
+		public static const FontXml:Class;
+
 		public static function setOnLoadComplete(f:Function)
 		{
 			AssetResources.CALL_BACK = f;
@@ -51,6 +64,8 @@
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/x" + String(Math.floor(Starling.contentScaleFactor))));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/sfx"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/gfx"));
+			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/fonts"));
+			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/menu"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/levels"));
 			
 			ASSETS_MANAGER.loadQueue(function(ratio:Number):void
@@ -95,8 +110,10 @@
 					AssetResources.arrowTextures.push(AssetResources.ASSETS_MANAGER.getTexture("arrow_blue_x" + sf));
 					
 					AssetResources.exitBallTexture = AssetResources.ASSETS_MANAGER.getTexture("exit_ball_x" + sf);
-					AssetResources.playBallTexture = AssetResources.ASSETS_MANAGER.getTexture("play_ball_x" + sf);
+					AssetResources.backBallTexture = AssetResources.ASSETS_MANAGER.getTexture("backball_x" + sf);
+					AssetResources.playBallTexture = AssetResources.ASSETS_MANAGER.getTexture("playball_x" + sf);
 					AssetResources.sandboxBallTexture = AssetResources.ASSETS_MANAGER.getTexture("sandbox_ball_x" + sf);
+					AssetResources.optionBallTexture = AssetResources.ASSETS_MANAGER.getTexture("optionball_x" + sf);
 					
 					AssetResources.exitTextTexture = AssetResources.ASSETS_MANAGER.getTexture("exit_text_x" + sf);
 					AssetResources.playTextTexture = AssetResources.ASSETS_MANAGER.getTexture("play_text_x" + sf);
@@ -109,7 +126,27 @@
 					
 					// Menu Assets
 					AssetResources.menuPickTexture = AssetResources.ASSETS_MANAGER.getTexture("menupick");
-
+					AssetResources.menuScreenTexture = AssetResources.ASSETS_MANAGER.getTexture("menuscreen_x" + sf);
+					
+					// Menu Screens
+					AssetResources.creditScreen = AssetResources.ASSETS_MANAGER.getObject("credit_screen");
+					AssetResources.levelScreen1 = AssetResources.ASSETS_MANAGER.getObject("level_screen_1");
+					AssetResources.levelScreen2 = AssetResources.ASSETS_MANAGER.getObject("level_screen_2");
+					AssetResources.levelScreen3 = AssetResources.ASSETS_MANAGER.getObject("level_screen_3");
+					AssetResources.adScreen = AssetResources.ASSETS_MANAGER.getObject("ad_screen");
+					
+					AssetResources.blackPentagonTexture = AssetResources.ASSETS_MANAGER.getTexture("blackpentagon_x" + sf);
+		
+					// Load fonts
+					AssetResources.blueLitteraFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("bluelittera_fnt");
+					AssetResources.blueLitteraXML = XML(new FontXml());
+					trace(AssetResources.blueLitteraFNT_Texture, AssetResources.blueLitteraXML);
+					TextField.registerBitmapFont(new BitmapFont(AssetResources.blueLitteraFNT_Texture, AssetResources.blueLitteraXML));
+					
+					// Start scene assets
+					AssetResources.startTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("menutitle_x" + sf);
+					AssetResources.playArrowTexture = AssetResources.ASSETS_MANAGER.getTexture("play_arrow_x" + sf);
+					
 					// Set up levels
 					AssetResources.levels = new Array(NUM_OF_LEVELS);
 					for (var lcount:int = NUM_OF_LEVELS; lcount > 0; --lcount)

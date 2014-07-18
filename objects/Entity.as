@@ -12,6 +12,7 @@
 
 		public var velocity:Array;
 		public var entities:Array;
+		public var origCX:Number, origCY:Number;
 		
 		public function Entity(xPos:Number=0, yPos:Number=0, dx:Number=0, dy:Number=0)  
 		{
@@ -90,6 +91,11 @@
 			return velocity[1];
 		}
 		
+		public function trackOriginalCenter():void
+		{
+			origCX = cx;
+			origCY = cy;
+		}
 	}
 	
 }
