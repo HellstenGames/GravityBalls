@@ -25,7 +25,7 @@
 		
 		private function _onLevelSelectTouch():void
 		{
-			
+			trace("level select");
 		}
 		
 	}

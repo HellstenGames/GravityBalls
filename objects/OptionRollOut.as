@@ -28,6 +28,8 @@
 		{
 			super();
 			
+			visible = false;
+			
 			backboard = new Sprite();
 			backboard.addChild(new Rectangle(0, 0, BACKBOARD_WIDTH, BACKBOARD_HEIGHT));
 			addChild(backboard);
