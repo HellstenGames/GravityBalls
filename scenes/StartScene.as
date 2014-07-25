@@ -201,7 +201,6 @@
 
 				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
 			}		
-	
 			
 		}
 		

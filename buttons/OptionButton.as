@@ -20,6 +20,7 @@
 	
 	// Import object stuff
 	import objects.OptionRollOut;
+	import starling.display.DisplayObject;
 	
 	public class OptionButton extends Entity {
 
@@ -29,9 +30,14 @@
 		public static var BACK_ARROW_SCALE:Number = 0.6;
 		public static var X_OFFSET:Number = 3;
 		public static var Y_OFFSET:Number = 2;
-		public static var ROLL_OUT_SPEED:Number = 3.5;
+		public static var ROLL_OUT_SPEED:Number = 3;
 		public static var ROLL_OUT_SCALE_SPEED:Number = 0.05;
+		public static var ROLL_OUT_SCALE_MAX:Number = -1.0;
+		public static var ROLL_OUT_SCALE_MIN:Number = 0.0;
 		public static var ROLL_OUT_ALPHA:Number = 0.4;
+		
+		public static var ROLL_OUT_MIN_HEIGHT:Number = 1;
+		public static var ROLL_OUT_MAX_HEIGHT:Number = 100;
 		
 		protected var _optionRollOut:OptionRollOut;
 		protected var _scene:Scene;
@@ -39,14 +45,15 @@
 		protected var _backArrowSprite:Sprite;
 		protected var _delayedCall:DelayedCall;
 		
-		public var _rollUpDown:Boolean;
+		protected var _rollUp:Boolean, _rollDown:Boolean;
+		protected var _isRolledUp:Boolean, _isRolledDown:Boolean;
 		
 		public function OptionButton(optionRollOut:OptionRollOut) 
 		{
 			_optionRollOut = optionRollOut;
 			_optionRollOut.backboard.alpha = ROLL_OUT_ALPHA;
 			
-			_rollUpDown = false;
+			_rollUp = _rollDown = false 
 			
 			_backSprite = new Sprite();
 			_backSprite.addChild(new Image(AssetResources.optionBallTexture));
@@ -61,32 +68,61 @@
 		override public function update(timeDelta:Number):void
 		{
 			super.update(timeDelta);
-			
-			if (_rollUpDown)
+
+			if (_rollUp)
 			{
-				
-				if (_optionRollOut.backboard.scaleY < 1.0)
-				{
-					_optionRollOut.backboard.scaleY += ROLL_OUT_SCALE_SPEED;
-					_optionRollOut.rollOutButtons(-ROLL_OUT_SPEED);
-					_backSprite.rotation += deg2rad(ROTATION_SPEED);
-				}
-				
+				_doRollUp();
 			}
-			else
+			if (_rollDown)
 			{
-				
-				if (_optionRollOut.backboard.scaleY > 0)
-				{
-					_optionRollOut.backboard.scaleY -= ROLL_OUT_SCALE_SPEED;
-					_optionRollOut.rollOutButtons(ROLL_OUT_SPEED);
-					_backSprite.rotation -= deg2rad(ROTATION_SPEED);
-				}
-				
+				_doRollDown();
 			}
 			
 		}		
 		
+		private function _doRollUp():void
+		{
+			// Roll Buttons up
+			_rollUpButtons();
+			if (_optionRollOut.backboard.height < ROLL_OUT_MAX_HEIGHT)
+			{
+				_optionRollOut.backboard.height += ROLL_OUT_SPEED;
+				_optionRollOut.backboard.y -= ROLL_OUT_SPEED;
+			}
+			else
+			{
+				_optionRollOut.backboard.scaleY = ROLL_OUT_MAX_HEIGHT;
+				_optionRollOut.backboard.y = -ROLL_OUT_MAX_HEIGHT;
+				_rollUp = false;
+			}	
+			_backSprite.rotation += deg2rad(ROTATION_SPEED);
+		}
+		private function _doRollDown():void
+		{
+			// Roll Buttons Down
+			_rollDownButtons();		
+			if (_optionRollOut.backboard.height > ROLL_OUT_MIN_HEIGHT)
+			{
+				if (_optionRollOut.backboard.height - ROLL_OUT_SPEED < 0) 
+				{
+					_optionRollOut.backboard.height = 0;  
+				}
+				else
+				{
+					_optionRollOut.backboard.height -= ROLL_OUT_SPEED;
+				}
+				_optionRollOut.backboard.y += ROLL_OUT_SPEED;
+			}
+			else
+			{
+				_optionRollOut.backboard.height = ROLL_OUT_MIN_HEIGHT;
+				_optionRollOut.backboard.y = 0;
+				_rollDown = false;
+			}				
+			_backSprite.rotation -= deg2rad(ROTATION_SPEED);	
+		}
+		
+
 		private function onTouch(event:TouchEvent):void
 		{
 			// Scale button if touched
@@ -108,7 +144,6 @@
 				var endPos:Point = touchEnded.getLocation(this);
 				if (endPos.x >= 0 && endPos.y >= 0 && endPos.x <= width && endPos.y <= height) 
 				{
-
 					_delayedCall = new DelayedCall(_touchCallBack, DELAY_PERIOD);
 					_delayedCall.repeatCount = 1;
 					Starling.juggler.add(_delayedCall);	
@@ -118,10 +153,76 @@
 		
 		protected function _touchCallBack():void 
 		{
-			_rollUpDown = _rollUpDown ? false : true;
+			if (_rollUp || _optionRollOut.backboard.height == ROLL_OUT_MAX_HEIGHT)
+			{
+				_rollDown = true;
+				_rollUp = false;
+			}
+			else if (_rollDown || _optionRollOut.backboard.height == ROLL_OUT_MIN_HEIGHT)
+			{
+				_rollUp = true;
+				_rollDown = false;
+			}
+			else
+			{
+				_rollUp = true;
+			}
 		}
+		
+		private function _rollUpButtons():void
+		{
+			var blength:int = _optionRollOut.buttonsList.length;
+			var button:Entity, lastButton:Entity;
+			var isRollUp:Boolean = false;
+			for (var i:int = blength - 1; i >= 0; --i)
+			{
+				button = _optionRollOut.buttonsList[i];
+				
+				if (i != blength - 1)
+				{
+					lastButton = _optionRollOut.buttonsList[i+1];
+					if (lastButton.cy + lastButton.height + OptionRollOut.BUTTONS_OFFSET / 4 < button.cy)
+					{
+						button.cy -= ROLL_OUT_SPEED;
+					}
+				} 
+				else
+				{
+					button.cy -= ROLL_OUT_SPEED;
+				}
+			}
 			
+		}
+		private function _rollDownButtons():void
+		{
+			var blength:int = _optionRollOut.buttonsList.length;
+			var button:Entity, lastButton:Entity;
+			var isRollDown:Boolean = false;
+			for (var i:int = blength - 1; i >= 0; --i)
+			{
+				button = _optionRollOut.buttonsList[i];
+				
+				if (button.cy >= OptionRollOut.BUTTONS_OFFSET)
+					continue;
+		
+				/* Roll buttons down */
+				if (i != blength - 1)
+				{
+					lastButton = _optionRollOut.buttonsList[i+1];
+					if (lastButton.cy + lastButton.height + OptionRollOut.BUTTONS_OFFSET / 4  > button.cy)
+					{
+						button.cy += ROLL_OUT_SPEED;
+					}
+				} 
+				else
+				{
+					button.cy += ROLL_OUT_SPEED;
+				}
+			}
+			
+		}
 		
 	}
+	
 	
 }

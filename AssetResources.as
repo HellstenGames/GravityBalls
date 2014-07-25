@@ -25,7 +25,10 @@
 						  pointCollisionSound:Sound, blackHoleCollisionSound:Sound;
 		
 		public static var splashTexture:Texture, backgroundTexture:Texture, nebulaTexture:Texture, loadTexture:Texture;
-		public static var blueProjectileTexture:Texture, greenProjectileTexture:Texture, redProjectileTexture:Texture;
+		public static var blueProjectileTexture:Texture, greenProjectileTexture:Texture, redProjectileTexture:Texture, 
+						  brownProjectileTexture:Texture, yellowProjectileTexture:Texture, cyanProjectileTexture:Texture,
+						  whiteProjectileTexture:Texture;
+
 		public static var sunTexture:Texture, blackHoleTexture:Texture;
 		public static var resetButtonTexture:Texture, cbTexture:Texture, pbTexture:Texture, ebTexture:Texture;
 		public static var exitBallTexture:Texture, playBallTexture:Texture, sandboxBallTexture:Texture;
@@ -95,9 +98,15 @@
 					AssetResources.loadTexture = AssetResources.ASSETS_MANAGER.getTexture("loadscreen_x" + sf);
 					AssetResources.backgroundTexture = AssetResources.ASSETS_MANAGER.getTexture("background_x" + sf);
 					AssetResources.nebulaTexture = AssetResources.ASSETS_MANAGER.getTexture("nebula_x" + sf);
+					
 					AssetResources.blueProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("blue_projectile_x" + sf);
 					AssetResources.greenProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("green_projectile_x" + sf);
 					AssetResources.redProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("red_projectile_x" + sf);
+					AssetResources.brownProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("brown_projectile_x" + sf);
+					AssetResources.yellowProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("yellow_projectile_x" + sf);
+					AssetResources.cyanProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("cyan_projectile_x" + sf);
+					AssetResources.whiteProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("white_projectile_x" + sf);
+					
 					AssetResources.sunTexture = AssetResources.ASSETS_MANAGER.getTexture("sun_x" + sf);
 					AssetResources.blackHoleTexture = AssetResources.ASSETS_MANAGER.getTexture("blackhole_x" + sf);
 					AssetResources.starTexture = AssetResources.ASSETS_MANAGER.getTexture("star_x" + sf);

@@ -3,7 +3,7 @@
 	
 	public class Projectile extends Entity {
 
-		public static var COLORS:Array = new Array("red", "green", "blue");
+		public static var COLORS:Array = new Array("red", "green", "blue", "brown", "yellow", "cyan", "white");
 		
 		public var mass:Number;
 		
@@ -40,9 +40,17 @@
 				return new Image(AssetResources.blueProjectileTexture);
 			} else if (color == "green") {
 				return new Image(AssetResources.greenProjectileTexture);
-			} else { // default is red
+			} else if (color == "red") {
 				return new Image(AssetResources.redProjectileTexture);
-			}
+			} else if (color == "brown") {
+				return new Image(AssetResources.brownProjectileTexture);
+			} else if (color == "yellow") {
+				return new Image(AssetResources.yellowProjectileTexture);
+			} else if (color == "cyan") {
+				return new Image(AssetResources.cyanProjectileTexture);
+			} else { // white is default
+				return new Image(AssetResources.whiteProjectileTexture);
+			} 
 		}
 	}
 	
