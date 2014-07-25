@@ -11,6 +11,8 @@
 	import buttons.SoundButton;
 	import buttons.CreditButton;
 	
+	import scenes.Scene;
+	
 	
 	public class OptionRollOut extends Entity {
 
@@ -22,7 +24,7 @@
 		public var buttonsList:Array;
 		private var soundButton:SoundButton, creditButton:CreditButton;
 		
-		public function OptionRollOut() 
+		public function OptionRollOut(scene:Scene) 
 		{
 			super();
 			
@@ -33,13 +35,13 @@
 			buttonsList = [];
 			
 			// Create Credit button
-			creditButton = new CreditButton();
+			creditButton = new CreditButton(scene);
 			creditButton.cx = backboard.width / 2;
 			creditButton.cy = BUTTONS_OFFSET;			
 			_addButton(creditButton);
 			
 			// Create sound button
-			soundButton = new SoundButton();
+			soundButton = new SoundButton(scene);
 			soundButton.cx = backboard.width / 2;
 			soundButton.cy = BUTTONS_OFFSET;			
 			_addButton(soundButton);
@@ -55,6 +57,7 @@
 		{
 			buttonsList.push(button);
 			addChild(button);
+			addEntity(button);
 		}
 		
 	}

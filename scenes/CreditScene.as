@@ -23,7 +23,7 @@
 	
 	
 	
-	public class StartScene extends Scene {
+	public class CreditScene extends Scene {
 
 		public static var MAX_PROJECTILES:int = 16;
 		public static var MAX_SUNS:int = 2;
@@ -48,7 +48,7 @@
 		public var sunManager:SunManager;
 
 
-		public function StartScene() 
+		public function CreditScene() 
 		{
 			super();
 			nextScene = new MenuScene();

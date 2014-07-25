@@ -37,7 +37,7 @@
 		public static var ROLL_OUT_ALPHA:Number = 0.4;
 		
 		public static var ROLL_OUT_MIN_HEIGHT:Number = 1;
-		public static var ROLL_OUT_MAX_HEIGHT:Number = 100;
+		public static var ROLL_OUT_MAX_HEIGHT:Number = 75;
 		
 		protected var _optionRollOut:OptionRollOut;
 		protected var _scene:Scene;

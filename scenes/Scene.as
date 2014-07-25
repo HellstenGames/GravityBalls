@@ -5,6 +5,9 @@
 	import components.*;
 	import objects.Entity;
 	
+	// Flash stuff
+	import flash.media.SoundChannel;
+	
 	public class Scene extends Entity 
 	{
 
@@ -17,6 +20,8 @@
 		private var _fadeInOut:Boolean;
 		public var fadedOut:Boolean;
 		public var fadedIn:Boolean;
+		
+		public var themeChannel:SoundChannel;
 		
 		public function Scene() 
 		{

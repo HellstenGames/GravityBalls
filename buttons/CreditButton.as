@@ -13,15 +13,19 @@
 	// Import flash stuff
 	import flash.geom.Point;
 	
+	import scenes.Scene;
+	import scenes.CreditScene;
+	
 	public class CreditButton extends Entity {
 
 		public static var DELAY_PERIOD:Number = 0.1;
 		
 		protected var _delayedCall:DelayedCall;
+		protected var _scene:Scene;
 		
-		public function CreditButton() 
+		public function CreditButton(scene:Scene) 
 		{
-			super();
+			_scene = scene;
 			addChild(new Image(AssetResources.creditButtonTexture));	
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
@@ -51,7 +55,8 @@
 		
 		protected function _touchCallBack():void 
 		{
-	
+			_scene.nextScene = new CreditScene();
+			_scene.destroy();
 		}
 			
 		
