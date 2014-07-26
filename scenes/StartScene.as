@@ -10,6 +10,7 @@
 	import objects.Sun;
 	import objects.StartTitle;
 	import objects.OptionRollOut;
+	import objects.BetaTitle;
 	
 	// Managers
 	import managers.ProjectileManager;
@@ -46,6 +47,7 @@
 		public var exitButton:ExitButton;
 		public var optionButton:OptionButton;
 		public var startTitle:StartTitle;
+		public var betaTitle:BetaTitle;
 		public var optionRollOut:OptionRollOut;
 		
 		// Managers
@@ -103,11 +105,18 @@
 			// Create start title
 			startTitle = new StartTitle();
 			startTitle.cx = Starling.current.stage.stageWidth / 2;
-			startTitle.y = 60;
+			startTitle.y = 40;
 			startTitle.trackOriginalCenter();
 			addEntity(startTitle);
 			topLayer.addChild(startTitle);
 			
+			// Create beta title
+			betaTitle = new BetaTitle();
+			betaTitle.cx = Starling.current.stage.stageWidth / 2;
+			betaTitle.y = 80;
+			betaTitle.trackOriginalCenter();
+			addEntity(betaTitle);
+			topLayer.addChild(betaTitle);
 			
 			// Create Managers
 			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);

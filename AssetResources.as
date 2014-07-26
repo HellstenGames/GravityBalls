@@ -43,7 +43,7 @@
 		public static var creditScreen:Object, levelScreen1:Object, levelScreen2:Object, levelScreen3:Object, adScreen:Object;
 		
 		public static var blackPentagonTexture:Texture;
-		public static var startTitleTexture:Texture, playArrowTexture:Texture;
+		public static var startTitleTexture:Texture, betaTitleTexture:Texture, playArrowTexture:Texture;
 		
 		// Fonts
 		public static var blueLitteraFNT_Texture:Texture;
@@ -159,6 +159,7 @@
 					
 					// Start scene assets
 					AssetResources.startTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("menutitle_x" + sf);
+					AssetResources.betaTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("beta_x" + sf);	
 					AssetResources.playArrowTexture = AssetResources.ASSETS_MANAGER.getTexture("play_arrow_x" + sf);
 					
 					
