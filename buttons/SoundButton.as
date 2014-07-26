@@ -10,10 +10,11 @@
 	import starling.events.TouchPhase;
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
-	
+
 	// Import flash stuff
 	import flash.geom.Point;
 	import flash.media.SoundTransform;
+
 	
 	public class SoundButton extends Entity {
 
@@ -26,12 +27,18 @@
 		protected var _trans:SoundTransform; 
 		protected var _fadeOutSound:Boolean, _fadeInSound:Boolean;
 		
+		protected var _muteButton:Image, _soundButton:Image;
+		
 		public function SoundButton(scene:Scene) 
 		{
 			_scene = scene;
 			_fadeOutSound = false;
 			_fadeInSound = false;
-			addChild(new Image(AssetResources.soundButtonTexture));	
+			_soundButton = new Image(AssetResources.soundButtonTexture);
+			addChild(_soundButton);	
+			_muteButton = new Image(AssetResources.muteButtonTexture);
+			_muteButton.visible = false;
+			addChild(_muteButton);
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
@@ -90,13 +97,19 @@
 			{
 				_fadeInSound = false;
 				_fadeOutSound = true;
+				_muteButton.visible = true;
+				_soundButton.visible = false;
 			}
 			else if (_fadeOutSound || _trans.volume == 0.0)
 			{
 				_fadeInSound = true;
 				_fadeOutSound = false;
+				_muteButton.visible = false;
+				_soundButton.visible = true;
 			} else {
 				_fadeOutSound = true;
+				_muteButton.visible = true;
+				_soundButton.visible = false;				
 			}
 		}
 			

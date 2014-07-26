@@ -19,9 +19,14 @@
 	import buttons.PlayButton;
 	import buttons.ExitButton;
 	import buttons.OptionButton;
-
 	
+	// Brinkbit Admob
+	import com.brinkbit.admob.AdMobAd;
+	import com.brinkbit.admob.constants.AdMobAdType;
 	
+	// Admob
+//	import so.cuo.platform.admob.Admob;
+//	import so.cuo.platform.admob.AdmobPosition;
 	
 	public class StartScene extends Scene {
 
@@ -47,7 +52,7 @@
 		public var projectileManager:ProjectileManager;
 		public var sunManager:SunManager;
 
-
+		
 		public function StartScene() 
 		{
 			super();
@@ -57,7 +62,7 @@
 		override public function init():void
 		{		
 			super.init();
-			
+
 			// Add background layer sprites/entities
 			backgroundLayer = new Sprite();
 			addChild(backgroundLayer);
@@ -115,15 +120,20 @@
 				Starling.current.stage.stageWidth + OUT_OF_BOUNDS,
 				Starling.current.stage.stageHeight + OUT_OF_BOUNDS);
 			sunManager.gravitate = true;	
+		
 			
 			// Play start theme
 			themeChannel = AssetResources.menuTheme.play();
 			
+			// Create banner
+			//var banner:AdMobAd = new AdMobAd(AdMobAdType.BANNER, Constants.PUBLISHER_ID);
+			//banner.showAd();
 		}
 		
 		override public function update(timeDelta:Number):void 
 		{ 
 			super.update(timeDelta);
+
 			projectileManager.update(timeDelta);
 			sunManager.update(timeDelta);
 			
@@ -197,7 +207,7 @@
 
 				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
 			}		
-			
+	
 		}
 		
 		override public function destroy():void

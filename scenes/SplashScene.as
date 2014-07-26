@@ -57,7 +57,7 @@
 		override public function init():void
 		{		
 			super.init();
-			_splashDelayComplete = false;
+			_splashDelayComplete = true;
 
 			var sf:String = String(Math.round(Starling.contentScaleFactor));
 			var appDir:File = File.applicationDirectory;
@@ -68,7 +68,7 @@
 			var loader:Loader = new Loader();
 			loader.load ( new URLRequest (appDir.resolvePath("assets/x" + sf + "/loadscreen.png").url) , loaderContext);
 			loader.contentLoaderInfo.addEventListener ( Event.COMPLETE, onComplete );	
-	
+
 		}
 		
 		private function onComplete( e:Event ):void
@@ -77,6 +77,7 @@
 			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
 			_loadImage = new Image(Texture.fromBitmap ( loadedBitmap, true, false, scalingFactor));
 			addChild(_loadImage);
+			
 			_loadDots = [];
 			for (var i:int = 0; i < 3; ++i)
 			{
@@ -110,7 +111,7 @@
 		override public function update(timeDelta:Number):void 
 		{ 
 			super.update(timeDelta);
-			
+
 			if (_splashDelayComplete && Game.INSTANCE.doneLoading)
 			{
 				fadeOut();
@@ -121,6 +122,7 @@
 			} 
 			else 
 			{
+				
 				if (_loadDots)
 				{
 					_loadDotCounter += timeDelta;
@@ -144,6 +146,7 @@
 						}
 					}
 				}
+				
 			}
 
 

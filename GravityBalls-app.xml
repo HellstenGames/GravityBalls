@@ -14,9 +14,9 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
 -->
-<application xmlns="http://ns.adobe.com/air/application/3.8">
-  <id>GravityBalls</id>
-  <versionNumber>1.0</versionNumber>
+<application xmlns="http://ns.adobe.com/air/application/4.0">
+  <id>com.hellstengames.gravityballs</id>
+  <versionNumber>0.0.1</versionNumber>
   <filename>GravityBalls</filename>
   <description/>
   <name>GravityBalls</name>
@@ -39,12 +39,64 @@
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
   <android>
-    <manifestAdditions><![CDATA[<manifest>
+        <manifestAdditions><![CDATA[<manifest>
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<application android:enabled="true" android:debuggable="true">
+		<activity android:name="com.google.ads.AdActivity"
+			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+	</application>
 </manifest>]]></manifestAdditions>
-  </android>
+    </android>   
   <versionLabel/>
   <supportedLanguages>en</supportedLanguages>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </application>

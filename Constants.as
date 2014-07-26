@@ -3,6 +3,8 @@
 	public class Constants 
 	{
 	
+		public static var PUBLISHER_ID:String = "pub-2753474656261978";
+		
 		public static var STAR_SCORE:int = 50;
 
 		public static var DEATH_SUN_MESSAGES:Array = new Array("Ouch!", "ARghhhh!", "Incinerated!", "Toasty...", "Burn Baby!",

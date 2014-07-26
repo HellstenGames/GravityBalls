@@ -37,7 +37,7 @@
 		public static var arrowTextures:Array;	
 		public static var menuPickTexture:Texture, menuScreenTexture:Texture;	
 		
-		public static var soundButtonTexture:Texture, creditButtonTexture:Texture;
+		public static var soundButtonTexture:Texture, creditButtonTexture:Texture, muteButtonTexture:Texture;
 		
 		public static var levels:Array;
 		public static var creditScreen:Object, levelScreen1:Object, levelScreen2:Object, levelScreen3:Object, adScreen:Object;
@@ -140,7 +140,7 @@
 					AssetResources.menuScreenTexture = AssetResources.ASSETS_MANAGER.getTexture("menuscreen_x" + sf);
 					AssetResources.soundButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_x" + sf);
 					AssetResources.creditButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("creditbutton_x" + sf);
-					
+					AssetResources.muteButtonTexture = AssetResources.ASSETS_MANAGER.getTexture("mutebutton_x" + sf);
 					
 					// Menu Screens
 					AssetResources.creditScreen = AssetResources.ASSETS_MANAGER.getObject("credit_screen");

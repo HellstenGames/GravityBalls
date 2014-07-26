@@ -10,7 +10,7 @@
 		{
 			super();
 			
-			addChild(new Image(AssetResources.nebulaTexture));
+			addChild(new Image(AssetResources.menuScreenTexture));
 			
 		}
 
