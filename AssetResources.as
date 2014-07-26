@@ -45,6 +45,9 @@
 		public static var blackPentagonTexture:Texture;
 		public static var startTitleTexture:Texture, betaTitleTexture:Texture, playArrowTexture:Texture;
 		
+		// Doodads
+		public static var planetDoodadTexture:Texture;
+		
 		// Fonts
 		public static var blueLitteraFNT_Texture:Texture;
 		public static var blueLitteraXML:XML;
@@ -162,6 +165,8 @@
 					AssetResources.betaTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("beta_x" + sf);	
 					AssetResources.playArrowTexture = AssetResources.ASSETS_MANAGER.getTexture("play_arrow_x" + sf);
 					
+					// Doodad assets
+					AssetResources.planetDoodadTexture = AssetResources.ASSETS_MANAGER.getTexture("planetdoodad_x" + sf);
 					
 					// Set up levels
 					AssetResources.levels = new Array(NUM_OF_LEVELS);

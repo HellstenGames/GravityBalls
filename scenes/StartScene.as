@@ -12,6 +12,8 @@
 	import objects.OptionRollOut;
 	import objects.BetaTitle;
 	
+	import doodads.PlanetDoodad;
+	
 	// Managers
 	import managers.ProjectileManager;
 	import managers.SunManager;
@@ -24,6 +26,7 @@
 	// Brinkbit Admob
 	import com.brinkbit.admob.AdMobAd;
 	import com.brinkbit.admob.constants.AdMobAdType;
+	
 	
 	// Admob
 //	import so.cuo.platform.admob.Admob;
@@ -40,6 +43,7 @@
 		
 		// Layers
 		public var backgroundLayer:Sprite;
+		public var doodadLayer:Sprite;
 		public var topLayer:Sprite;
 		
 		// Objects/Sprites/Buttons
@@ -49,6 +53,8 @@
 		public var startTitle:StartTitle;
 		public var betaTitle:BetaTitle;
 		public var optionRollOut:OptionRollOut;
+		
+		public var planetDoodad:PlanetDoodad, sunDoodad:PlanetDoodad;
 		
 		// Managers
 		public var projectileManager:ProjectileManager;
@@ -69,6 +75,9 @@
 			backgroundLayer = new Sprite();
 			addChild(backgroundLayer);
 			backgroundLayer.addChild(new StartBackground());
+			
+			doodadLayer = new Sprite();
+			addChild(doodadLayer);
 			
 			topLayer = new Sprite();
 			addChild(topLayer);
@@ -117,6 +126,21 @@
 			betaTitle.trackOriginalCenter();
 			addEntity(betaTitle);
 			topLayer.addChild(betaTitle);
+			
+			// Create doodads
+			/*
+			planetDoodad = new PlanetDoodad();
+			planetDoodad.cx = 200;
+			planetDoodad.cy = 100;
+			addEntity(planetDoodad);
+			doodadLayer.addChild(planetDoodad);
+		
+			sunDoodad = new PlanetDoodad();
+			sunDoodad.cx = 500;
+			sunDoodad.cy = 400;
+			addEntity(sunDoodad);
+			doodadLayer.addChild(sunDoodad);
+			*/
 			
 			// Create Managers
 			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
