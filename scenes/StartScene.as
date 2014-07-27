@@ -42,7 +42,6 @@
 		public static var SPAWN_BOUNDARY:Number = 25;
 		
 		// Layers
-		public var backgroundLayer:Sprite;
 		public var doodadLayer:Sprite;
 		public var topLayer:Sprite;
 		

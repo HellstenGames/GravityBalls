@@ -50,6 +50,8 @@
 		
 		/* Themes */
 		public static var themes:Object;
+		/* Backgrounds */
+		public static var backgrounds:Object;
 		
 		// Doodads
 		public static var planetDoodadTexture:Texture;
@@ -100,7 +102,15 @@
 					AssetResources.menuTheme = AssetResources.ASSETS_MANAGER.getSound("menutheme");
 					AssetResources.playTheme = AssetResources.ASSETS_MANAGER.getSound("playtheme");
 					AssetResources.sandboxTheme = AssetResources.ASSETS_MANAGER.getSound("soundboxtheme");
-					AssetResources.themes["
+					
+					AssetResources.themes = new Object();
+					AssetResources.themes["orbit"] = AssetResources.ASSETS_MANAGER.getSound("orbit");
+					AssetResources.themes["pulse"] = AssetResources.ASSETS_MANAGER.getSound("pulse");
+					
+					/* Set up background sprites */
+					AssetResources.backgrounds = new Object();
+					AssetResources.backgrounds["menuscreen"] = AssetResources.ASSETS_MANAGER.getTexture("menuscreen_x" + sf);
+					
 					
 					// Set up sound effects
 					

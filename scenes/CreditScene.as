@@ -21,6 +21,7 @@
 	import buttons.OptionButton;
 	import text.CreditText;
 	import flash.geom.Point;
+	import flash.media.SoundTransform;
 
 	
 	
@@ -89,7 +90,8 @@
 			super.init();
 			
 			// Play start theme
-			themeChannel = AssetResources.menuTheme.play();
+			themeChannel = soundTheme.play();
+			themeChannel.soundTransform = new SoundTransform();
 			
 		}
 		

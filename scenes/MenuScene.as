@@ -57,7 +57,6 @@
 		public var sunManager:SunManager;
 		
 		// Layers
-		public var backgroundLayer:Sprite;
 		
 		private var _themeChannel:SoundChannel;
 

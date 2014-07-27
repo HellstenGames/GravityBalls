@@ -1,0 +1,6 @@
+{
+"soundVolume":0.5,
+"musicVolume":0.5,
+"soundPanning":0.5,
+"musicPanning":0.5
+}

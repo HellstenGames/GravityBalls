@@ -16,6 +16,8 @@
 	import scenes.Scene;
 	import scenes.CreditScene;
 	
+	import utils.SceneLoader;
+	
 	public class CreditButton extends Entity {
 
 		public static var DELAY_PERIOD:Number = 0.1;
@@ -55,7 +57,7 @@
 		
 		protected function _touchCallBack():void 
 		{
-			_scene.nextScene = new CreditScene();
+			_scene.nextScene = AssetResources.creditScene;
 			_scene.destroy();
 		}
 			

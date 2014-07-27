@@ -1,0 +1,42 @@
+{
+
+"properties":{
+	"theme":"orbit",
+	"background":"menuscreen",
+
+	"align":"center",
+	"padding":10,
+
+	"vScrollSpeed":-0.25,
+	"hScrollSpeed":0,
+	"creditFont":"credit",
+	"creditFontSize":14,
+	"creditPadding":20,
+
+	"headingFont":"credit",
+	"headingFontSize":18,
+	"headingPadding":40,
+
+	"title":"GRAVITY BALLS",
+	"titleFont":"credit",
+	"titleFontSize":20,
+	"titlePadding":50
+},
+
+"credits":[
+	{"type":"heading", "text":"Game Designer"},
+	{"type":"credit", "text":"Justin Hellsten"},
+	{"type":"heading", "text":"Programmer"},
+	{"type":"credit", "text":"Justin Hellsten"},
+	{"type":"heading", "text":"Graphic Artists"},
+	{"type":"credit", "text":"Justin Hellsten"},
+	{"type":"credit", "text":"Jessica Hellsten"},
+	{"type":"heading", "text":"Level Designers"},
+	{"type":"credit", "text":"Justin Hellsten"},
+	{"type":"credit", "text":"Dwight Dickinson"},
+	{"type":"credit", "text":"Jesse Higgins"},
+	{"type":"heading", "text":"Music"},
+	{"type":"credit", "text":"Postively Dark"}
+]
+
+}

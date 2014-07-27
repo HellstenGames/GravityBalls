@@ -5,8 +5,13 @@
 	import components.*;
 	import objects.Entity;
 	
+	/* Starling stuff */
+	import starling.display.Sprite;
+	
 	// Flash stuff
 	import flash.media.SoundChannel;
+	import flash.media.Sound;
+	
 	
 	public class Scene extends Entity 
 	{
@@ -22,10 +27,16 @@
 		public var fadedIn:Boolean;
 		
 		public var themeChannel:SoundChannel;
+		public var soundTheme:Sound;
+		public var backgroundLayer:Sprite;
 		
 		public function Scene() 
 		{
 			super();
+			
+			backgroundLayer = new Sprite();
+			addChild(backgroundLayer);
+			
 			nextScene = null;
 			entities = [];
 			_fadeInOut = false;

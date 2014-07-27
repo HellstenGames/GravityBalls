@@ -68,7 +68,6 @@
 		public var livesCounter:LivesCounter;
 		
 		// Layers
-		public var backgroundLayer:Sprite;
 		public var playLayer:Sprite;
 		public var textLayer:Sprite;
 		public var trailLayer:Sprite;
