@@ -21,6 +21,7 @@
 	// Import object stuff
 	import objects.OptionRollOut;
 	import starling.display.DisplayObject;
+	import text.HintText;
 	
 	public class OptionButton extends Entity {
 
@@ -50,6 +51,7 @@
 		
 		public function OptionButton(optionRollOut:OptionRollOut) 
 		{
+			
 			_optionRollOut = optionRollOut;
 			_optionRollOut.backboard.alpha = ROLL_OUT_ALPHA;
 			
@@ -61,7 +63,7 @@
 			_backSprite.alignPivot();
 			_backSprite.x += _backSprite.width / 2;
 			_backSprite.y += _backSprite.height / 2;
-			
+
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
@@ -149,6 +151,7 @@
 					Starling.juggler.add(_delayedCall);	
 				}
 			}
+			
 		}
 		
 		protected function _touchCallBack():void 

@@ -11,6 +11,9 @@
 	import flash.media.SoundTransform;
 	import flash.filesystem.File;
 	import starling.text.BitmapFont;
+	import scenes.CreditScene;
+	
+	import utils.SceneLoader;
 	
 	public class AssetResources {
 
@@ -45,15 +48,22 @@
 		public static var blackPentagonTexture:Texture;
 		public static var startTitleTexture:Texture, betaTitleTexture:Texture, playArrowTexture:Texture;
 		
+		/* Themes */
+		public static var themes:Object;
+		
 		// Doodads
 		public static var planetDoodadTexture:Texture;
 		
-		// Fonts
-		public static var blueLitteraFNT_Texture:Texture;
-		public static var blueLitteraXML:XML;
+		/* Scenes */
+		public static var creditScene:CreditScene;
 		
-		[Embed(source="assets/fonts/bluelittera.xml", mimeType="application/octet-stream")]
-		public static const FontXml:Class;
+		// Fonts
+		public static var creditFNT_Texture:Texture;
+		public static var creditXML:XML;
+		
+	
+		[Embed(source="assets/fonts/credit.xml", mimeType="application/octet-stream")]
+		public static const CreditFontXML:Class;
 
 		public static function setOnLoadComplete(f:Function)
 		{
@@ -75,6 +85,7 @@
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/fonts"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/menu"));
 			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/levels"));
+			ASSETS_MANAGER.enqueue(appDir.resolvePath("assets/scenes"));
 			
 			ASSETS_MANAGER.loadQueue(function(ratio:Number):void
 			{
@@ -89,8 +100,10 @@
 					AssetResources.menuTheme = AssetResources.ASSETS_MANAGER.getSound("menutheme");
 					AssetResources.playTheme = AssetResources.ASSETS_MANAGER.getSound("playtheme");
 					AssetResources.sandboxTheme = AssetResources.ASSETS_MANAGER.getSound("soundboxtheme");
+					AssetResources.themes["
 					
 					// Set up sound effects
+					
 					AssetResources.sunCollisionSound = AssetResources.ASSETS_MANAGER.getSound("sun_collision");
 					AssetResources.projectileCollisionSound = AssetResources.ASSETS_MANAGER.getSound("projectile_collision");
 					AssetResources.pointCollisionSound = AssetResources.ASSETS_MANAGER.getSound("point_collision");
@@ -154,11 +167,13 @@
 					
 					AssetResources.blackPentagonTexture = AssetResources.ASSETS_MANAGER.getTexture("blackpentagon_x" + sf);
 		
+					/* Scenes */
+					AssetResources.creditScene = SceneLoader.loadCreditScene(AssetResources.ASSETS_MANAGER.getObject("creditscene"));
+					
 					// Load fonts
-					AssetResources.blueLitteraFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("bluelittera_fnt");
-					AssetResources.blueLitteraXML = XML(new FontXml());
-					trace(AssetResources.blueLitteraFNT_Texture, AssetResources.blueLitteraXML);
-					TextField.registerBitmapFont(new BitmapFont(AssetResources.blueLitteraFNT_Texture, AssetResources.blueLitteraXML));
+					AssetResources.creditFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("credit_fnt");
+					AssetResources.creditXML = XML(new CreditFontXML());
+					TextField.registerBitmapFont(new BitmapFont(AssetResources.creditFNT_Texture, AssetResources.creditXML));
 					
 					// Start scene assets
 					AssetResources.startTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("menutitle_x" + sf);
