@@ -116,8 +116,10 @@
 					AssetResources.buttons = new Object();
 					AssetResources.buttons["blue_background"] = AssetResources.ASSETS_MANAGER.getTexture("backgroundbutton_blue_x" + sf);
 					AssetResources.buttons["red_background"] = AssetResources.ASSETS_MANAGER.getTexture("backgroundbutton_red_x" + sf);
-
-
+					AssetResources.buttons["blue_sound"] = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_blue_x" + sf);
+					AssetResources.buttons["red_sound"] = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_red_x" + sf);
+					AssetResources.buttons["blue_credit"] = AssetResources.ASSETS_MANAGER.getTexture("creditbutton_blue_x" + sf);
+					
 					// Set up sound effects
 
 					AssetResources.sunCollisionSound = AssetResources.ASSETS_MANAGER.getSound("sun_collision");

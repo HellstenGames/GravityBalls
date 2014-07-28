@@ -28,7 +28,8 @@
 		public function CreditButton(scene:Scene) 
 		{
 			_scene = scene;
-			addChild(new Image(AssetResources.creditButtonTexture));	
+			
+			addChild(new Image(AssetResources.buttons["blue_credit"]));	
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 

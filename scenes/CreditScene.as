@@ -23,9 +23,6 @@
 	import flash.geom.Point;
 	import flash.media.SoundTransform;
 
-	
-	
-	
 	public class CreditScene extends Scene {
 
 		public static var MAX_PROJECTILES:int = 16;

@@ -34,9 +34,9 @@
 			_scene = scene;
 			_fadeOutSound = false;
 			_fadeInSound = false;
-			_soundButton = new Image(AssetResources.soundButtonTexture);
+			_soundButton = new Image(AssetResources.buttons["blue_sound"]);
 			addChild(_soundButton);	
-			_muteButton = new Image(AssetResources.muteButtonTexture);
+			_muteButton = new Image(AssetResources.buttons["red_sound"]);
 			_muteButton.visible = false;
 			addChild(_muteButton);
 			addEventListener(TouchEvent.TOUCH, onTouch);
