@@ -11,7 +11,7 @@
 		public static var WIDTH:int = 100;
 		public static var HEIGHT:int = 25;
 		public static var FONT_SIZE:int = 16;
-		public static var FONT_COLOR:uint = Color.SILVER;
+		public static var FONT_COLOR:uint = Color.RED;
 		public static var FONT_TYPE:String = "Arial";
 		public static var FONT_ISBOLD:Boolean = true;
 		

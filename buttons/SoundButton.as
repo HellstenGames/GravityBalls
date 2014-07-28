@@ -53,6 +53,7 @@
 				{
 					_trans.volume = 0.0;
 					_fadeOutSound = false;
+					_delayedCall = null;
 				}
 			}
 			if (_fadeInSound)
@@ -63,6 +64,7 @@
 				{
 					_trans.volume = 1.0;
 					_fadeInSound = false;
+					_delayedCall = null;
 				}
 			}
 		}
@@ -76,13 +78,12 @@
 			var touchHovered:Touch = event.getTouch(this, TouchPhase.HOVER);
 
 			// If touched ended trigger call back
-			if (touchEnded) 
+			if (touchEnded && !_delayedCall)
 			{
 				// Make sure button "looks" like its being pressed
 				var endPos:Point = touchEnded.getLocation(this);
 				if (endPos.x >= 0 && endPos.y >= 0 && endPos.x <= width && endPos.y <= height) 
 				{
-
 					_delayedCall = new DelayedCall(_touchCallBack, DELAY_PERIOD);
 					_delayedCall.repeatCount = 1;
 					Starling.juggler.add(_delayedCall);	

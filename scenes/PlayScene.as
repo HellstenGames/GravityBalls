@@ -43,7 +43,7 @@
 		public static var MAX_LIVES:int = 3;
 		
 		public static var FONT_SIZE:int = 16;
-		public static var FONT_COLOR:uint = Color.SILVER;
+		public static var FONT_COLOR:uint = Color.WHITE;
 		public static var FONT_TYPE:String = "Arial";
 		public static var FONT_ISBOLD:Boolean = true;
 		
