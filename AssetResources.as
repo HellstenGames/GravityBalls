@@ -48,10 +48,11 @@
 		public static var blackPentagonTexture:Texture;
 		public static var startTitleTexture:Texture, betaTitleTexture:Texture, playArrowTexture:Texture;
 		
-		/* Themes */
+		/* Sounds/Themes */
 		public static var themes:Object;
-		/* Backgrounds */
+		/* Sprites/Graphics */
 		public static var backgrounds:Object;
+		public static var buttons:Object;
 		
 		// Doodads
 		public static var planetDoodadTexture:Texture;
@@ -111,9 +112,14 @@
 					AssetResources.backgrounds = new Object();
 					AssetResources.backgrounds["menuscreen"] = AssetResources.ASSETS_MANAGER.getTexture("menuscreen_x" + sf);
 					
-					
+					/* Set up button sprites */
+					AssetResources.buttons = new Object();
+					AssetResources.buttons["blue_background"] = AssetResources.ASSETS_MANAGER.getTexture("backgroundbutton_blue_x" + sf);
+					AssetResources.buttons["red_background"] = AssetResources.ASSETS_MANAGER.getTexture("backgroundbutton_red_x" + sf);
+
+
 					// Set up sound effects
-					
+
 					AssetResources.sunCollisionSound = AssetResources.ASSETS_MANAGER.getSound("sun_collision");
 					AssetResources.projectileCollisionSound = AssetResources.ASSETS_MANAGER.getSound("projectile_collision");
 					AssetResources.pointCollisionSound = AssetResources.ASSETS_MANAGER.getSound("point_collision");

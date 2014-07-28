@@ -38,7 +38,7 @@
 		public static var ROLL_OUT_ALPHA:Number = 0.4;
 		
 		public static var ROLL_OUT_MIN_HEIGHT:Number = 1;
-		public static var ROLL_OUT_MAX_HEIGHT:Number = 73;
+		public static var ROLL_OUT_MAX_HEIGHT:Number = 110;
 		
 		protected var _optionRollOut:OptionRollOut;
 		protected var _scene:Scene;
@@ -84,12 +84,12 @@
 		
 		private function _doRollUp():void
 		{
-			// Roll Buttons up
-			_rollUpButtons();
 			if (_optionRollOut.backboard.height < ROLL_OUT_MAX_HEIGHT)
 			{
 				_optionRollOut.backboard.height += ROLL_OUT_SPEED;
 				_optionRollOut.backboard.y -= ROLL_OUT_SPEED;
+				// Roll Buttons up
+				_rollUpButtons();				
 			}
 			else
 			{
@@ -101,19 +101,12 @@
 		}
 		private function _doRollDown():void
 		{
-			// Roll Buttons Down
-			_rollDownButtons();		
 			if (_optionRollOut.backboard.height > ROLL_OUT_MIN_HEIGHT)
 			{
-				if (_optionRollOut.backboard.height - ROLL_OUT_SPEED < 0) 
-				{
-					_optionRollOut.backboard.height = 0;  
-				}
-				else
-				{
-					_optionRollOut.backboard.height -= ROLL_OUT_SPEED;
-				}
+				_optionRollOut.backboard.height -= ROLL_OUT_SPEED;
 				_optionRollOut.backboard.y += ROLL_OUT_SPEED;
+				// Roll Buttons Down
+				_rollDownButtons();						
 			}
 			else
 			{

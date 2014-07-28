@@ -179,6 +179,15 @@
 		{ 
 			super.update(timeDelta);
 
+			if (backgroundLayer.visible)
+			{
+				updateBackgroundLayer(timeDelta);
+			}
+			
+		}
+		
+		private function updateBackgroundLayer(timeDelta:Number):void
+		{
 			projectileManager.update(timeDelta);
 			sunManager.update(timeDelta);
 			
@@ -251,10 +260,8 @@
 				}
 
 				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
-			}	
-	
+			}				
 		}
-		
 		override public function destroy():void
 		{
 			super.destroy();
