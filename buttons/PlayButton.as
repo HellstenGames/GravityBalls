@@ -67,7 +67,7 @@
 			var currentCX:Number = cx;
 			var currentCY:Number = cy;
 			
-			scaleX = scaleY = touchHovered ? TOUCH_SCALE_AMOUNT : 1;
+			scaleX = scaleY = touchBagan || touchHovered ? TOUCH_SCALE_AMOUNT : 1;
 
 			x = currentCX - width / 2;
 			y = currentCY - height / 2;

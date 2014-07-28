@@ -252,12 +252,16 @@
 			_player.velocity[0] = 0;
 			_player.velocity[1] = 0;
 			_player.visible = true;
+			/* Randomize color */
+			var rci:int = Math.random() * Projectile.COLORS.length;
+			trace(rci, Projectile.COLORS.length);
+			_player.color = Projectile.COLORS[rci];
 		}
 		
 		public function killPlayer():void
 		{
 			resetPlayer();
-			_scene.livesCounter.deductLife();
+			_scene.deathCounter.deaths ++;
 			// Change arrow color
 			_scene.arrow.changeImage(Projectile.COLORS.indexOf(_player.color));			
 		}

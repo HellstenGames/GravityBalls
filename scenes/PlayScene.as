@@ -22,6 +22,7 @@
 	import graphics.Line;
 	import objects.LivesCounter;
 	import objects.Projectile;
+	import objects.DeathCounter;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -29,20 +30,21 @@
 	import managers.AsteroidManager;
 	import managers.WallManager;
 	
+	
 	public class PlayScene extends Scene {
 
 		// Constants
 		public static var MAX_PROJECTILES:int = 25;
 		public static var MAX_SUNS:int = 10;
 		public static var MAX_BLACKHOLES:int = 10;
-		public static var SCORE_OFFSET:int = 10;
+		public static var SCORE_OFFSETX:int = 5, SCORE_OFFSETY:int = 10;
 		public static var SCORE_WIDTH:int = 100;
 		public static var SCORE_HEIGHT:int = 25;
 		public static var MAX_LIVES:int = 3;
 		
 		public static var FONT_SIZE:int = 16;
 		public static var FONT_COLOR:uint = Color.SILVER;
-		public static var FONT_TYPE:String = "Verdana";
+		public static var FONT_TYPE:String = "Arial";
 		public static var FONT_ISBOLD:Boolean = true;
 		
 		public static var START_LEVEL:int = 1;
@@ -65,7 +67,8 @@
 		
 		// Texts
 		public var scoreText:TextField;
-		public var livesCounter:LivesCounter;
+		//public var livesCounter:LivesCounter;
+		public var deathCounter:DeathCounter;
 		
 		// Layers
 		public var playLayer:Sprite;
@@ -122,14 +125,18 @@
 			
 			// Create/add other objects
 			scoreText  = new TextField(SCORE_WIDTH, SCORE_HEIGHT, "Score: 0", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
-			scoreText.x = SCORE_OFFSET;
-			scoreText.y = SCORE_OFFSET;
+			scoreText.x = SCORE_OFFSETX;
+			scoreText.y = SCORE_OFFSETY;
 			textLayer.addChild(scoreText);
 			
+			/*
 			livesCounter = new LivesCounter(MAX_LIVES, player);
 			livesCounter.x = Starling.current.stage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
 			livesCounter.y = SCORE_OFFSET;
 			textLayer.addChild(livesCounter);
+			*/
+			deathCounter = new DeathCounter();
+			textLayer.addChild(deathCounter);
 			
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();

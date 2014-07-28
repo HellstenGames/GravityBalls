@@ -23,6 +23,10 @@
 	"titlePadding":50
 },
 
+"objects":[
+
+],
+
 "credits":[
 	{"type":"heading", "text":"Game Designer"},
 	{"type":"credit", "text":"Justin Hellsten"},

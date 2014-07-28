@@ -20,7 +20,7 @@
 		public function changeImage(type:uint=0):void
 		{
 			removeChild(image);
-			image = new Image(AssetResources.arrowTextures[type]);
+			image = new Image(AssetResources.arrowTextures[type > 2 ? 2 : type]);
 			image.alignPivot();
 			addChild(image);
 		}

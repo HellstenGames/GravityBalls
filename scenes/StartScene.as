@@ -26,6 +26,12 @@
 	// Brinkbit Admob
 	import com.brinkbit.admob.AdMobAd;
 	import com.brinkbit.admob.constants.AdMobAdType;
+	import com.brinkbit.admob.constants.AdMobAdPosition;
+	import com.brinkbit.admob.event.AdMobEvent;
+	
+	
+	import objects.Background;
+	import objects.Star;
 	
 	
 	// Admob
@@ -63,7 +69,7 @@
 		public function StartScene() 
 		{
 			super();
-			nextScene = new MenuScene();
+			nextScene = new PlayScene();
 		}
 
 		override public function init():void
@@ -73,7 +79,7 @@
 			// Add background layer sprites/entities
 			backgroundLayer = new Sprite();
 			addChild(backgroundLayer);
-			backgroundLayer.addChild(new StartBackground());
+			backgroundLayer.addChild(new Background());
 			
 			doodadLayer = new Sprite();
 			addChild(doodadLayer);
@@ -126,7 +132,6 @@
 			addEntity(betaTitle);
 			topLayer.addChild(betaTitle);
 			
-			// Create doodads
 			/*
 			planetDoodad = new PlanetDoodad();
 			planetDoodad.cx = 200;
@@ -158,8 +163,16 @@
 			themeChannel = AssetResources.menuTheme.play();
 			
 			// Create banner
-			//var banner:AdMobAd = new AdMobAd(AdMobAdType.BANNER, Constants.PUBLISHER_ID);
-			//banner.showAd();
+			/*
+			var banner:AdMobAd = new AdMobAd(AdMobAdType.BANNER, Constants.PUBLISHER_ID);
+			banner.addEventListener(AdMobEvent.RECIEVED_AD, function():void {
+				// ad has been cached
+				trace("cache");
+			});			
+			banner.verticalGravity = AdMobAdPosition.BOTTOM;
+			banner.bottomPadding = 40;
+			*/
+			
 		}
 		
 		override public function update(timeDelta:Number):void 
@@ -238,7 +251,7 @@
 				}
 
 				sunManager.addSun(startXPosition, startYPosition, shootXSpeed, shootYSpeed);
-			}		
+			}	
 	
 		}
 		

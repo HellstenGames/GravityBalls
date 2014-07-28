@@ -33,6 +33,7 @@
 				var properties:Object = data.properties;
 				scene.soundTheme = AssetResources.themes[properties.theme];
 				scene.backgroundLayer.addChild(new Image(AssetResources.backgrounds[properties.background]));
+				
 			}
 			
 		}

@@ -123,7 +123,7 @@
 					AssetResources.splashTexture = AssetResources.ASSETS_MANAGER.getTexture("splashscreen_x" + sf);
 					AssetResources.loadTexture = AssetResources.ASSETS_MANAGER.getTexture("loadscreen_x" + sf);
 					AssetResources.backgroundTexture = AssetResources.ASSETS_MANAGER.getTexture("background_x" + sf);
-					AssetResources.nebulaTexture = AssetResources.ASSETS_MANAGER.getTexture("nebula_x" + sf);
+					AssetResources.nebulaTexture = AssetResources.ASSETS_MANAGER.getTexture("spacebackground_x" + sf);
 					
 					AssetResources.blueProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("blue_projectile_x" + sf);
 					AssetResources.greenProjectileTexture = AssetResources.ASSETS_MANAGER.getTexture("green_projectile_x" + sf);

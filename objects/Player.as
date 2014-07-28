@@ -14,7 +14,8 @@
 
 		public static var TOUCH_SCALE_AMOUNT:Number = 2.0;
 		public static var SHOOT_RATIO:Number = 3.0;
-
+		public static var PADDING_RATIO:Number = 2.0;
+		
 		public var began:Point, currentPos:Point;
 		private var _padding:Number;
 		
@@ -31,7 +32,7 @@
 			y = cy - width / 2;
 			released = false;
 			addEventListener(TouchEvent.TOUCH, onTouch);
-			padding = width;
+			padding = width * PADDING_RATIO;
 		}
 
 		private function onTouch(event:TouchEvent):void
