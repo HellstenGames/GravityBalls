@@ -12,7 +12,7 @@
 		public static var HEIGHT:int = 25;
 		public static var FONT_SIZE:int = 14;
 		public static var FONT_COLOR:uint = Color.WHITE;
-		public static var FONT_TYPE:String = "blue";
+		public static var FONT_TYPE:String = "white";
 		public static var FONT_ISBOLD:Boolean = true;
 		
 		

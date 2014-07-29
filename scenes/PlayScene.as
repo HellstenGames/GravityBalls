@@ -26,6 +26,8 @@
 	import objects.LivesCounter;
 	import objects.Projectile;
 	import objects.DeathCounter;
+	import objects.OptionRollOut;
+	import buttons.SuicideButton;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -40,6 +42,8 @@
 	import com.brinkbit.admob.constants.AdMobAdType;
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
+	import text.StarsLeftText;
+
 
 	public class PlayScene extends Scene {
 
@@ -54,7 +58,7 @@
 		
 		public static var FONT_SIZE:int = 14;
 		public static var FONT_COLOR:uint = Color.WHITE;
-		public static var FONT_TYPE:String = "blue";
+		public static var FONT_TYPE:String = "white";
 		public static var FONT_ISBOLD:Boolean = true;
 		
 		public static var START_LEVEL:int = 1;
@@ -74,10 +78,12 @@
 		public var player:Player;
 		public var background:Sprite;
 		public var arrow:Arrow;
+		public var optionRollOut:OptionRollOut;
+		public var suicideButton:SuicideButton;
 		
 		// Texts
 		public var scoreText:TextField;
-		//public var livesCounter:LivesCounter;
+		public var starsLeftText:StarsLeftText;
 		public var deathCounter:DeathCounter;
 		
 		// Layers
@@ -86,6 +92,7 @@
 		
 		public var textLayer:Sprite;
 		public var trailLayer:Sprite;
+		public var topLayer:Sprite;
 		
 		private var _themeChannel:SoundChannel;
 		private var _level:int;
@@ -114,6 +121,9 @@
 			textLayer = new Sprite();
 			addChild(textLayer);	
 			
+			topLayer = new Sprite();
+			addChild(topLayer);
+			
 			// Create/Add background
 			background = new Background();
 			backgroundLayer.addChild(background);
@@ -127,7 +137,7 @@
 			sunManager = new SunManager(playLayer, projectileManager, MAX_PROJECTILES);
 			blackholeManager = new BlackholeManager(playLayer, projectileManager, MAX_BLACKHOLES);
 			playerManager = new PlayerManager(playLayer, player, this);
-			starManager = new StarManager(playLayer);
+			starManager = new StarManager(playLayer, this);
 			asteroidManager = new AsteroidManager(playLayer);
 			wallManager = new WallManager(playLayer);
 			trailManager = new TrailManager(trailLayer);
@@ -146,6 +156,9 @@
 			scoreText.y = SCORE_OFFSETY;
 			textLayer.addChild(scoreText);
 		
+			starsLeftText = new StarsLeftText(starManager.stars.length);
+			textLayer.addChild(starsLeftText);
+			
 			/*
 			livesCounter = new LivesCounter(MAX_LIVES, player);
 			livesCounter.x = Starling.current.stage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
@@ -154,6 +167,12 @@
 			*/
 			deathCounter = new DeathCounter();
 			textLayer.addChild(deathCounter);
+			
+			/* Add to top layer */
+			suicideButton = new SuicideButton(this);
+			suicideButton.cx = suicideButton.width / 1.5;
+			suicideButton.cy = Starling.current.nativeStage.stageHeight - suicideButton.width / 1.5;
+			topLayer.addChild(suicideButton);
 			
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();

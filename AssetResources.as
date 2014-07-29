@@ -85,6 +85,12 @@
 		[Embed(source="assets/fonts/blue.xml", mimeType="application/octet-stream")]
 		public static const BlueFontXML:Class;
 		
+		public static var whiteFNT_Texture:Texture;
+		public static var whiteXML:XML;
+		
+		[Embed(source="assets/fonts/white.xml", mimeType="application/octet-stream")]
+		public static const WhiteFontXML:Class;
+		
 		public static function setOnLoadComplete(f:Function)
 		{
 			AssetResources.CALL_BACK = f;
@@ -142,6 +148,7 @@
 					AssetResources.buttons["blue_sound"] = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_blue_x" + sf);
 					AssetResources.buttons["red_sound"] = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_red_x" + sf);
 					AssetResources.buttons["blue_credit"] = AssetResources.ASSETS_MANAGER.getTexture("creditbutton_blue_x" + sf);
+					AssetResources.buttons["explode"] = AssetResources.ASSETS_MANAGER.getTexture("explode_button_x" + sf);
 					
 					// Set up sound effects
 
@@ -223,6 +230,10 @@
 					AssetResources.blueFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("blue_fnt");
 					AssetResources.blueXML = XML(new BlueFontXML());
 					TextField.registerBitmapFont(new BitmapFont(AssetResources.blueFNT_Texture, AssetResources.blueXML));
+					
+					AssetResources.whiteFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("white_fnt");
+					AssetResources.whiteXML = XML(new WhiteFontXML());
+					TextField.registerBitmapFont(new BitmapFont(AssetResources.whiteFNT_Texture, AssetResources.whiteXML));
 					
 					// Start scene assets
 					AssetResources.startTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("menutitle_x" + sf);

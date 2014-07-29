@@ -298,6 +298,7 @@
 			/* Delay player kill delay */
 			if (!_resetDelayCall)
 			{
+				removeTrail();
 				_player.visible = false;
 				_scene.deathCounter.deaths ++;
 				// Change arrow color

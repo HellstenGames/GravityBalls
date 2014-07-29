@@ -15,10 +15,13 @@
 		private var _counter:int;
 
 		private var _layer:Sprite;
-
-		public function StarManager(layer:Sprite, len:int=100) {
+		private var _scene:*;
+		
+		public function StarManager(layer:Sprite, scene:*, len:int=100) {
 			super();
 
+			_scene = scene;
+			
 			// Create sprite pool + points array, and set reference layer.
 			_pool = new SpritePool(Star, len);
 			stars = []
@@ -51,6 +54,7 @@
 			_layer.removeChild(p);
 			_pool.returnSprite(p);
 
+			--_scene.starsLeftText.starsLeft;
 		}
 
 		public function removeAll():void 
