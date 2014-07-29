@@ -44,6 +44,7 @@ package
 
 		public function Game()
 		{
+
 			Game.INSTANCE = this;
 			doneLoading = false;
 			

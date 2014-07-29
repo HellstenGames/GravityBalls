@@ -16,7 +16,8 @@ package
 	
 	import starling.events.KeyboardEvent;
 	import flash.ui.Keyboard;
-
+	import ads.Singlebanner;
+	
 	[SWF(backgroundColor="0x000000")]
 	public class GravityBalls extends Sprite {
         private static const STAGE_WIDTH:int = 480;
@@ -27,7 +28,7 @@ package
 		
 		public function GravityBalls() {
 			super();
-			
+
             stage.scaleMode = StageScaleMode.NO_SCALE;
             stage.align = StageAlign.TOP_LEFT;
 		
@@ -36,10 +37,11 @@ package
 			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN, nativeOnKeyDown, false, 0, true);
 			
 			setupStarling();
+
 		}
-		
 
         private function setupStarling():void {
+			
 			Starling.multitouchEnabled = true;
 			
 			 // Get the preferred stage size based on our smallest target resolution
@@ -50,7 +52,7 @@ package
             _starling = new Starling(Game, stage, viewport);
             
 			_starling.simulateMultitouch = true;
-            _starling.showStats = true;
+           // _starling.showStats = true;
             _starling.antiAliasing = 1;
 			
 			_starling.stage.stageWidth = STAGE_WIDTH;

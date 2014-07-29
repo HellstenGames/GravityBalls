@@ -3,6 +3,10 @@
 	// Starling stuff
 	import starling.display.Sprite;
 	import starling.core.Starling;
+	import starling.text.TextField;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
+	import starling.events.Touch;
 	
 	// Objects
 	import objects.StartBackground;
@@ -22,22 +26,10 @@
 	import buttons.PlayButton;
 	import buttons.ExitButton;
 	import buttons.OptionButton;
-	
-	// Brinkbit Admob
-	import com.brinkbit.admob.AdMobAd;
-	import com.brinkbit.admob.constants.AdMobAdType;
-	import com.brinkbit.admob.constants.AdMobAdPosition;
-	import com.brinkbit.admob.event.AdMobEvent;
-	
-	
+
 	import objects.Background;
 	import objects.Star;
-	
-	
-	// Admob
-//	import so.cuo.platform.admob.Admob;
-//	import so.cuo.platform.admob.AdmobPosition;
-	
+
 	public class StartScene extends Scene {
 
 		public static var MAX_PROJECTILES:int = 16;
@@ -64,7 +56,6 @@
 		// Managers
 		public var projectileManager:ProjectileManager;
 		public var sunManager:SunManager;
-
 		
 		public function StartScene() 
 		{
@@ -75,7 +66,7 @@
 		override public function init():void
 		{		
 			super.init();
-
+			
 			// Add background layer sprites/entities
 			backgroundLayer = new Sprite();
 			addChild(backgroundLayer);
@@ -131,20 +122,7 @@
 			betaTitle.trackOriginalCenter();
 			addEntity(betaTitle);
 			topLayer.addChild(betaTitle);
-			
-			/*
-			planetDoodad = new PlanetDoodad();
-			planetDoodad.cx = 200;
-			planetDoodad.cy = 100;
-			addEntity(planetDoodad);
-			doodadLayer.addChild(planetDoodad);
-		
-			sunDoodad = new PlanetDoodad();
-			sunDoodad.cx = 500;
-			sunDoodad.cy = 400;
-			addEntity(sunDoodad);
-			doodadLayer.addChild(sunDoodad);
-			*/
+
 			
 			// Create Managers
 			projectileManager = new ProjectileManager(backgroundLayer, MAX_PROJECTILES);
@@ -157,23 +135,14 @@
 				Starling.current.stage.stageWidth + OUT_OF_BOUNDS,
 				Starling.current.stage.stageHeight + OUT_OF_BOUNDS);
 			sunManager.gravitate = true;	
-		
 			
 			// Play start theme
 			themeChannel = AssetResources.menuTheme.play();
-			
-			// Create banner
-			/*
-			var banner:AdMobAd = new AdMobAd(AdMobAdType.BANNER, Constants.PUBLISHER_ID);
-			banner.addEventListener(AdMobEvent.RECIEVED_AD, function():void {
-				// ad has been cached
-				trace("cache");
-			});			
-			banner.verticalGravity = AdMobAdPosition.BOTTOM;
-			banner.bottomPadding = 40;
-			*/
+
+			Constants.START_SCENE_BANNER.showAd();
 			
 		}
+
 		
 		override public function update(timeDelta:Number):void 
 		{ 
@@ -188,6 +157,7 @@
 		
 		private function updateBackgroundLayer(timeDelta:Number):void
 		{
+		
 			projectileManager.update(timeDelta);
 			sunManager.update(timeDelta);
 			
@@ -266,6 +236,7 @@
 		{
 			super.destroy();
 			themeChannel.stop();
+			Constants.START_SCENE_BANNER.hideAd();
 		}
 		
 	}
