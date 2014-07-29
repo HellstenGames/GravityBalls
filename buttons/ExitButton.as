@@ -82,7 +82,7 @@
 		
 		protected function _touchCallBack():void 
 		{
-			//NativeApplication.nativeApplication.exit();
+			NativeApplication.nativeApplication.exit();
 		}
 			
 		

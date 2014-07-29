@@ -61,6 +61,8 @@
 			_originalPos.x = _player.x;
 			_originalPos.y = _player.y;
 			_layer.addChild(_player);
+			
+			_followPlayer();
 				
 		}
 		
@@ -72,7 +74,7 @@
 			_bottomBoundary = bottomBoundary;
 		}
 		
-		private function _followPlayer(timeDelta:Number):void
+		private function _followPlayer():void
 		{
 			/* Scene follows player */
 			var layer:Sprite = _scene.playLayer;
@@ -90,7 +92,7 @@
 			
 			if (_player.beingTouched || _player.released)
 			{
-				_followPlayer(timeDelta);
+				_followPlayer();
 			}
 			
 			if (_player.released)
@@ -209,7 +211,7 @@
 					if (Physics.circleDetection(star.x, star.y, star.width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
-						AssetResources.pointCollisionSound.play();
+						//AssetResources.pointCollisionSound.play();
 						_scene.starManager.removeStar(c);
 						_scene.scoreCounter += Constants.STAR_SCORE;
 						_scene.textManager.addPopupText(star.cx, star.cy, String(Constants.STAR_SCORE));
