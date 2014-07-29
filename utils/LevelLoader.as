@@ -15,8 +15,9 @@
 			
 			/* Set width and height using rectangle */
 			var rectangle:Rectangle = new Rectangle(0, 0, data.width, data.height);
-		//	rectangle.visible = false;
-			pscene.backgroundLayer.addChild(rectangle);
+			pscene.playBackgroundLayer.addChild(rectangle);
+			Constants.kMapWidth = data.width;
+			Constants.kMapHeight = data.height;
 			
 			for (var i:int = dlength - 1; i >= 0; --i)
 			{

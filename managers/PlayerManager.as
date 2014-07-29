@@ -16,6 +16,7 @@
 	// Import flash stuff
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import objects.Arrow;
 	
 	public class PlayerManager {
 
@@ -36,7 +37,6 @@
 			_layer = layer;
 			_scene = scene;
 			_player = player;
-			_layer.addChild(_player);
 			
 			_originalPos = new Point(_player.x, _player.y);
 			
@@ -51,9 +51,17 @@
 			// Position player
 			_player.cx = cx;
 			_player.cy = cy;
+			
+			/* Set arrow */
+			_scene.arrow = new Arrow(Arrow.ARROW_BLUE);
+			_scene.arrow.visible = false;
+			_layer.addChild(_scene.arrow);		
+			
 			// Set original positions
 			_originalPos.x = _player.x;
 			_originalPos.y = _player.y;
+			_layer.addChild(_player);
+				
 		}
 		
 		public function setBoundary(leftBoundary:Number, topBoundary:Number, rightBoundary:Number, bottomBoundary:Number):void 
@@ -67,9 +75,10 @@
 		private function _followPlayer(timeDelta:Number):void
 		{
 			/* Scene follows player */
-			trace(_player.cx);
-			_scene.x = Starling.current.stage.stageWidth - _player.cx - Starling.current.stage.stageWidth / 2;
-			_scene.y = Starling.current.stage.stageHeight - _player.cy - Starling.current.stage.stageHeight / 2;
+			var layer:Sprite = _scene.playLayer;
+			layer.x = Starling.current.stage.stageWidth - _player.cx - Starling.current.stage.stageWidth / 2;
+			layer.y = Starling.current.stage.stageHeight - _player.cy - Starling.current.stage.stageHeight / 2;
+			_scene.keepMapInBoundary(layer);		
 		}
 		
 		public function update(timeDelta:Number):void 
@@ -79,10 +88,14 @@
 			
 			_player.update(timeDelta);
 			
-			if (_player.released)
+			if (_player.beingTouched || _player.released)
 			{
 				_followPlayer(timeDelta);
-				
+			}
+			
+			if (_player.released)
+			{
+	
 				// Poop trail
 				if (!_trailDelayCall)
 				{

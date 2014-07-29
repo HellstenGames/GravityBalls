@@ -16,8 +16,9 @@
 		
 		public static var kCameraWidth:int = 480;
 		public static var kCameraHeight:int = 320;
-		public static var kCameraX:int = 0;
-		public static var kCameraY:int = 0;
+		public static var kMapWidth:int = 0;
+		public static var kMapHeight:int = 0;
+
 		
 		public static var STAR_SCORE:int = 50;
 

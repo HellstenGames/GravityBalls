@@ -82,6 +82,8 @@
 		
 		// Layers
 		public var playLayer:Sprite;
+		public var playBackgroundLayer:Sprite;
+		
 		public var textLayer:Sprite;
 		public var trailLayer:Sprite;
 		
@@ -101,12 +103,16 @@
 			// Create/Add Layers
 			backgroundLayer = new Sprite();
 			addChild(backgroundLayer);
-			trailLayer = new Sprite();
-			addChild(trailLayer);				
+			
 			playLayer = new Sprite();
-			addChild(playLayer);													
+			addChild(playLayer);
+			playBackgroundLayer = new Sprite();	
+			playLayer.addChild(playBackgroundLayer);
+			trailLayer = new Sprite();
+			playLayer.addChild(trailLayer);
+			
 			textLayer = new Sprite();
-			addChild(textLayer);
+			addChild(textLayer);	
 			
 			// Create/Add background
 			background = new Background();
@@ -114,40 +120,38 @@
 		
 			// Create other stuff
 			player = new Player();
-			arrow = new Arrow(Arrow.ARROW_BLUE);
-			arrow.visible = false;
-			playLayer.addChild(arrow);
 			
 			// Create Managers
-			textManager = new TextManager(textLayer);
+			textManager = new TextManager(playLayer);
 			projectileManager = new ProjectileManager(playLayer, MAX_PROJECTILES);
 			sunManager = new SunManager(playLayer, projectileManager, MAX_PROJECTILES);
 			blackholeManager = new BlackholeManager(playLayer, projectileManager, MAX_BLACKHOLES);
 			playerManager = new PlayerManager(playLayer, player, this);
 			starManager = new StarManager(playLayer);
-			trailManager = new TrailManager(trailLayer);
 			asteroidManager = new AsteroidManager(playLayer);
 			wallManager = new WallManager(playLayer);
+			trailManager = new TrailManager(trailLayer);
 			
 			// Load Level
 			_level = START_LEVEL;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
 			
+
 			// Create/add other objects
-			/*
+		
 			scoreText  = new TextField(SCORE_WIDTH, SCORE_HEIGHT, "Score: 0", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
 			scoreText.x = SCORE_OFFSETX;
 			scoreText.y = SCORE_OFFSETY;
 			textLayer.addChild(scoreText);
-			*/
+		
 			/*
 			livesCounter = new LivesCounter(MAX_LIVES, player);
 			livesCounter.x = Starling.current.stage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
 			livesCounter.y = SCORE_OFFSET;
 			textLayer.addChild(livesCounter);
 			*/
-		//	deathCounter = new DeathCounter();
-		//	textLayer.addChild(deathCounter);
+			deathCounter = new DeathCounter();
+			textLayer.addChild(deathCounter);
 			
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();
@@ -253,39 +257,42 @@
 			wallManager.removeAll();
 		}
 		
-		private function _moveScene(touch:Touch):void
+		public function keepMapInBoundary(layer:Sprite):void
 		{
-			var currentPos:Point  = touch.getLocation(this);
-			var previousPos:Point = touch.getPreviousLocation(this);
-	
-			/* Move Scene */
-			x += (currentPos.x - previousPos.x) * Constants.SCENE_MOVE_RATIO;
-			y += (currentPos.y - previousPos.y) * Constants.SCENE_MOVE_RATIO;
-			
-			trace(x, y);
-			var dirs:Array = Physics.boundaryCollision(x, y, Constants.kCameraWidth, Constants.kCameraHeight, 0, 0, width, height, false);
+			var dirs:Array = Physics.boundaryCollision(layer.x, layer.y, Constants.kCameraWidth, Constants.kCameraHeight, 0, 0, Constants.kMapWidth, Constants.kMapHeight, false);
 			var dirlength:int = dirs.length;
 			for (var i:int = dirs.length - 1; i >= 0; --i)
 			{
 				if (dirs[i] == Physics.DIR_LEFT)
 				{
-					x = 0;
+					layer.x = 0;
 				} 
 				else if (dirs[i] == Physics.DIR_TOP)
 				{
-					y = 0;
+					layer.y = 0;
 				}
 				else if (dirs[i] == Physics.DIR_RIGHT)
 				{
-					x = Constants.kCameraWidth - width;
+					layer.x = Constants.kCameraWidth - Constants.kMapWidth;
 				}
 				else if (dirs[i] == Physics.DIR_BOTTOM)
 				{
-					y = Constants.kCameraHeight - height;
+					layer.y = Constants.kCameraHeight - Constants.kMapHeight;
 				}
-			}
-
+			}	
+		}
+		
+		private function _touchMoveMap(touch:Touch, layer:Sprite):void
+		{
+			var currentPos:Point  = touch.getLocation(this);
+			var previousPos:Point = touch.getPreviousLocation(this);
+	
+			/* Move Scene */
+			layer.x += (currentPos.x - previousPos.x) * Constants.SCENE_MOVE_RATIO;
+			layer.y += (currentPos.y - previousPos.y) * Constants.SCENE_MOVE_RATIO;
 			
+			keepMapInBoundary(layer);
+
 		}
 		
 		private function _zoomScene(touch1:Touch, touch2:Touch):void
@@ -349,7 +356,7 @@
 				
 				if (touches.length == 1) /* Single finger touch */
 				{
-					_moveScene(touches[0]);
+					_touchMoveMap(touches[0], playLayer);
 				}
 				else if (touches.length == 2) /* Two finger touch */
 				{
