@@ -30,10 +30,10 @@
 				{
 					pscene.projectileManager.addProjectile(objs[i].position.cx, objs[i].position.cy, 0, 0);
 				}
-				else if (objs[i].item == "blackhole")
-				{
-					pscene.blackholeManager.addBlackHole(objs[i].position.cx, objs[i].position.cy, 0, 0);
-				}
+				//else if (objs[i].item == "blackhole")
+				//{
+				//	pscene.blackholeManager.addBlackHole(objs[i].position.cx, objs[i].position.cy, 0, 0);
+				//}
 				else if (objs[i].item == "player")
 				{
 					pscene.playerManager.setPlayer(objs[i].position.cx, objs[i].position.cy);

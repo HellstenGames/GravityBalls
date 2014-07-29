@@ -136,7 +136,9 @@
 			_level = START_LEVEL;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
 			
-
+			playerManager.setBoundary(-Constants.kMapBoundaryBuffer, -Constants.kMapBoundaryBuffer, 
+									  Constants.kMapWidth + Constants.kMapBoundaryBuffer, Constants.kMapHeight + Constants.kMapBoundaryBuffer);
+									  
 			// Create/add other objects
 		
 			scoreText  = new TextField(SCORE_WIDTH, SCORE_HEIGHT, "Score: 0", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);

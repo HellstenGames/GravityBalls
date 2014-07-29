@@ -1,7 +1,7 @@
 {
 
-"width":600,
-"height":600,
-"objects":[{"item":"player","position":{"cx":424.1454545454545,"cy":160.8}},{"item":"star","position":{"cx":114.32727272727273,"cy":159.2}},{"item":"star","position":{"cx":368.2909090909091,"cy":160}},{"item":"star","position":{"cx":321.1636363636364,"cy":160}},{"item":"star","position":{"cx":236.5090909090909,"cy":159.2}},{"item":"star","position":{"cx":155.34545454545454,"cy":159.2}},{"item":"star","position":{"cx":195.4909090909091,"cy":159.2}},{"item":"star","position":{"cx":277.5272727272727,"cy":159.2}},{"item":"blackhole","position":{"cx":55.854545454545445,"cy":160}}]
+"width":700,
+"height":700,
+"objects":[{"item":"player","position":{"cx":424.1454545454545,"cy":160.8}},{"item":"star","position":{"cx":114.32727272727273,"cy":159.2}},{"item":"star","position":{"cx":368.2909090909091,"cy":160}},{"item":"star","position":{"cx":321.1636363636364,"cy":160}},{"item":"star","position":{"cx":236.5090909090909,"cy":159.2}},{"item":"star","position":{"cx":155.34545454545454,"cy":159.2}},{"item":"star","position":{"cx":195.4909090909091,"cy":159.2}},{"item":"star","position":{"cx":277.5272727272727,"cy":159.2}},{"item":"sun","position":{"cx":55.854545454545445,"cy":160}}]
 
 }

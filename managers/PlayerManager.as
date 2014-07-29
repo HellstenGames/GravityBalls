@@ -132,19 +132,27 @@
 					_player.dy *= -1;
 					trace("bottom");
 				}*/
-		/*
+
 				if (Physics.isOutOfBounds(_player.x, _player.y, _player.width, _player.height, 
 										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary))
 				{
 					removeTrail();
 					killPlayer();
 					AssetResources.projectileCollisionSound.play();
-
 					return;
 				}
 	
-		*/
-		
+
+				/* If there is no more stars left the user goes to the next level */
+				if (_scene.starManager.stars.length == 0)
+				{
+					AssetResources.blackHoleCollisionSound.play();
+					_player.visible = false;
+					removeTrail();
+					_scene.fadeOut();
+					return;
+				}
+				
 				// Apply gravity to player due to the suns
 				var suns:Array = _scene.sunManager.suns;
 				var slength:int = suns.length; 
@@ -173,6 +181,7 @@
 				}
 				
 				// Apply gravity to player due to black holes
+				/*
 				var blackHoles:Array = _scene.blackholeManager.blackHoles;
 				var bhLength:int = blackHoles.length; 
 				for (var bh:int = bhLength - 1; bh >= 0; --bh)
@@ -201,6 +210,7 @@
 					}
 						
 				}
+				*/
 				
 				// Check if player collides with points
 				var stars:Array = _scene.starManager.stars;
@@ -280,9 +290,9 @@
 			_player.visible = true;
 			/* Randomize color */
 			var rci:int = Math.random() * Projectile.COLORS.length;
-			trace(rci, Projectile.COLORS.length);
 			_player.color = Projectile.COLORS[rci];
-
+		
+			_followPlayer();
 		}
 		
 		public function killPlayer():void

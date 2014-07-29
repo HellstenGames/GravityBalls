@@ -19,7 +19,8 @@
 		public static var kMapWidth:int = 0;
 		public static var kMapHeight:int = 0;
 
-		
+		public static var kMapBoundaryBuffer:int = 100;
+
 		public static var STAR_SCORE:int = 50;
 
 		public static var DEATH_SUN_MESSAGES:Array = new Array("Ouch!", "ARghhhh!", "Incinerated!", "Toasty...", "Burn Baby!",
