@@ -9,7 +9,7 @@
 		{
 			super();
 			
-			mass = 5*10e+3;
+			mass = 7.5*10e+3;
 			
 			addChild(new Image(AssetResources.sunTexture));
 			

@@ -24,7 +24,9 @@
 		public static var STAR_SCORE:int = 50;
 
 		public static var DEATH_SUN_MESSAGES:Array = new Array("Ouch!", "ARghhhh!", "Incinerated!", "Toasty...", "Burn Baby!",
-					"Burn!", "Eat it!", "You suck...", "WOW!", "Haha!", "LMAO!", "ROFL!", "Terrible...", "NOOOO!", "HELP!");
+					"Burn!", "Eat it!", "You suck...", "WOW!", "Haha!", "LMAO!", "ROFL!", "Terrible...", "NOOOO!", "HELP!", "It burns!", "Horrible...", "WHAT!", "OMG!",
+					"No way...", "WTF!", "Yep", "It hurts!", "I'm melting!", "STOP!", "Save me!", "Please", "The pain!",
+					"Did you win?", "Death", "Die!");
 		
 		public static var WIN_MESSAGES:Array = new Array("Zonk!", "WIN!", "Ohhh Yeah!", "Nice!", "WOOT!", 
 					"Congrats!", "Impressive!", "Amazing!", "Sexy!", "Awesome!", "Cool!", "Wicked!", "Sick!", "Blackness...");

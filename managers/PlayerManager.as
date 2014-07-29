@@ -21,7 +21,7 @@
 	public class PlayerManager {
 
 		public static var TRAIL_DELAY:Number = 0.1;
-		
+		public static var RESET_DELAY:Number = 0.5;
 		
 		private var _player:Player;
 		private var _layer:Sprite;
@@ -31,6 +31,7 @@
 		private var _originalPos:Point;
 
 		private var _trailDelayCall:DelayedCall;
+		private var _resetDelayCall:DelayedCall;
 		
 		public function PlayerManager(layer:Sprite, player, scene:*) 
 		{
@@ -296,11 +297,24 @@
 		}
 		
 		public function killPlayer():void
+		{	
+			/* Delay player kill delay */
+			if (!_resetDelayCall)
+			{
+				_player.visible = false;
+				_scene.deathCounter.deaths ++;
+				// Change arrow color
+				_scene.arrow.changeImage(Projectile.COLORS.indexOf(_player.color));			
+				_resetDelayCall = new DelayedCall(_resetDelay, RESET_DELAY);
+				_resetDelayCall.repeatCount = 1;
+				Starling.juggler.add(_resetDelayCall);	
+			}
+		}
+		
+		private function _resetDelay():void
 		{
 			resetPlayer();
-			_scene.deathCounter.deaths ++;
-			// Change arrow color
-			_scene.arrow.changeImage(Projectile.COLORS.indexOf(_player.color));			
+			_resetDelayCall = null;
 		}
 		
 		private function poopTrailDelay():void

@@ -15,7 +15,7 @@
 		public static var TOUCH_SCALE_AMOUNT:Number = 2.0;
 		public static var SHOOT_RATIO:Number = 3.0;
 		public static var PADDING_RATIO:Number = 2.0;
-		public static var SHOOT_SPEED:Number = 175;
+		public static var SHOOT_SPEED:Number = 150;
 		
 		public var began:Point, currentPos:Point;
 		private var _padding:Number;
