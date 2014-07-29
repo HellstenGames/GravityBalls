@@ -54,7 +54,7 @@
 		
 		public static var FONT_SIZE:int = 14;
 		public static var FONT_COLOR:uint = Color.WHITE;
-		public static var FONT_TYPE:String = "Arial";
+		public static var FONT_TYPE:String = "blue";
 		public static var FONT_ISBOLD:Boolean = true;
 		
 		public static var START_LEVEL:int = 1;

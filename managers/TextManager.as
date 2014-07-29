@@ -20,7 +20,7 @@
 			
 			// Create sprite pools
 			_puPool = new SpritePool(PopupText, puLength);
-			puTexts = []
+			puTexts = [];
 			
 		}
 		
@@ -63,6 +63,7 @@
 		
 		public function update(timeDelta):void
 		{
+
 			var plength:int = puTexts.length; 
 			for (var i:int = plength - 1; i >= 0; --i) 
 			{
@@ -77,6 +78,7 @@
 					removePopupText(i);
 				
 			}
+			
 		}
 		
 		private function resetPopupText(p:PopupText):void

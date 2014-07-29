@@ -19,7 +19,7 @@
 		public static var kMapWidth:int = 0;
 		public static var kMapHeight:int = 0;
 
-		public static var kMapBoundaryBuffer:int = 100;
+		public static var kMapBoundaryBuffer:int = 50;
 
 		public static var STAR_SCORE:int = 50;
 

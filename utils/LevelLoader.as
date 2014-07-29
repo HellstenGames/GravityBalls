@@ -14,7 +14,7 @@
 			var dlength:int = objs.length;
 			
 			/* Set width and height using rectangle */
-			var rectangle:Rectangle = new Rectangle(0, 0, data.width, data.height);
+			var rectangle:Rectangle = new Rectangle(0, 0, data.width, data.height, 0x052441);
 			pscene.playBackgroundLayer.addChild(rectangle);
 			Constants.kMapWidth = data.width;
 			Constants.kMapHeight = data.height;

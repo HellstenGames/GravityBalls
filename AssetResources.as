@@ -66,14 +66,25 @@
 		/* Scenes */
 		public static var creditScene:CreditScene;
 		
-		// Fonts
+		/* Fonts */
 		public static var creditFNT_Texture:Texture;
 		public static var creditXML:XML;
 		
-	
 		[Embed(source="assets/fonts/credit.xml", mimeType="application/octet-stream")]
 		public static const CreditFontXML:Class;
 
+		public static var popupFNT_Texture:Texture;
+		public static var popupXML:XML;
+		
+		[Embed(source="assets/fonts/popup.xml", mimeType="application/octet-stream")]
+		public static const PopupFontXML:Class;
+		
+		public static var blueFNT_Texture:Texture;
+		public static var blueXML:XML;
+		
+		[Embed(source="assets/fonts/blue.xml", mimeType="application/octet-stream")]
+		public static const BlueFontXML:Class;
+		
 		public static function setOnLoadComplete(f:Function)
 		{
 			AssetResources.CALL_BACK = f;
@@ -204,6 +215,14 @@
 					AssetResources.creditFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("credit_fnt");
 					AssetResources.creditXML = XML(new CreditFontXML());
 					TextField.registerBitmapFont(new BitmapFont(AssetResources.creditFNT_Texture, AssetResources.creditXML));
+					
+					AssetResources.popupFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("popup_fnt");
+					AssetResources.popupXML = XML(new PopupFontXML());
+					TextField.registerBitmapFont(new BitmapFont(AssetResources.popupFNT_Texture, AssetResources.popupXML));
+					
+					AssetResources.blueFNT_Texture = AssetResources.ASSETS_MANAGER.getTexture("blue_fnt");
+					AssetResources.blueXML = XML(new BlueFontXML());
+					TextField.registerBitmapFont(new BitmapFont(AssetResources.blueFNT_Texture, AssetResources.blueXML));
 					
 					// Start scene assets
 					AssetResources.startTitleTexture = AssetResources.ASSETS_MANAGER.getTexture("menutitle_x" + sf);

@@ -7,8 +7,8 @@
 
 		public static var SCALE_SPEED:Number = 0.02;
 		public static var DISAPPEAR_SPEED:Number = 0.03;
-		public static var FONT_TYPE:String = "Arial";
-		public static var FONT_SIZE:int = 16;
+		public static var FONT_TYPE:String = "popup";
+		public static var FONT_SIZE:int = 18;
 		public static var FONT_COLOR:uint = Color.RED;
 		public static var FONT_ISBOLD:Boolean = true;
 		

@@ -143,17 +143,6 @@
 					return;
 				}
 	
-
-				/* If there is no more stars left the user goes to the next level */
-				if (_scene.starManager.stars.length == 0)
-				{
-					AssetResources.blackHoleCollisionSound.play();
-					_player.visible = false;
-					removeTrail();
-					_scene.fadeOut();
-					return;
-				}
-				
 				// Apply gravity to player due to the suns
 				var suns:Array = _scene.sunManager.suns;
 				var slength:int = suns.length; 
@@ -216,13 +205,21 @@
 				// Check if player collides with points
 				var stars:Array = _scene.starManager.stars;
 				var clength:int = stars.length; 
+				if (clength == 0)
+				{
+					AssetResources.blackHoleCollisionSound.play();
+					_player.visible = false;
+					removeTrail();
+					_scene.fadeOut();
+					return;
+				}
 				for (var c:int = clength - 1; c >= 0; --c)
 				{
 					var star:Star = stars[c]; 
 					if (Physics.circleDetection(star.x, star.y, star.width / 2, 
 												_player.x, _player.y, _player.height / 2))
 					{
-						//AssetResources.pointCollisionSound.play();
+						AssetResources.pointCollisionSound.play();
 						_scene.starManager.removeStar(c);
 						_scene.scoreCounter += Constants.STAR_SCORE;
 						_scene.textManager.addPopupText(star.cx, star.cy, String(Constants.STAR_SCORE));
