@@ -14,6 +14,12 @@
 	import scenes.CreditScene;
 	
 	import utils.SceneLoader;
+
+	/* Admob extension */
+	import com.brinkbit.admob.AdMobAd;
+	import com.brinkbit.admob.constants.AdMobAdType;
+	import com.brinkbit.admob.constants.AdMobAdPosition;
+	import com.brinkbit.admob.event.AdMobEvent;
 	
 	public class AssetResources {
 
@@ -75,6 +81,12 @@
 		
 		public static function init():void
 		{
+			/* Set up admob ads */
+			Constants.START_SCENE_BANNER = new AdMobAd(AdMobAdType.BANNER, Constants.START_SCENE_BANNER_ID);
+			Constants.START_SCENE_BANNER.verticalGravity = AdMobAdPosition.BOTTOM;
+			Constants.PLAY_SCENE_BANNER = new AdMobAd(AdMobAdType.BANNER, Constants.PLAY_SCENE_BANNER_ID);
+			Constants.PLAY_SCENE_BANNER.verticalGravity = AdMobAdPosition.TOP;
+			
 			// Set up assets manager
 			ASSETS_MANAGER = new AssetManager(Math.floor(Starling.contentScaleFactor));
 			ASSETS_MANAGER.verbose = true;

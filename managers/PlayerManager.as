@@ -64,6 +64,14 @@
 			_bottomBoundary = bottomBoundary;
 		}
 		
+		private function _followPlayer(timeDelta:Number):void
+		{
+			/* Scene follows player */
+			trace(_player.cx);
+			_scene.x = Starling.current.stage.stageWidth - _player.cx - Starling.current.stage.stageWidth / 2;
+			_scene.y = Starling.current.stage.stageHeight - _player.cy - Starling.current.stage.stageHeight / 2;
+		}
+		
 		public function update(timeDelta:Number):void 
 		{
 			if (!_player.visible)
@@ -73,6 +81,8 @@
 			
 			if (_player.released)
 			{
+				_followPlayer(timeDelta);
+				
 				// Poop trail
 				if (!_trailDelayCall)
 				{
@@ -107,7 +117,7 @@
 					_player.dy *= -1;
 					trace("bottom");
 				}*/
-		
+		/*
 				if (Physics.isOutOfBounds(_player.x, _player.y, _player.width, _player.height, 
 										  _leftBoundary, _topBoundary, _rightBoundary, _bottomBoundary))
 				{
@@ -118,7 +128,8 @@
 					return;
 				}
 	
-				
+		*/
+		
 				// Apply gravity to player due to the suns
 				var suns:Array = _scene.sunManager.suns;
 				var slength:int = suns.length; 
@@ -256,6 +267,7 @@
 			var rci:int = Math.random() * Projectile.COLORS.length;
 			trace(rci, Projectile.COLORS.length);
 			_player.color = Projectile.COLORS[rci];
+
 		}
 		
 		public function killPlayer():void

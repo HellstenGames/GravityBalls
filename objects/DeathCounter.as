@@ -7,11 +7,11 @@
 	public class DeathCounter extends Entity {
 
 		public static var OFFSETY:int = 10;
-		public static var OFFSETX:int = 370;
+		public static var OFFSETX:int = 380;
 		public static var WIDTH:int = 100;
 		public static var HEIGHT:int = 25;
-		public static var FONT_SIZE:int = 16;
-		public static var FONT_COLOR:uint = Color.RED;
+		public static var FONT_SIZE:int = 14;
+		public static var FONT_COLOR:uint = Color.WHITE;
 		public static var FONT_TYPE:String = "Arial";
 		public static var FONT_ISBOLD:Boolean = true;
 		

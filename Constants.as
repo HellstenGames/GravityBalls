@@ -1,9 +1,20 @@
 ﻿package  {
 	
+	import com.brinkbit.admob.AdMobAd;
+	
 	public class Constants 
 	{
 	
-		public static var PUBLISHER_ID:String = "pub-2753474656261978";
+		public static var START_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/6802326443";
+		public static var PLAY_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/9755792842";
+		public static var PLAY_SCENE_BANNER:AdMobAd, START_SCENE_BANNER:AdMobAd;
+		
+		public static var ZOOM_SCALE_AMOUNT:Number = 0.025;
+		public static var ZOOM_MIN:Number = 0.1;
+		public static var ZOOM_MAX:Number = 1.0;
+		
+		public static var CAMERA_WIDTH:int = 480;
+		public static var CAMERA_HEIGHT:int = 320;
 		
 		public static var STAR_SCORE:int = 50;
 

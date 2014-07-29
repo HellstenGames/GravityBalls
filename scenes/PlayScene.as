@@ -5,6 +5,9 @@
 	import starling.core.Starling;
 	import starling.text.TextField;
 	import starling.utils.Color;
+	import starling.events.TouchEvent;
+	import starling.events.Touch;
+	import starling.events.TouchPhase;
 	
 	// Import project stuff
 	import managers.ProjectileManager;
@@ -26,23 +29,30 @@
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
+	import flash.geom.Point;
+	
 	import managers.TrailManager;
 	import managers.AsteroidManager;
 	import managers.WallManager;
 	
-	
+	/* Admob extension */
+	import com.brinkbit.admob.AdMobAd;
+	import com.brinkbit.admob.constants.AdMobAdType;
+	import com.brinkbit.admob.constants.AdMobAdPosition;
+	import com.brinkbit.admob.event.AdMobEvent;
+
 	public class PlayScene extends Scene {
 
 		// Constants
 		public static var MAX_PROJECTILES:int = 25;
 		public static var MAX_SUNS:int = 10;
 		public static var MAX_BLACKHOLES:int = 10;
-		public static var SCORE_OFFSETX:int = 5, SCORE_OFFSETY:int = 10;
+		public static var SCORE_OFFSETX:int = 0, SCORE_OFFSETY:int = 10;
 		public static var SCORE_WIDTH:int = 100;
 		public static var SCORE_HEIGHT:int = 25;
 		public static var MAX_LIVES:int = 3;
 		
-		public static var FONT_SIZE:int = 16;
+		public static var FONT_SIZE:int = 14;
 		public static var FONT_COLOR:uint = Color.WHITE;
 		public static var FONT_TYPE:String = "Arial";
 		public static var FONT_ISBOLD:Boolean = true;
@@ -140,6 +150,11 @@
 			
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();
+			
+			Constants.PLAY_SCENE_BANNER.showAd();		
+			
+			/* Add scene touch event */
+			addEventListener(TouchEvent.TOUCH, _onSceneTouch);
 		}
 
 		override public function update(timeDelta:Number):void 
@@ -194,6 +209,7 @@
 		{
 			super.destroy();
 			_themeChannel.stop();
+			Constants.PLAY_SCENE_BANNER.hideAd();	
 		}		
 		
 		public function set scoreCounter(value:int):void
@@ -235,6 +251,104 @@
 			asteroidManager.removeAll();
 			wallManager.removeAll();
 		}
+		
+		private function _moveScene(touch:Touch):void
+		{
+			var currentPos:Point  = touch.getLocation(this);
+			var previousPos:Point = touch.getPreviousLocation(this);
+	
+			/* Move Scene */
+			x += currentPos.x - previousPos.x;
+			y += currentPos.y - previousPos.y;
+			
+			var dir:int = Physics.boundaryCollision(x, y, width, height, 0, 0, width, height);
+			if (dir == Physics.DIR_LEFT)
+			{
+				x = 0;
+			}
+			else if (dir == Physics.DIR_TOP)
+			{
+				y = 0;
+			}
+			else if (dir == Physics.DIR_BOTTOM)
+			{
+				y = height - Constants.CAMERA_HEIGHT;
+			}
+			else if (dir == Physics.DIR_RIGHT)
+			{
+				x = width - Constants.CAMERA_WIDTH;
+			}
+			
+		}
+		
+		private function _zoomScene(touch1:Touch, touch2:Touch):void
+		{
+				
+			var touch1CurrentPos:Point  = touch1.getLocation(this);
+			var touch1PreviousPos:Point = touch1.getPreviousLocation(this);				
+			var touch2CurrentPos:Point  = touch2.getLocation(this);
+			var touch2PreviousPos:Point = touch2.getPreviousLocation(this);	
+				
+			/* Determine which is left or right pos */
+			var leftPosCurrent:Point, leftPosPrevious:Point, rightPosCurrent:Point, rightPosPrevious:Point;
+				
+			if (touch1CurrentPos.x < touch2CurrentPos.x) 
+			{
+				leftPosCurrent = touch1CurrentPos;
+				leftPosPrevious = touch1PreviousPos;
+				rightPosCurrent = touch2CurrentPos;
+				rightPosPrevious = touch2PreviousPos;
+			}
+			else
+			{
+				leftPosCurrent = touch2CurrentPos;
+				leftPosPrevious = touch2PreviousPos;
+				rightPosCurrent = touch1CurrentPos;
+				rightPosPrevious = touch1PreviousPos;
+			}
+				
+				
+			/* Get directions */
+			var leftTouchDelta:Number, rightTouchDelta:Number;
+				
+			leftTouchDelta = leftPosCurrent.x - leftPosPrevious.x;
+			rightTouchDelta = rightPosCurrent.x - rightPosPrevious.x;
+			
+			if (leftTouchDelta < 0 && rightTouchDelta > 0)
+			{
+				scaleX = scaleY -= Constants.ZOOM_SCALE_AMOUNT;
+				if (scaleX < Constants.ZOOM_MIN) 
+				{
+					scaleX = scaleY = Constants.ZOOM_MIN;
+				}
+			}
+			else if (leftTouchDelta > 0 && rightTouchDelta < 0)
+			{
+				scaleX = scaleY += Constants.ZOOM_SCALE_AMOUNT; 
+				if (scaleX > Constants.ZOOM_MAX)
+				{
+					scaleX = scaleY = Constants.ZOOM_MAX;
+				}
+			}
+			
+		}
+		
+		private function _onSceneTouch(event:TouchEvent):void
+		{
+			
+			var touches:Vector.<Touch> = event.getTouches(this, TouchPhase.MOVED);
+			
+			if (touches.length == 1) /* Single finger touch */
+			{
+				_moveScene(touches[0]);
+			}
+			else if (touches.length == 2) /* Two finger touch */
+			{
+				//_zoomScene(touches[0], touches[1]);		
+			}
+			
+		}
+		
 	}
 	
 }
