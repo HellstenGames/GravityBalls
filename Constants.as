@@ -9,12 +9,15 @@
 		public static var PLAY_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/9755792842";
 		public static var PLAY_SCENE_BANNER:AdMobAd, START_SCENE_BANNER:AdMobAd;
 		
+		public static var SCENE_MOVE_RATIO:Number = 1.0;
 		public static var ZOOM_SCALE_AMOUNT:Number = 0.025;
 		public static var ZOOM_MIN:Number = 0.1;
 		public static var ZOOM_MAX:Number = 1.0;
 		
-		public static var CAMERA_WIDTH:int = 480;
-		public static var CAMERA_HEIGHT:int = 320;
+		public static var kCameraWidth:int = 480;
+		public static var kCameraHeight:int = 320;
+		public static var kCameraX:int = 0;
+		public static var kCameraY:int = 0;
 		
 		public static var STAR_SCORE:int = 50;
 

@@ -3,41 +3,51 @@
 	// Import project stuff
 	import scenes.PlayScene;
 	import objects.Player;
+	import graphics.Rectangle;
 	
 	public class LevelLoader {
 
 		public static function load_level(data:Object, pscene:PlayScene):void
 		{
-			var dlength:int = data.length;
+			
+			var objs:Object = data.objects;
+			var dlength:int = objs.length;
+			
+			/* Set width and height using rectangle */
+			var rectangle:Rectangle = new Rectangle(0, 0, data.width, data.height);
+		//	rectangle.visible = false;
+			pscene.backgroundLayer.addChild(rectangle);
+			
 			for (var i:int = dlength - 1; i >= 0; --i)
 			{
-				if (data[i].item == "sun")
+				
+				if (objs[i].item == "sun")
 				{
-					pscene.sunManager.addSun(data[i].position.cx, data[i].position.cy, 0, 0);
+					pscene.sunManager.addSun(objs[i].position.cx, objs[i].position.cy, 0, 0);
 				}
-				else if (data[i].item == "projectile")
+				else if (objs[i].item == "projectile")
 				{
-					pscene.projectileManager.addProjectile(data[i].position.cx, data[i].position.cy, 0, 0);
+					pscene.projectileManager.addProjectile(objs[i].position.cx, objs[i].position.cy, 0, 0);
 				}
-				else if (data[i].item == "blackhole")
+				else if (objs[i].item == "blackhole")
 				{
-					pscene.blackholeManager.addBlackHole(data[i].position.cx, data[i].position.cy, 0, 0);
+					pscene.blackholeManager.addBlackHole(objs[i].position.cx, objs[i].position.cy, 0, 0);
 				}
-				else if (data[i].item == "player")
+				else if (objs[i].item == "player")
 				{
-					pscene.playerManager.setPlayer(data[i].position.cx, data[i].position.cy);
+					pscene.playerManager.setPlayer(objs[i].position.cx, objs[i].position.cy);
 				}				
-				else if (data[i].item == "star")
+				else if (objs[i].item == "star")
 				{
-					pscene.starManager.addStar(data[i].position.cx, data[i].position.cy);
+					pscene.starManager.addStar(objs[i].position.cx, objs[i].position.cy);
 				}		
-				else if (data[i].item == "asteroid")
+				else if (objs[i].item == "asteroid")
 				{
-					pscene.asteroidManager.addAsteroid(data[i].position.cx, data[i].position.cy, data[i].dx, data[i].dy);
+					pscene.asteroidManager.addAsteroid(objs[i].position.cx, objs[i].position.cy, objs[i].dx, objs[i].dy);
 				}
-				else if (data[i].item == "wall")
+				else if (objs[i].item == "wall")
 				{
-					pscene.wallManager.addWall(data[i].coordinates.x1, data[i].coordinates.y1, data[i].coordinates.x2, data[i].coordinates.y2, uint(data[i].color));
+					pscene.wallManager.addWall(objs[i].coordinates.x1, objs[i].coordinates.y1, objs[i].coordinates.x2, objs[i].coordinates.y2, uint(objs[i].color));
 				}
 			}
 		

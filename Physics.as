@@ -8,7 +8,6 @@
 		public static var DIR_TOP:int = 1;
 		public static var DIR_RIGHT:int = 2;
 		public static var DIR_BOTTOM:int = 3;
-		public static var DIR_NONE:int = -1;
 		
 		public static var GRAVITY_CONSTANT:Number = 1;
 		public static var GRAVITATIONAL_CONSTANT:Number = 6.67*10e-11;
@@ -74,28 +73,51 @@
 		}
 		
 		public static function boundaryCollision(objx:Number, objy:Number, objwidth:Number, objheight:Number, 
-											 leftBound:Number, topBound:Number, rightBound:Number, bottomBound:Number):int
+											 leftBound:Number, topBound:Number, rightBound:Number, bottomBound:Number, inOrOut:Boolean=true):Array
 		{
-			if (objx < leftBound)
+			var dirs:Array = [];
+			if (inOrOut)
 			{
-				return Physics.DIR_LEFT;
+				if (objx < leftBound)
+				{
+					dirs.push(Physics.DIR_LEFT);
+				}
+				if (objy < topBound)
+				{
+					dirs.push(Physics.DIR_TOP);
+				}
+				if (objx + objwidth > rightBound)
+				{
+					dirs.push(Physics.DIR_RIGHT);
+				}
+				if (objy + objheight > bottomBound)
+				{
+					dirs.push(Physics.DIR_BOTTOM);
+				} 
 			}
-			else if (objy < topBound)
+			else
 			{
-				return Physics.DIR_TOP;
+				if (objx > leftBound)
+				{
+					dirs.push(Physics.DIR_LEFT)
+				}
+				if (objy > topBound)
+				{
+					dirs.push(Physics.DIR_TOP);
+				}
+				if (objx < objwidth - rightBound)
+				{
+					dirs.push(Physics.DIR_RIGHT);
+				}
+				if (objy < objheight - bottomBound)
+				{
+					dirs.push(Physics.DIR_BOTTOM);
+				} 			
 			}
-			else if (objx + objwidth > rightBound)
-			{
-				return Physics.DIR_RIGHT;
-			}
-			else if (objy + objheight > bottomBound)
-			{
-				return Physics.DIR_BOTTOM;
-			} else {
-				return Physics.DIR_NONE;
-			}
+			return dirs;
 		}
 		
+
 	}
 	
 }

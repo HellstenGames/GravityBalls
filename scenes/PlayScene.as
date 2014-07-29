@@ -134,19 +134,20 @@
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
 			
 			// Create/add other objects
+			/*
 			scoreText  = new TextField(SCORE_WIDTH, SCORE_HEIGHT, "Score: 0", FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
 			scoreText.x = SCORE_OFFSETX;
 			scoreText.y = SCORE_OFFSETY;
 			textLayer.addChild(scoreText);
-			
+			*/
 			/*
 			livesCounter = new LivesCounter(MAX_LIVES, player);
 			livesCounter.x = Starling.current.stage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
 			livesCounter.y = SCORE_OFFSET;
 			textLayer.addChild(livesCounter);
 			*/
-			deathCounter = new DeathCounter();
-			textLayer.addChild(deathCounter);
+		//	deathCounter = new DeathCounter();
+		//	textLayer.addChild(deathCounter);
 			
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();
@@ -258,26 +259,32 @@
 			var previousPos:Point = touch.getPreviousLocation(this);
 	
 			/* Move Scene */
-			x += currentPos.x - previousPos.x;
-			y += currentPos.y - previousPos.y;
+			x += (currentPos.x - previousPos.x) * Constants.SCENE_MOVE_RATIO;
+			y += (currentPos.y - previousPos.y) * Constants.SCENE_MOVE_RATIO;
 			
-			var dir:int = Physics.boundaryCollision(x, y, width, height, 0, 0, width, height);
-			if (dir == Physics.DIR_LEFT)
+			trace(x, y);
+			var dirs:Array = Physics.boundaryCollision(x, y, Constants.kCameraWidth, Constants.kCameraHeight, 0, 0, width, height, false);
+			var dirlength:int = dirs.length;
+			for (var i:int = dirs.length - 1; i >= 0; --i)
 			{
-				x = 0;
+				if (dirs[i] == Physics.DIR_LEFT)
+				{
+					x = 0;
+				} 
+				else if (dirs[i] == Physics.DIR_TOP)
+				{
+					y = 0;
+				}
+				else if (dirs[i] == Physics.DIR_RIGHT)
+				{
+					x = Constants.kCameraWidth - width;
+				}
+				else if (dirs[i] == Physics.DIR_BOTTOM)
+				{
+					y = Constants.kCameraHeight - height;
+				}
 			}
-			else if (dir == Physics.DIR_TOP)
-			{
-				y = 0;
-			}
-			else if (dir == Physics.DIR_BOTTOM)
-			{
-				y = height - Constants.CAMERA_HEIGHT;
-			}
-			else if (dir == Physics.DIR_RIGHT)
-			{
-				x = width - Constants.CAMERA_WIDTH;
-			}
+
 			
 		}
 		
@@ -336,15 +343,18 @@
 		private function _onSceneTouch(event:TouchEvent):void
 		{
 			
-			var touches:Vector.<Touch> = event.getTouches(this, TouchPhase.MOVED);
-			
-			if (touches.length == 1) /* Single finger touch */
+			if (!player.beingTouched)
 			{
-				_moveScene(touches[0]);
-			}
-			else if (touches.length == 2) /* Two finger touch */
-			{
-				//_zoomScene(touches[0], touches[1]);		
+				var touches:Vector.<Touch> = event.getTouches(this, TouchPhase.MOVED);
+				
+				if (touches.length == 1) /* Single finger touch */
+				{
+					_moveScene(touches[0]);
+				}
+				else if (touches.length == 2) /* Two finger touch */
+				{
+					//_zoomScene(touches[0], touches[1]);		
+				}
 			}
 			
 		}
