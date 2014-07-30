@@ -284,7 +284,8 @@
 			}
 			else{
 				clearLevel();
-				LevelLoader.load_level(AssetResources.levels[_level], this);		
+				LevelLoader.load_level(AssetResources.levels[_level], this);	
+				starsLeftText.maxLeft = starManager.stars.length;
 				starsLeftText.starsLeft = starManager.stars.length;
 				playerManager.setBoundary(-Constants.kMapBoundaryBuffer, -Constants.kMapBoundaryBuffer, 
 									  Constants.kMapWidth + Constants.kMapBoundaryBuffer, Constants.kMapHeight + Constants.kMapBoundaryBuffer);				

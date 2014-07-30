@@ -18,12 +18,14 @@
 		
 		private var _starsText:TextField;
 		private var _starsLeft:int;
+		public var maxLeft:int;
 		
 		public function StarsLeftText(starsLeft:Number) 
 		{
 			/* Create stars text. */
 			_starsLeft = starsLeft;
-			_starsText = new TextField(WIDTH, HEIGHT, "Stars Left: " + _starsLeft, FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
+			maxLeft = starsLeft;
+			_starsText = new TextField(WIDTH, HEIGHT, "Stars Left: " + _starsLeft + "/" + maxLeft, FONT_TYPE, FONT_SIZE, FONT_COLOR, FONT_ISBOLD);
 			_starsText.y = OFFSETY;
 			_starsText.x = OFFSETX;
 			addChild(_starsText);	
@@ -37,7 +39,7 @@
 		public function set starsLeft(value:int):void
 		{
 			_starsLeft = value;
-			_starsText.text = "Stars Left: " + _starsLeft;
+			_starsText.text = "Stars Left: " + _starsLeft + "/" + maxLeft;
 		}
 		
 	}
