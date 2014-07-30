@@ -9,19 +9,18 @@
 	
 	public class DeathTimer extends Entity {
 
-		public static var DEATH_TIME:Number = 15;
-		
 		private var ticker:Number;
 		private var textField:TextField;
 		private var callBackFunc:Function;
 		
 		public var running:Boolean;
+		public var paused:Boolean;
 		public var stopped:Boolean;
 		
 		public function DeathTimer() 
 		{
 			super();
-			textField = new TextField(200, 50, "30", "popup", 14, Color.RED);
+			textField = new TextField(200, 50, String(Constants.DT_MAX_TIME), "popup", 14, Color.RED);
 			addChild(textField);
 			visible = false; /* Keep invisible for now */
 		}
@@ -31,7 +30,7 @@
 		{
 			super.update(timeDelta);
 			
-			if (running)
+			if (running&&!paused)
 			{
 				ticker -= timeDelta;
 				if (ticker <= 0) {
@@ -50,16 +49,16 @@
 			running = true;
 			stopped = false;
 			visible = true;
-			ticker = DEATH_TIME;
+			ticker = Constants.DT_MAX_TIME;
 		}
 		
 		public function pauseTimer():void
 		{
-			running = true;
+			paused = true;
 		}
 		public function resumeTimer():void
 		{
-			running = false;
+			paused = false;
 		}
 		
 		public function stopTimer():void
@@ -72,7 +71,7 @@
 		
 		public function resetTimer():void
 		{
-			ticker = DEATH_TIME;
+			ticker = Constants.DT_MAX_TIME;
 		}
 		
 		public function addOnStopEventListener(listener:Function):void

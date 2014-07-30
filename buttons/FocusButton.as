@@ -27,16 +27,24 @@
 		
 		protected var _scene:*;
 		protected var _delayedCall:DelayedCall;
-		protected var _focus:Boolean;
+		
+		public var focused:Boolean;
+		private var imageOn:Image;
+		private var imageOff:Image;
 		
 		public function FocusButton(scene:*)  
 		{
 			_scene = scene;
-			_focus = false;
+			focused = true;
 			
 			// Create back sprite
-			addChild(new Image(AssetResources.buttons["focus"]));
-	
+			imageOn = new Image(AssetResources.buttons["focus_on"]);
+			imageOn.visible = true;
+			imageOff = new Image(AssetResources.buttons["focus_off"])
+			imageOff.visible = false;
+			addChild(imageOn);
+			addChild(imageOff);
+
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
@@ -76,7 +84,9 @@
 		}
 		
 		protected function _touchCallBack():void {
-			_focus = _focus ? false : true;
+			focused = focused ? false : true;
+			imageOn.visible = focused ? true : false;
+			imageOff.visible = focused ? false : true;
 		}
 				
 		

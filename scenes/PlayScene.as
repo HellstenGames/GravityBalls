@@ -50,7 +50,6 @@
 	import com.brinkbit.admob.constants.AdMobAdType;
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
-	
 
 
 	public class PlayScene extends Scene {
@@ -88,6 +87,7 @@
 		public var arrow:Arrow;
 		public var optionRollOut:OptionRollOut;
 		public var suicideButton:SuicideButton;
+		public var focusButton:FocusButton;
 		
 		// Texts
 		public var scoreText:TextField;
@@ -186,18 +186,22 @@
 			textLayer.addChild(livesCounter);
 			*/
 			deathCounter = new DeathCounter();
-			playLayer.addChild(deathCounter);
+			textLayer.addChild(deathCounter);
 			
 			/* Add to top layer */
 			suicideButton = new SuicideButton(this);
-			suicideButton.cx = suicideButton.width / 1.5;
-			suicideButton.cy = Starling.current.nativeStage.stageHeight - suicideButton.width / 1.5;
+			suicideButton.cx = Constants.kebPositionCX;
+			suicideButton.cy = Constants.kebPositionCY;
 			topLayer.addChild(suicideButton);
 			
-			//focusButton = new FocusButton(this);
-			_scoreCount = 0;
-			_themeChannel = AssetResources.playTheme.play();
+			/* Add Focus Button */
+			focusButton = new FocusButton(this);
+			focusButton.cx = Constants.kfbPositionCX;
+			focusButton.cy = Constants.kfbPositionCY;
+			topLayer.addChild(focusButton);
 			
+			_scoreCount = 0;
+			_themeChannel = AssetResources.playTheme.play(0, int.MAX_VALUE); /* Loop main theme */
 			Constants.PLAY_SCENE_BANNER.showAd();		
 			
 			/* Add scene touch event */

@@ -15,6 +15,17 @@
 		public static var HT_SCALE_MIN:Number = 1.0;
 		public static var HT_SCALE_SPEED:Number = 0.0025;
 		
+		/* Death Timer Constants */
+		public static var DT_MAX_TIME:Number = 15;
+		
+		/* Explode Button Constants */
+		public static var kebPositionCX:Number = 20;
+		public static var kebPositionCY:Number = 300;
+		
+		/* Focus Button Constants */
+		public static var kfbPositionCX:Number = 55;
+		public static var kfbPositionCY:Number = 300;
+		
 		/** Position Constants **/
 		
 		/* Death Timer */

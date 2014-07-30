@@ -97,7 +97,7 @@
 			/* Keep death timer on player */
 			_scene.deathTimer.cx = _player.cx + Constants.PS_DT_OFFSETX + _scene.playLayer.x;
 			_scene.deathTimer.cy = _player.cy + Constants.PS_DT_OFFSETY + _scene.playLayer.y;
-			
+
 		}
 
 		public function update(timeDelta:Number):void 
@@ -107,20 +107,19 @@
 			
 			_player.update(timeDelta);
 			
-			if (_player.beingTouched || _player.released)
-			{
-				_followPlayer();
-			}
-			
 			if (_player.released)
 			{
 				/* Hide here text */
 				_scene.hereText.hide();
 				
+				/* Focus on player if focus button is on */
+				if (_scene.focusButton.focused)
+					_followPlayer();
+				
 				/* Update things */
 				_updateDeathTimer();
 				
-
+				
 				// Poop trail
 				if (!_trailDelayCall)
 				{
@@ -321,6 +320,8 @@
 			_followPlayer();
 			/* Stop Timer */
 			_scene.deathTimer.stopTimer();
+			/* Shode here text */
+			_scene.hereText.show();			
 		}
 		
 		public function killPlayer():void
