@@ -84,6 +84,20 @@
 			_scene.keepMapInBoundary(layer);		
 		}
 		
+		private function _updateDeathTimer():void
+		{
+			/* Make sure death timer is running */		
+			if (!_scene.deathTimer.running) {
+				_scene.deathTimer.startTimer();
+				/* Kill player if timer runs out */
+				_scene.deathTimer.addOnStopEventListener(killPlayer);
+			}
+			
+			/* Keep death timer on player */
+			_scene.deathTimer.cx = _player.cx + Constants.PS_DT_OFFSETX + _scene.playLayer.x;
+			_scene.deathTimer.cy = _player.cy + Constants.PS_DT_OFFSETY + _scene.playLayer.y;
+		}
+		
 		public function update(timeDelta:Number):void 
 		{
 			if (!_player.visible)
@@ -99,6 +113,9 @@
 			if (_player.released)
 			{
 	
+				_updateDeathTimer();
+				
+
 				// Poop trail
 				if (!_trailDelayCall)
 				{
@@ -291,6 +308,8 @@
 			_player.color = Projectile.COLORS[rci];
 		
 			_followPlayer();
+			/* Stop Timer */
+			_scene.deathTimer.stopTimer();
 		}
 		
 		public function killPlayer():void
@@ -298,6 +317,10 @@
 			/* Delay player kill delay */
 			if (!_resetDelayCall)
 			{
+				
+				/* Stop Timer */
+				_scene.deathTimer.stopTimer();
+				
 				removeTrail();
 				_player.visible = false;
 				_scene.deathCounter.deaths ++;

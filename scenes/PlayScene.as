@@ -18,16 +18,23 @@
 	import managers.TextManager;
 	import managers.TrailManager;
 	
+	import utils.LevelLoader;
+	import graphics.Line;
+	
 	import objects.Background;
 	import objects.Player;
 	import objects.Arrow;
-	import utils.LevelLoader;
-	import graphics.Line;
+
 	import objects.LivesCounter;
 	import objects.Projectile;
 	import objects.DeathCounter;
 	import objects.OptionRollOut;
+	
 	import buttons.SuicideButton;
+	import buttons.FocusButton;
+	
+	import text.DeathTimer;
+	import text.StarsLeftText;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -42,8 +49,6 @@
 	import com.brinkbit.admob.constants.AdMobAdType;
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
-	import text.StarsLeftText;
-	import buttons.FocusButton;
 
 
 	public class PlayScene extends Scene {
@@ -86,6 +91,7 @@
 		public var scoreText:TextField;
 		public var starsLeftText:StarsLeftText;
 		public var deathCounter:DeathCounter;
+		public var deathTimer:DeathTimer;
 		
 		// Layers
 		public var playLayer:Sprite;
@@ -160,6 +166,10 @@
 			starsLeftText = new StarsLeftText(starManager.stars.length);
 			textLayer.addChild(starsLeftText);
 			
+			deathTimer = new DeathTimer();
+			addEntity(deathTimer);
+			textLayer.addChild(deathTimer);
+			
 			/*
 			livesCounter = new LivesCounter(MAX_LIVES, player);
 			livesCounter.x = Starling.current.stage.stageWidth - livesCounter.width - LivesCounter.LIVES_OFFSET * 2;
@@ -167,7 +177,7 @@
 			textLayer.addChild(livesCounter);
 			*/
 			deathCounter = new DeathCounter();
-			textLayer.addChild(deathCounter);
+			playLayer.addChild(deathCounter);
 			
 			/* Add to top layer */
 			suicideButton = new SuicideButton(this);
@@ -262,7 +272,7 @@
 			else{
 				clearLevel();
 				LevelLoader.load_level(AssetResources.levels[_level], this);		
-				starsLeftText.starsLeft = starManager.stars.length;
+				starsLeftText.starsLeft = starManager.stars.length
 				_themeChannel.stop();
 				_themeChannel = AssetResources.playTheme.play();
 			}

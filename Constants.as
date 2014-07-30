@@ -5,6 +5,12 @@
 	public class Constants 
 	{
 	
+		/** Position Constants **/
+		
+		/* Death Timer */
+		public static var PS_DT_OFFSETX:Number = 0;
+		public static var PS_DT_OFFSETY:Number = -20;
+	
 		public static var START_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/6802326443";
 		public static var PLAY_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/9755792842";
 		public static var PLAY_SCENE_BANNER:AdMobAd, START_SCENE_BANNER:AdMobAd;
