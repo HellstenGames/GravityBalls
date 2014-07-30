@@ -149,6 +149,8 @@
 					AssetResources.buttons["red_sound"] = AssetResources.ASSETS_MANAGER.getTexture("soundbutton_red_x" + sf);
 					AssetResources.buttons["blue_credit"] = AssetResources.ASSETS_MANAGER.getTexture("creditbutton_blue_x" + sf);
 					AssetResources.buttons["explode"] = AssetResources.ASSETS_MANAGER.getTexture("explode_button_x" + sf);
+					AssetResources.buttons["focus"] = AssetResources.ASSETS_MANAGER.getTexture("focus_button_x" + sf);
+					
 					
 					// Set up sound effects
 

@@ -43,6 +43,7 @@
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
 	import text.StarsLeftText;
+	import buttons.FocusButton;
 
 
 	public class PlayScene extends Scene {
@@ -174,6 +175,7 @@
 			suicideButton.cy = Starling.current.nativeStage.stageHeight - suicideButton.width / 1.5;
 			topLayer.addChild(suicideButton);
 			
+			//focusButton = new FocusButton(this);
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play();
 			
@@ -260,6 +262,7 @@
 			else{
 				clearLevel();
 				LevelLoader.load_level(AssetResources.levels[_level], this);		
+				starsLeftText.starsLeft = starManager.stars.length;
 				_themeChannel.stop();
 				_themeChannel = AssetResources.playTheme.play();
 			}

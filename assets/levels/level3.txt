@@ -1,0 +1,8 @@
+
+{
+
+"width":500,
+"height":350,
+"objects":[{"item":"player","position":{"cy":168,"cx":413}},{"item":"star","position":{"cy":168,"cx":166}},{"item":"sun","position":{"cy":168,"cx":248}}]
+
+}

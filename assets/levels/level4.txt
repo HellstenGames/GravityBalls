@@ -1,0 +1,7 @@
+{
+
+"width":500,
+"height":350,
+"objects":[{"item":"player","position":{"cy":168,"cx":73}},{"item":"star","position":{"cy":159,"cx":336}},{"item":"star","position":{"cy":120,"cx":304}},{"item":"star","position":{"cy":97,"cx":256}},{"item":"star","position":{"cy":108,"cx":198}},{"item":"star","position":{"cy":127,"cx":146}},{"item":"sun","position":{"cy":164,"cx":256}}]
+
+}

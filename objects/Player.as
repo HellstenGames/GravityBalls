@@ -62,13 +62,15 @@
 				if (touchEnded)
 				{					
 					currentPos = touchEnded.getLocation(this);
-					//dx = (began.x - currentPos.x) * SHOOT_RATIO;
-					//dy = (began.y - currentPos.y) * SHOOT_RATIO;
+					dx = (began.x - currentPos.x) * SHOOT_RATIO;
+					dy = (began.y - currentPos.y) * SHOOT_RATIO;
+					/*
 					// Make it fixed for now
 					var angle:Number = Math.atan2(began.y - currentPos.y, began.x - currentPos.x);
 					trace(angle);
-					dx = Physics.hComponent(SHOOT_SPEED, angle);
-					dy = Physics.vComponent(SHOOT_SPEED, angle);
+					*/
+					dx = dx;
+					dy = dy;
 
 					released = true;
 					beingTouched = false;

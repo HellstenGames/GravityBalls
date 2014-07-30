@@ -26,7 +26,6 @@
 		public static var DELAY_PERIOD:Number = 0.25;
 		
 		protected var _scene:*;
-		protected var _backSprite:Sprite;
 		protected var _delayedCall:DelayedCall;
 		
 		public function SuicideButton(scene:*)  
@@ -34,9 +33,7 @@
 			_scene = scene;
 				
 			// Create back sprite
-			_backSprite = new Sprite();
-			addChild(_backSprite);
-			_backSprite.addChild(new Image(AssetResources.buttons["explode"]));
+			addChild(new Image(AssetResources.buttons["explode"]));
 	
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}

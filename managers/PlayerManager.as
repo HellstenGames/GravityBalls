@@ -208,7 +208,7 @@
 				if (clength == 0)
 				{
 					AssetResources.blackHoleCollisionSound.play();
-					_player.visible = false;
+					_player.visible = false;					
 					removeTrail();
 					_scene.fadeOut();
 					return;

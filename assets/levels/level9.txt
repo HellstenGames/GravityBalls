@@ -1,0 +1,9 @@
+
+{
+
+"width":500,
+"height":350,
+
+"objects":[{"item":"player","position":{"cx":397,"cy":167}},{"item":"star","position":{"cx":210,"cy":185}},{"item":"star","position":{"cx":92,"cy":162}},{"item":"star","position":{"cx":117,"cy":209}},{"item":"star","position":{"cx":177,"cy":214}},{"item":"star","position":{"cx":231,"cy":146}},{"item":"star","position":{"cx":260,"cy":110}},{"item":"star","position":{"cx":302,"cy":106}},{"item":"star","position":{"cx":354,"cy":129}},{"item":"sun","position":{"cx":289,"cy":162}},{"item":"sun","position":{"cx":152,"cy":162}}]
+
+}

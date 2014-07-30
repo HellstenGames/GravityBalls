@@ -1,7 +1,7 @@
 {
 
-"width":700,
-"height":700,
-"objects":[{"item":"player","position":{"cx":424.1454545454545,"cy":160.8}},{"item":"star","position":{"cx":114.32727272727273,"cy":159.2}},{"item":"star","position":{"cx":368.2909090909091,"cy":160}},{"item":"star","position":{"cx":321.1636363636364,"cy":160}},{"item":"star","position":{"cx":236.5090909090909,"cy":159.2}},{"item":"star","position":{"cx":155.34545454545454,"cy":159.2}},{"item":"star","position":{"cx":195.4909090909091,"cy":159.2}},{"item":"star","position":{"cx":277.5272727272727,"cy":159.2}},{"item":"sun","position":{"cx":55.854545454545445,"cy":160}}]
+"width":500,
+"height":350,
+"objects":[{"item":"player","position":{"cy":160,"cx":63}},{"item":"star","position":{"cy":159,"cx":403}},{"item":"star","position":{"cy":157,"cx":358}},{"item":"star","position":{"cy":158,"cx":305}},{"item":"star","position":{"cy":157,"cx":256}},{"item":"star","position":{"cy":159,"cx":209}},{"item":"star","position":{"cy":159,"cx":161}},{"item":"star","position":{"cy":160,"cx":112}}]
 
 }
