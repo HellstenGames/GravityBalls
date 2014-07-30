@@ -285,7 +285,9 @@
 			else{
 				clearLevel();
 				LevelLoader.load_level(AssetResources.levels[_level], this);		
-				starsLeftText.starsLeft = starManager.stars.length
+				starsLeftText.starsLeft = starManager.stars.length;
+				playerManager.setBoundary(-Constants.kMapBoundaryBuffer, -Constants.kMapBoundaryBuffer, 
+									  Constants.kMapWidth + Constants.kMapBoundaryBuffer, Constants.kMapHeight + Constants.kMapBoundaryBuffer);				
 				_themeChannel.stop();
 				_themeChannel = AssetResources.playTheme.play();
 			}

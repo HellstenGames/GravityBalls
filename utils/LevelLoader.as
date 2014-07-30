@@ -14,10 +14,12 @@
 			var dlength:int = objs.length;
 			
 			/* Set width and height using rectangle */
+			pscene.playBackgroundLayer.removeChildren();
 			var rectangle:Rectangle = new Rectangle(0, 0, data.width, data.height, 0x052441);
 			pscene.playBackgroundLayer.addChild(rectangle);
 			Constants.kMapWidth = data.width;
 			Constants.kMapHeight = data.height;
+			trace(Constants.kMapWidth, Constants.kMapHeight);
 			
 			for (var i:int = dlength - 1; i >= 0; --i)
 			{
