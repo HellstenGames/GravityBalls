@@ -53,6 +53,15 @@
 			ticker = DEATH_TIME;
 		}
 		
+		public function pauseTimer():void
+		{
+			running = true;
+		}
+		public function resumeTimer():void
+		{
+			running = false;
+		}
+		
 		public function stopTimer():void
 		{
 			running = false;

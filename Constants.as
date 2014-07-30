@@ -5,12 +5,26 @@
 	public class Constants 
 	{
 	
+		/* Here Text Constants */
+		public static var HT_TEXT:String = "Shoot me!";
+		public static var HT_WIDTH:Number = 100;
+		public static var HT_HEIGHT:Number = 15;
+		public static var HT_FONTSIZE:int = 12;
+		public static var HT_FONTTYPE:String = "popup";
+		public static var HT_SCALE_MAX:Number = 1.25;
+		public static var HT_SCALE_MIN:Number = 1.0;
+		public static var HT_SCALE_SPEED:Number = 0.0025;
+		
 		/** Position Constants **/
 		
 		/* Death Timer */
 		public static var PS_DT_OFFSETX:Number = 0;
 		public static var PS_DT_OFFSETY:Number = -20;
 	
+		/* Here Text */
+		public static var PS_HT_OFFSETX:Number = 0;
+		public static var PS_HT_OFFSETY:Number = -20;
+		
 		public static var START_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/6802326443";
 		public static var PLAY_SCENE_BANNER_ID:String = "ca-app-pub-2753474656261978/9755792842";
 		public static var PLAY_SCENE_BANNER:AdMobAd, START_SCENE_BANNER:AdMobAd;

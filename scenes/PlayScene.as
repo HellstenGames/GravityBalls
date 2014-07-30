@@ -35,6 +35,7 @@
 	
 	import text.DeathTimer;
 	import text.StarsLeftText;
+	import text.HereText;
 	
 	// Import flash stuff
 	import flash.media.SoundChannel;
@@ -49,6 +50,7 @@
 	import com.brinkbit.admob.constants.AdMobAdType;
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
+	
 
 
 	public class PlayScene extends Scene {
@@ -92,6 +94,7 @@
 		public var starsLeftText:StarsLeftText;
 		public var deathCounter:DeathCounter;
 		public var deathTimer:DeathTimer;
+		public var hereText:HereText;
 		
 		// Layers
 		public var playLayer:Sprite;
@@ -169,6 +172,12 @@
 			deathTimer = new DeathTimer();
 			addEntity(deathTimer);
 			textLayer.addChild(deathTimer);
+
+			/* Add here text */
+			hereText = new HereText(player);
+			hereText.show();
+			addEntity(hereText);
+			playLayer.addChild(hereText);
 			
 			/*
 			livesCounter = new LivesCounter(MAX_LIVES, player);

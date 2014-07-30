@@ -86,6 +86,7 @@
 		
 		private function _updateDeathTimer():void
 		{
+			
 			/* Make sure death timer is running */		
 			if (!_scene.deathTimer.running) {
 				_scene.deathTimer.startTimer();
@@ -96,8 +97,9 @@
 			/* Keep death timer on player */
 			_scene.deathTimer.cx = _player.cx + Constants.PS_DT_OFFSETX + _scene.playLayer.x;
 			_scene.deathTimer.cy = _player.cy + Constants.PS_DT_OFFSETY + _scene.playLayer.y;
+			
 		}
-		
+
 		public function update(timeDelta:Number):void 
 		{
 			if (!_player.visible)
@@ -112,7 +114,10 @@
 			
 			if (_player.released)
 			{
-	
+				/* Hide here text */
+				_scene.hereText.hide();
+				
+				/* Update things */
 				_updateDeathTimer();
 				
 
@@ -224,6 +229,10 @@
 				var clength:int = stars.length; 
 				if (clength == 0)
 				{
+					
+					/* Stop Timer */
+					_scene.deathTimer.stopTimer();
+					
 					AssetResources.blackHoleCollisionSound.play();
 					_player.visible = false;					
 					removeTrail();
@@ -291,6 +300,8 @@
 				}
 				
 			}
+
+			
 		}
 		
 	
