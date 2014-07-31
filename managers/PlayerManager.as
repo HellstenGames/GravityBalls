@@ -107,6 +107,11 @@
 			
 			_player.update(timeDelta);
 			
+			if (_player.beingTouched)
+			{
+				_scene.hereText.text = Constants.HT_TEXT_AFTER;
+			}
+			
 			if (_player.released)
 			{
 				/* Hide here text */

@@ -29,6 +29,14 @@
 			scaling = Constants.HT_SCALE_SPEED;
 		}
 
+		public function set text(value:String):void
+		{
+			textField.text = value;
+		}
+		public function get text():String
+		{
+			return textField.text;
+		}
 		
 		override public function update(timeDelta:Number):void
 		{
@@ -62,6 +70,7 @@
 		{
 			visible = true;
 			running = true;
+			textField.text = Constants.HT_TEXT;
 		}
 		public function hide():void
 		{

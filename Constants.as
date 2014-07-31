@@ -6,7 +6,8 @@
 	{
 	
 		/* Here Text Constants */
-		public static var HT_TEXT:String = "Shoot me!";
+		public static var HT_TEXT:String = "Hold Me!";
+		public static var HT_TEXT_AFTER:String = "Pull Me!";
 		public static var HT_WIDTH:Number = 100;
 		public static var HT_HEIGHT:Number = 15;
 		public static var HT_FONTSIZE:int = 12;
