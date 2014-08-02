@@ -23,7 +23,7 @@
 	
 	public class SuicideButton extends Entity {
 
-		public static var DELAY_PERIOD:Number = 0.25;
+		public static var DELAY_PERIOD:Number = 0.1;
 		
 		protected var _scene:*;
 		protected var _delayedCall:DelayedCall;

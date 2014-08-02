@@ -5,6 +5,7 @@
 	import starling.events.Touch;
 	import starling.events.TouchPhase;
 	import starling.display.DisplayObject;
+	import starling.utils.Color;
 	
 	// Import flash stuff
 	import flash.geom.Point;
@@ -36,6 +37,11 @@
 			padding = width * PADDING_RATIO;
 		}
 
+		public function getColorCode():uint
+		{
+			return COLOR_CODES[COLORS.indexOf(color)];
+		}
+		
 		private function onTouch(event:TouchEvent):void
 		{
 			if (!released)

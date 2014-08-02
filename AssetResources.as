@@ -30,8 +30,9 @@
 		private static var CALL_BACK:Function;
 		
 		public static var splashTheme:Sound, menuTheme:Sound, playTheme:Sound, sandboxTheme:Sound;
+
 		public static var sunCollisionSound:Sound, projectileCollisionSound:Sound, 
-						  pointCollisionSound:Sound, blackHoleCollisionSound:Sound;
+						  pointCollisionSound:Sound, blackHoleCollisionSound:Sound, nextLevelSound:Sound;
 		
 		public static var splashTexture:Texture, backgroundTexture:Texture, nebulaTexture:Texture, loadTexture:Texture;
 		public static var blueProjectileTexture:Texture, greenProjectileTexture:Texture, redProjectileTexture:Texture, 
@@ -56,6 +57,7 @@
 		
 		/* Sounds/Themes */
 		public static var themes:Object;
+		public static var sounds:Object;
 		/* Sprites/Graphics */
 		public static var backgrounds:Object;
 		public static var buttons:Object;
@@ -136,6 +138,9 @@
 					AssetResources.themes = new Object();
 					AssetResources.themes["orbit"] = AssetResources.ASSETS_MANAGER.getSound("orbit");
 					AssetResources.themes["pulse"] = AssetResources.ASSETS_MANAGER.getSound("pulse");
+					
+					AssetResources.sounds = new Object();
+					AssetResources.sounds["nextlevel"] = AssetResources.ASSETS_MANAGER.getSound("nextlevel");
 					
 					/* Set up background sprites */
 					AssetResources.backgrounds = new Object();

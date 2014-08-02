@@ -20,14 +20,34 @@
 		public static var DT_MAX_TIME:Number = 15;
 		
 		/* Explode Button Constants */
-		public static var kebPositionCX:Number = 20;
-		public static var kebPositionCY:Number = 300;
+		public static var kebPositionCX:Number = 25;
+		public static var kebPositionCY:Number = 295;
 		
 		/* Focus Button Constants */
-		public static var kfbPositionCX:Number = 55;
-		public static var kfbPositionCY:Number = 300;
+		public static var kfbPositionCX:Number = 70;
+		public static var kfbPositionCY:Number = 295;
+		
+		/* Player Constants */
+		public static var kPlayerNumBits:Number = 30;
+		public static var kPlayerBitDXMax:Number = 100;
+		public static var kPlayerBitDXMin:Number = -100;
+		public static var kPlayerBitDYMax:Number = 100;
+		public static var kPlayerBitDYMin:Number = -100;
+		
+		/* Bits Constants */
+		public static var kBitFadeAwaySpeed:Number = 0.005;
+		public static var kBitInertiaFactor:Number = 0.5;
+		public static var kBitSize:Number = 2;
+		public static var kBitMass:Number = 1.0;
+		
+		/* Sun Constants */
+		public static var kSunMass:Number = 7.5*10e+3;
+		
+		/* Other Constants */
+		public static var kFirstLevel:Number = 1;
 		
 		/** Position Constants **/
+		
 		
 		/* Death Timer */
 		public static var PS_DT_OFFSETX:Number = 0;
@@ -58,7 +78,7 @@
 		public static var DEATH_SUN_MESSAGES:Array = new Array("Ouch!", "ARghhhh!", "Incinerated!", "Toasty...", "Burn Baby!",
 					"Burn!", "Eat it!", "You suck...", "WOW!", "Haha!", "LMAO!", "ROFL!", "Terrible...", "NOOOO!", "HELP!", "It burns!", "Horrible...", "WHAT!", "OMG!",
 					"No way...", "WTF!", "Yep", "It hurts!", "I'm melting!", "STOP!", "Save me!", "Please", "The pain!",
-					"Did you win?", "Death", "Die!");
+					"Did you win?", "Death", "Die!", "Derp");
 		
 		public static var WIN_MESSAGES:Array = new Array("Zonk!", "WIN!", "Ohhh Yeah!", "Nice!", "WOOT!", 
 					"Congrats!", "Impressive!", "Amazing!", "Sexy!", "Awesome!", "Cool!", "Wicked!", "Sick!", "Blackness...");

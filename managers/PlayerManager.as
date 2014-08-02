@@ -21,7 +21,7 @@
 	public class PlayerManager {
 
 		public static var TRAIL_DELAY:Number = 0.1;
-		public static var RESET_DELAY:Number = 0.5;
+		public static var RESET_DELAY:Number = 1.0;
 		
 		private var _player:Player;
 		private var _layer:Sprite;
@@ -238,6 +238,8 @@
 					_scene.deathTimer.stopTimer();
 					
 					AssetResources.blackHoleCollisionSound.play();
+					//AssetResources.sounds["nextlevel"].play();
+					
 					_player.visible = false;					
 					removeTrail();
 					_scene.fadeOut();
@@ -337,6 +339,8 @@
 				
 				/* Stop Timer */
 				_scene.deathTimer.stopTimer();
+				/* Explode player into bits */
+				_explodePlayer();
 				
 				removeTrail();
 				_player.visible = false;
@@ -345,6 +349,7 @@
 				_scene.arrow.changeImage(Projectile.COLORS.indexOf(_player.color));			
 				_resetDelayCall = new DelayedCall(_resetDelay, RESET_DELAY);
 				_resetDelayCall.repeatCount = 1;
+				
 				Starling.juggler.add(_resetDelayCall);	
 			}
 		}
@@ -353,6 +358,18 @@
 		{
 			resetPlayer();
 			_resetDelayCall = null;
+		}
+		
+		private function _explodePlayer()
+		{
+			var dx:Number, dy:Number;
+			for (var i:int = Constants.kPlayerNumBits - 1; i >= 0; --i)
+			{
+				/* Get random dx, dy for bits */
+				dx = Math.random() * (Constants.kPlayerBitDXMax - Constants.kPlayerBitDXMin) + Constants.kPlayerBitDXMin + _player.dx * Constants.kBitInertiaFactor;
+				dy = Math.random() * (Constants.kPlayerBitDXMax - Constants.kPlayerBitDXMin) + Constants.kPlayerBitDXMin + _player.dy * Constants.kBitInertiaFactor;
+				_scene.blowUpManager.addBit(_player.cx, _player.cy, dx, dy, _player.getColorCode());
+			}
 		}
 		
 		private function poopTrailDelay():void

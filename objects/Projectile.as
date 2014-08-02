@@ -1,9 +1,11 @@
 ﻿package objects {
 	import starling.display.Image;
+	import starling.utils.Color;
 	
 	public class Projectile extends Entity {
 
 		public static var COLORS:Array = new Array("red", "green", "blue", "brown", "yellow", "cyan", "white");
+		public static var COLOR_CODES:Array = new Array(0x993333, 0x009933, 0x0066CC, 0x330000, 0xFFFF33, 0x33FFFF, 0xFFFFFF);
 		
 		public var mass:Number;
 		

@@ -50,6 +50,7 @@
 	import com.brinkbit.admob.constants.AdMobAdType;
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
+	import managers.BlowUpManager;
 
 
 	public class PlayScene extends Scene {
@@ -80,6 +81,7 @@
 		public var trailManager:TrailManager;
 		public var asteroidManager:AsteroidManager;
 		public var wallManager:WallManager;
+		public var blowUpManager:BlowUpManager;
 		
 		// Objects
 		public var player:Player;
@@ -142,6 +144,7 @@
 			player = new Player();
 			
 			// Create Managers
+			blowUpManager = new BlowUpManager(playLayer, this);
 			textManager = new TextManager(playLayer);
 			projectileManager = new ProjectileManager(playLayer, MAX_PROJECTILES);
 			sunManager = new SunManager(playLayer, projectileManager, MAX_PROJECTILES);
@@ -152,8 +155,9 @@
 			wallManager = new WallManager(playLayer);
 			trailManager = new TrailManager(trailLayer);
 			
+			
 			// Load Level
-			_level = START_LEVEL;
+			_level = Constants.kFirstLevel;
 			LevelLoader.load_level(AssetResources.levels[_level], this);			
 			
 			playerManager.setBoundary(-Constants.kMapBoundaryBuffer, -Constants.kMapBoundaryBuffer, 
@@ -222,6 +226,7 @@
 			trailManager.update(timeDelta);
 			asteroidManager.update(timeDelta);
 			wallManager.update(timeDelta);
+			blowUpManager.update(timeDelta);
 			
 			// Fade the level out
 			if (fadedOut)
