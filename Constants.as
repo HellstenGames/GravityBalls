@@ -29,10 +29,10 @@
 		
 		/* Player Constants */
 		public static var kPlayerNumBits:Number = 30;
-		public static var kPlayerBitDXMax:Number = 100;
-		public static var kPlayerBitDXMin:Number = -100;
-		public static var kPlayerBitDYMax:Number = 100;
-		public static var kPlayerBitDYMin:Number = -100;
+		public static var kPlayerBitDXMax:Number = 200;
+		public static var kPlayerBitDXMin:Number = -200;
+		public static var kPlayerBitDYMax:Number = 200;
+		public static var kPlayerBitDYMin:Number = -200;
 		
 		/* Bits Constants */
 		public static var kBitFadeAwaySpeed:Number = 0.005;

@@ -74,7 +74,7 @@
 		}
 		
 		protected function _touchCallBack():void {
-			_scene.playerManager.killPlayer();
+			_scene.playerManager.blowUp();
 		}
 				
 		

@@ -165,7 +165,6 @@
 				{
 					removeTrail();
 					killPlayer();
-					AssetResources.projectileCollisionSound.play();
 					return;
 				}
 	
@@ -320,6 +319,11 @@
 			_player.velocity[0] = 0;
 			_player.velocity[1] = 0;
 			_player.visible = true;
+			_player.died = false;
+			
+			/* Show text again */
+			_scene.hereText.visible = true;
+			
 			/* Randomize color */
 			var rci:int = Math.random() * Projectile.COLORS.length;
 			_player.color = Projectile.COLORS[rci];
@@ -331,17 +335,31 @@
 			_scene.hereText.show();			
 		}
 		
+		public function blowUp():void
+		{
+			/* Don't blow up if player is already dead...*/
+			if (_player.died||!_player.visible)
+				return;
+			
+			AssetResources.sounds["obliterate"].play();
+			/* Explode player into bits */
+			_explodePlayer();	
+			/* Hide any text */
+			_scene.hereText.visible = false;
+			/* Kill player as well */
+			killPlayer();
+		}
+		
 		public function killPlayer():void
 		{	
 			/* Delay player kill delay */
 			if (!_resetDelayCall)
 			{
-				
+				_player.died = true;
 				/* Stop Timer */
 				_scene.deathTimer.stopTimer();
-				/* Explode player into bits */
-				_explodePlayer();
-				
+
+
 				removeTrail();
 				_player.visible = false;
 				_scene.deathCounter.deaths ++;

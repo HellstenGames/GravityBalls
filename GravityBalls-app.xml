@@ -14,7 +14,7 @@
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name> 
 -->
-<application xmlns="http://ns.adobe.com/air/application/3.6">
+<application xmlns="http://ns.adobe.com/air/application/4.0">
   <id>com.hellstengames.gravityballs</id>
   <versionNumber>0.0.1</versionNumber>
   <filename>GravityBalls</filename>
@@ -52,8 +52,19 @@
 ]]>
 </manifestAdditions>
       </android>   
-  <versionLabel></versionLabel>
+  <versionLabel/>
   <supportedLanguages>en</supportedLanguages>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

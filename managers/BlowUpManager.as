@@ -18,7 +18,7 @@
 		private var _layer:Sprite;
 		private var _scene:*;
 		
-		public function BlowUpManager(layer:Sprite, scene:*, len:int=100) {
+		public function BlowUpManager(layer:Sprite, scene:*, len:int=200) {
 			_layer = layer;
 			_scene = scene;
 			_pool = new SpritePool(Bit, len);

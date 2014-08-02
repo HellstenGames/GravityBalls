@@ -141,6 +141,7 @@
 					
 					AssetResources.sounds = new Object();
 					AssetResources.sounds["nextlevel"] = AssetResources.ASSETS_MANAGER.getSound("nextlevel");
+					AssetResources.sounds["obliterate"] = AssetResources.ASSETS_MANAGER.getSound("obliterate");
 					
 					/* Set up background sprites */
 					AssetResources.backgrounds = new Object();
