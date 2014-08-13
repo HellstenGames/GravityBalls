@@ -91,7 +91,7 @@
 			if (!_scene.deathTimer.running) {
 				_scene.deathTimer.startTimer();
 				/* Kill player if timer runs out */
-				_scene.deathTimer.addOnStopEventListener(killPlayer);
+				_scene.deathTimer.addOnStopEventListener(blowUp);
 			}
 			
 			/* Keep death timer on player */
@@ -355,10 +355,10 @@
 			/* Delay player kill delay */
 			if (!_resetDelayCall)
 			{
+				
 				_player.died = true;
 				/* Stop Timer */
 				_scene.deathTimer.stopTimer();
-
 
 				removeTrail();
 				_player.visible = false;
