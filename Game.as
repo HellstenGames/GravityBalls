@@ -27,7 +27,7 @@ package
 
 	public class Game extends Sprite
 	{
-
+		
 		public static var INSTANCE:Game;
 		
 		private var _lastTime:Number;
@@ -71,9 +71,9 @@ package
 			var now:Number = new Date().getTime();
 			var delta:Number = now - _lastTime;
 			_lastTime = now;
-			
+
 			if (!scene.isDone) {
-				scene.update(delta / 1000);
+				scene.update(Constants.k_UpdateTickPerFrame);
 			} else {
 				removeChild(scene);
 				scene = scene.nextScene;

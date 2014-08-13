@@ -10,6 +10,7 @@
 	// Import flash stuff
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.display.Scene;
 	
 	public class Player extends Projectile {
 
@@ -27,9 +28,12 @@
 		
 		// Cursor positions
 		
-		public function Player(cx:Number=0, cy:Number=0, color:String="blue") 
+		private var m_scene:*;
+		
+		public function Player(scene:*, cx:Number=0, cy:Number=0, color:String="blue") 
 		{
 			super(color);
+			m_scene = scene;
 			x = cx - width / 2;
 			y = cy - width / 2;
 			released = false;
@@ -44,49 +48,49 @@
 		
 		private function onTouch(event:TouchEvent):void
 		{
-			if (!released)
-			{								
-				// Get touch beginning and ending
-				var touchBagan:Touch = event.getTouch(this, TouchPhase.BEGAN);
-				var touchEnded:Touch = event.getTouch(this, TouchPhase.ENDED);
-				var touchMoved:Touch = event.getTouch(this, TouchPhase.MOVED);
-				
-				// Scale player to make it more visible
-				var currentCX:Number = cx;
-				var currentCY:Number = cy;
-				scaleX = scaleY = touchBagan || touchMoved ? TOUCH_SCALE_AMOUNT : 1;
-				x = currentCX - width / 2;
-				y = currentCY - height / 2;
-				
-				if (touchBagan)
-				{
-					began = touchBagan.getLocation(this);
-					currentPos = began;
-					beingTouched = true;
-				}
-								
-				if (touchEnded)
-				{					
-					currentPos = touchEnded.getLocation(this);
-					dx = (began.x - currentPos.x) * SHOOT_RATIO;
-					dy = (began.y - currentPos.y) * SHOOT_RATIO;
-					/*
-					// Make it fixed for now
-					var angle:Number = Math.atan2(began.y - currentPos.y, began.x - currentPos.x);
-					trace(angle);
-					*/
-					dx = dx;
-					dy = dy;
-
-					released = true;
-					beingTouched = false;
-				}
-				
-				if (touchMoved)
-				{
-					currentPos = touchMoved.getLocation(this);
-				}
 			
+			if (released||m_scene.paused)
+				return;
+			
+			// Get touch beginning and ending
+			var touchBagan:Touch = event.getTouch(this, TouchPhase.BEGAN);
+			var touchEnded:Touch = event.getTouch(this, TouchPhase.ENDED);
+			var touchMoved:Touch = event.getTouch(this, TouchPhase.MOVED);
+				
+			// Scale player to make it more visible
+			var currentCX:Number = cx;
+			var currentCY:Number = cy;
+			scaleX = scaleY = touchBagan || touchMoved ? TOUCH_SCALE_AMOUNT : 1;
+			x = currentCX - width / 2;
+			y = currentCY - height / 2;
+				
+			if (touchBagan)
+			{
+				began = touchBagan.getLocation(this);
+				currentPos = began;
+				beingTouched = true;
+			}
+								
+			if (touchEnded)
+			{					
+				currentPos = touchEnded.getLocation(this);
+				dx = (began.x - currentPos.x) * SHOOT_RATIO;
+				dy = (began.y - currentPos.y) * SHOOT_RATIO;
+				/*
+				// Make it fixed for now
+				var angle:Number = Math.atan2(began.y - currentPos.y, began.x - currentPos.x);
+				trace(angle);
+				*/
+				dx = dx;
+				dy = dy;
+
+				released = true;
+				beingTouched = false;
+			}
+				
+			if (touchMoved)
+			{
+				currentPos = touchMoved.getLocation(this);
 			}
 			
 		}

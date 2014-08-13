@@ -4,7 +4,9 @@
 	
 	public class Constants 
 	{
-	
+		public static var k_UpdatePerSecond:Number = 60;
+		public static var k_UpdateTickPerFrame:Number = 1.0 / Constants.k_UpdatePerSecond;
+		
 		public static var kFacebookShareLink = "https://www.facebook.com/pages/Gravity-Balls/546802842111874";
 		
 		/* Here Text Constants */

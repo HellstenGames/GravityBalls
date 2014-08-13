@@ -146,7 +146,7 @@
 			backgroundLayer.addChild(background);
 		
 			// Create other stuff
-			player = new Player();
+			player = new Player(this);
 			
 			// Create Managers
 			blowUpManager = new BlowUpManager(playLayer, this);
@@ -195,7 +195,7 @@
 			textLayer.addChild(livesCounter);
 			*/
 			deathCounter = new DeathCounter();
-			textLayer.addChild(deathCounter);
+			topLayer.addChild(deathCounter);
 			
 			/* Add to top layer */
 			suicideButton = new SuicideButton(this);
