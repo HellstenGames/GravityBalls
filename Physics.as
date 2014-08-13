@@ -72,6 +72,13 @@
 					objx + objwidth > rightBound || objy + objheight > bottomBound) ? true : false;		
 		}
 		
+		public static function RectCollision(obj1_x:Number, obj1_y:Number, obj1_x2:Number, obj1_y2:Number,
+											 obj2_x:Number, obj2_y:Number, obj2_x2:Number, obj2_y2:Number):Boolean
+		{
+			return (obj1_x < obj2_x2 && obj1_y < obj2_y2 &&
+				   obj1_x2 > obj2_x && obj1_y2 > obj2_y) ? true : false;
+		}
+		
 		public static function boundaryCollision(objx:Number, objy:Number, objwidth:Number, objheight:Number, 
 											 leftBound:Number, topBound:Number, rightBound:Number, bottomBound:Number, inOrOut:Boolean=true):Array
 		{

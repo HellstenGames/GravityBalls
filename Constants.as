@@ -6,6 +6,7 @@
 	{
 		public static var k_UpdatePerSecond:Number = 60;
 		public static var k_UpdateTickPerFrame:Number = 1.0 / Constants.k_UpdatePerSecond;
+		public static var k_DelayPeroid:Number = 0.25;
 		
 		public static var kFacebookShareLink = "https://www.facebook.com/pages/Gravity-Balls/546802842111874";
 		
@@ -93,6 +94,11 @@
 		
 		public static var DEATH_ASTEROID_MESSAGES:Array = new Array("Splat!", "Smack!", "Boom!", "Crash!", "Slam!");
 		public static var WALL_MESSAGES:Array = new Array("Bounce!", "Weee!", "Woah!", "Ding!");
+		
+		
+		/* Credit Scene Constants */
+		public static var k_BackButtonX:Number = 5;
+		public static var k_BackButtonY:Number = 275;
 		
 		public static function spitRandomMessage(messages:Array):String
 		{

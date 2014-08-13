@@ -22,6 +22,7 @@
 	import text.CreditText;
 	import flash.geom.Point;
 	import flash.media.SoundTransform;
+	import buttons.BackButton;
 
 	public class CreditScene extends Scene {
 
@@ -36,6 +37,7 @@
 		
 		// Layers
 		public var creditLayer:Sprite;
+		public var m_buttonsLayer:Sprite;
 		
 		// Objects/Sprites/Buttons
 		public var playButton:PlayButton;
@@ -43,6 +45,7 @@
 		public var optionButton:OptionButton;
 		public var startTitle:StartTitle;
 		public var optionRollOut:OptionRollOut;
+		public var m_backButton:BackButton;
 		
 		// Managers
 		public var projectileManager:ProjectileManager;
@@ -74,6 +77,16 @@
 		public function CreditScene() 
 		{
 			super();
+			
+			/* Set up layers */
+			m_buttonsLayer = new Sprite();
+			m_buttonsLayer.x = Constants.k_BackButtonX;
+			m_buttonsLayer.y = Constants.k_BackButtonY;
+			addChild(m_buttonsLayer);
+			
+			/* Set up back button */
+			m_backButton = new BackButton(this, new SplashScene());
+			m_buttonsLayer.addChild(m_backButton);
 			
 			/* Add layers */
 			creditsLayer = new Sprite();
