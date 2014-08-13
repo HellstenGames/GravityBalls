@@ -20,6 +20,8 @@
 	
 	// Import flash stuff
 	import flash.geom.Point;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	public class ShareButton extends Entity {
 
@@ -29,7 +31,7 @@
 		public static var Y_OFFSET:Number = 2;
 		
 		protected var _scene:Scene;
-		protected var _backSprite:Sprite, _playArrowSprite:Sprite;
+		protected var _backSprite:Sprite;
 		protected var _delayedCall:DelayedCall;
 		
 		public function ShareButton(scene:Scene)  
@@ -39,15 +41,8 @@
 			// Create back sprite
 			_backSprite = new Sprite();
 			addChild(_backSprite);
-			_backSprite.addChild(new Image(AssetResources.playBallTexture));
-			
-			// Create play arrow
-			_playArrowSprite = new Sprite();
-			_playArrowSprite.addChild(new Image(AssetResources.playArrowTexture));
-			_playArrowSprite.x = _backSprite.width / 2 - _playArrowSprite.width / 2 + X_OFFSET;
-			_playArrowSprite.y = _backSprite.height / 2 - _playArrowSprite.height / 2 + Y_OFFSET;
-			addChild(_playArrowSprite);
-	
+			_backSprite.addChild(new Image(AssetResources.buttons["share"]));
+
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
@@ -89,7 +84,9 @@
 		}
 		
 		protected function _touchCallBack():void {
-			_scene.destroy();
+			var url:String = Constants.kFacebookShareLink; 
+			var urlReq:URLRequest = new URLRequest(url); 
+			navigateToURL(urlReq);
 		}
 				
 		

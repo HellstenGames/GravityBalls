@@ -95,8 +95,8 @@
 			}
 			
 			/* Keep death timer on player */
-			_scene.deathTimer.cx = _player.cx + Constants.PS_DT_OFFSETX + _scene.playLayer.x;
-			_scene.deathTimer.cy = _player.cy + Constants.PS_DT_OFFSETY + _scene.playLayer.y;
+			_scene.deathTimer.cx = _player.cx + Constants.PS_DT_OFFSETX;
+			_scene.deathTimer.cy = _player.cy + Constants.PS_DT_OFFSETY;
 
 		}
 
@@ -336,9 +336,9 @@
 		}
 		
 		public function blowUp():void
-		{
+		{			
 			/* Don't blow up if player is already dead...*/
-			if (_player.died||!_player.visible)
+			if (_player.died||!_player.visible||_scene.paused)
 				return;
 			
 			AssetResources.sounds["obliterate"].play();
@@ -392,6 +392,9 @@
 		
 		private function poopTrailDelay():void
 		{
+			if (_scene.paused)
+				return;
+			
 			_scene.trailManager.addTrail(_player.cx, _player.cy);
 		}
 		private function poopTrail():void

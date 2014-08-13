@@ -26,7 +26,8 @@
 	import buttons.PlayButton;
 	import buttons.ExitButton;
 	import buttons.OptionButton;
-
+	import buttons.ShareButton;
+	
 	import objects.Background;
 	import objects.Star;
 
@@ -45,6 +46,7 @@
 		
 		// Objects/Sprites/Buttons
 		public var playButton:PlayButton;
+		public var shareButton:ShareButton;
 		public var exitButton:ExitButton;
 		public var optionButton:OptionButton;
 		public var startTitle:StartTitle;
@@ -87,11 +89,18 @@
 			
 			// Add Play Button
 			playButton = new PlayButton(this);
-			playButton.cx = Starling.current.stage.stageWidth / 2;
+			playButton.cx = Starling.current.stage.stageWidth / 2 + 50;
 			playButton.cy = Starling.current.stage.stageHeight / 2 + 25;
 			playButton.trackOriginalCenter();
 			addEntity(playButton);
 			topLayer.addChild(playButton);
+			
+			/* Add share button */
+			shareButton = new ShareButton(this);
+			shareButton.cx = Starling.current.stage.stageWidth / 2 - 50;
+			shareButton.cy = Starling.current.stage.stageHeight / 2 + 25;
+			addEntity(shareButton);
+			topLayer.addChild(shareButton);
 			
 			// Add exit button
 			exitButton = new ExitButton(this);
@@ -106,6 +115,8 @@
 			optionButton.cy = Starling.current.stage.stageHeight - 35;
 			addEntity(optionButton);
 			topLayer.addChild(optionButton);
+			
+			
 			
 			// Create start title
 			startTitle = new StartTitle();

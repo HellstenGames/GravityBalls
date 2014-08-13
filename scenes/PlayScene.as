@@ -51,6 +51,7 @@
 	import com.brinkbit.admob.constants.AdMobAdPosition;
 	import com.brinkbit.admob.event.AdMobEvent;
 	import managers.BlowUpManager;
+	import buttons.PauseButton;
 
 
 	public class PlayScene extends Scene {
@@ -90,6 +91,7 @@
 		public var optionRollOut:OptionRollOut;
 		public var suicideButton:SuicideButton;
 		public var focusButton:FocusButton;
+		public var pauseButton:PauseButton;
 		
 		// Texts
 		public var scoreText:TextField;
@@ -109,7 +111,10 @@
 		private var _themeChannel:SoundChannel;
 		private var _level:int;
 		private var _scoreCount:int;
-
+		
+		
+		public var paused:Boolean;
+		
 		public function PlayScene()
 		{
 			super();
@@ -175,7 +180,7 @@
 			
 			deathTimer = new DeathTimer();
 			addEntity(deathTimer);
-			textLayer.addChild(deathTimer);
+			playLayer.addChild(deathTimer);
 
 			/* Add here text */
 			hereText = new HereText(player);
@@ -198,6 +203,12 @@
 			suicideButton.cy = Constants.kebPositionCY;
 			topLayer.addChild(suicideButton);
 			
+			/* Add Pause Button */
+			pauseButton = new PauseButton(this);
+			pauseButton.cx = Constants.kpbPositionCX;
+			pauseButton.cy = Constants.kpbPositionCY;
+			topLayer.addChild(pauseButton);
+			
 			/* Add Focus Button */
 			focusButton = new FocusButton(this);
 			focusButton.cx = Constants.kfbPositionCX;
@@ -207,6 +218,7 @@
 			_scoreCount = 0;
 			_themeChannel = AssetResources.playTheme.play(0, int.MAX_VALUE); /* Loop main theme */
 			Constants.PLAY_SCENE_BANNER.showAd();		
+			paused = false;
 			
 			/* Add scene touch event */
 			addEventListener(TouchEvent.TOUCH, _onSceneTouch);
@@ -214,6 +226,9 @@
 
 		override public function update(timeDelta:Number):void 
 		{ 
+			if (paused)
+				return;
+			
 			super.update(timeDelta);
 			
 			// Update Managers
@@ -312,6 +327,15 @@
 			wallManager.removeAll();
 		}
 		
+		public function pause():void
+		{
+			paused = true;
+		}
+		public function resume():void
+		{
+			paused = false;
+		}
+		
 		public function keepMapInBoundary(layer:Sprite):void
 		{
 			var dirs:Array = Physics.boundaryCollision(layer.x, layer.y, Constants.kCameraWidth, Constants.kCameraHeight, 0, 0, Constants.kMapWidth, Constants.kMapHeight, false);
@@ -321,7 +345,7 @@
 				if (dirs[i] == Physics.DIR_LEFT)
 				{
 					layer.x = 0;
-				} 
+				}
 				else if (dirs[i] == Physics.DIR_TOP)
 				{
 					layer.y = 0;

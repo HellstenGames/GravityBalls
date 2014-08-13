@@ -5,6 +5,8 @@
 	public class Constants 
 	{
 	
+		public static var kFacebookShareLink = "https://www.facebook.com/pages/Gravity-Balls/546802842111874";
+		
 		/* Here Text Constants */
 		public static var HT_TEXT:String = "Hold Me!";
 		public static var HT_TEXT_AFTER:String = "Pull Me!";
@@ -19,8 +21,12 @@
 		/* Death Timer Constants */
 		public static var DT_MAX_TIME:Number = 15;
 		
+		/* Pause Button Constants */
+		public static var kpbPositionCX:Number = 25;
+		public static var kpbPositionCY:Number = 295;
+		
 		/* Explode Button Constants */
-		public static var kebPositionCX:Number = 25;
+		public static var kebPositionCX:Number = 115;
 		public static var kebPositionCY:Number = 295;
 		
 		/* Focus Button Constants */
