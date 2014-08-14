@@ -52,6 +52,8 @@
 	import com.brinkbit.admob.event.AdMobEvent;
 	import managers.BlowUpManager;
 	import buttons.PauseButton;
+	import objects.PauseOverlay;
+	import graphics.Rectangle;
 
 
 	public class PlayScene extends Scene {
@@ -91,7 +93,9 @@
 		public var optionRollOut:OptionRollOut;
 		public var suicideButton:SuicideButton;
 		public var focusButton:FocusButton;
-		public var pauseButton:PauseButton;
+		
+		public var m_pauseButton:PauseButton;
+		public var m_pauseOverlay:PauseOverlay;
 		
 		// Texts
 		public var scoreText:TextField;
@@ -107,6 +111,9 @@
 		public var textLayer:Sprite;
 		public var trailLayer:Sprite;
 		public var topLayer:Sprite;
+		
+		public var m_menuLayer:Sprite;
+		public var m_dimLayer:Sprite; /* Dims screen during pause */
 		
 		private var _themeChannel:SoundChannel;
 		private var _level:int;
@@ -140,6 +147,21 @@
 			
 			topLayer = new Sprite();
 			addChild(topLayer);
+			
+			/* Set up dim layer */
+			m_dimLayer = new Sprite();
+			var l_dimRect:Rectangle = new Rectangle(0, 0, Constants.k_DimLayerWidth, Constants.k_DimLayerHeight);
+			m_dimLayer.addChild(l_dimRect);
+			m_dimLayer.alpha = Constants.k_DimLayerAlpha;
+			m_dimLayer.visible = false;
+			
+			m_dimLayer.addEventListener(TouchEvent.TOUCH, OnDimLayerTouch);
+			
+			addChild(m_dimLayer);
+			
+			m_menuLayer = new Sprite();
+			addChild(m_menuLayer);
+		
 			
 			// Create/Add background
 			background = new Background();
@@ -204,10 +226,10 @@
 			topLayer.addChild(suicideButton);
 			
 			/* Add Pause Button */
-			pauseButton = new PauseButton(this);
-			pauseButton.cx = Constants.kpbPositionCX;
-			pauseButton.cy = Constants.kpbPositionCY;
-			topLayer.addChild(pauseButton);
+			m_pauseButton = new PauseButton(this);
+			m_pauseButton.cx = Constants.kpbPositionCX;
+			m_pauseButton.cy = Constants.kpbPositionCY;
+			topLayer.addChild(m_pauseButton);
 			
 			/* Add Focus Button */
 			focusButton = new FocusButton(this);
@@ -220,14 +242,24 @@
 			Constants.PLAY_SCENE_BANNER.showAd();		
 			paused = false;
 			
+			
+			/* Add pause overlay */
+			m_pauseOverlay = new PauseOverlay();
+			m_menuLayer.addChild(m_pauseOverlay);
+			
 			/* Add scene touch event */
-			addEventListener(TouchEvent.TOUCH, _onSceneTouch);
+			playLayer.addEventListener(TouchEvent.TOUCH, _onSceneTouch);
 		}
 
 		override public function update(timeDelta:Number):void 
 		{ 
+
+			/* Make sure this is always updating regardless if paused or not */
+			m_pauseOverlay.update(timeDelta);
+			
 			if (paused)
 				return;
+			
 			
 			super.update(timeDelta);
 			
@@ -330,10 +362,15 @@
 		public function pause():void
 		{
 			paused = true;
+			m_pauseOverlay.RollOut();
+			m_dimLayer.visible = true;
 		}
 		public function resume():void
 		{
 			paused = false;
+			m_pauseOverlay.RollIn();
+			m_pauseButton.Toggle();
+			m_dimLayer.visible = false;
 		}
 		
 		public function keepMapInBoundary(layer:Sprite):void
@@ -441,6 +478,19 @@
 				{
 					//_zoomScene(touches[0], touches[1]);		
 				}
+			}
+			
+		}
+		
+		private function OnDimLayerTouch(event:TouchEvent):void
+		{
+			
+			var touchEnded:Touch = event.getTouch(this, TouchPhase.ENDED);
+			
+			if (touchEnded)
+			{
+				resume();
+				m_dimLayer.visible = false;
 			}
 			
 		}

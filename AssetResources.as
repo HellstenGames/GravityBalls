@@ -160,7 +160,7 @@
 					AssetResources.buttons["share"] = AssetResources.ASSETS_MANAGER.getTexture("share_button_x" + sf);
 					AssetResources.buttons["pause"] = AssetResources.ASSETS_MANAGER.getTexture("pause_button_x" + sf);
 					AssetResources.buttons["back"] = AssetResources.ASSETS_MANAGER.getTexture("BackButton_x" + sf);
-					
+					AssetResources.buttons["pause_grey"] = AssetResources.ASSETS_MANAGER.getTexture("PauseButtonGrey_x" + sf);
 					
 					// Set up sound effects
 

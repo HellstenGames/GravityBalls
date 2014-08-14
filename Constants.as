@@ -100,6 +100,22 @@
 		public static var k_BackButtonX:Number = 5;
 		public static var k_BackButtonY:Number = 275;
 		
+		/* Play Scene Constants */
+		public static var k_PauseOverlayX:Number = -100;
+		public static var k_PauseOverlayY:Number = 0;
+		public static var k_PauseOverlayWidth:Number = 100;
+		public static var k_PauseOverlayHeight:Number = 320;
+		public static var k_PauseOverlayInitRollSpeed:Number = 0;
+		public static var k_PauseOverlayAcceleration:Number = 0.25;
+		public static var k_PauseOverlayAlpha:Number = 1.0;
+		public static var k_PauseOverlayColor:Number = 0xAABBAA;
+		public static var k_PauseOverlayLineThickness:Number = 3.0;
+		public static var k_PauseOverlayLineColor:Number = 0xCCCCCC;
+
+		public static var k_DimLayerAlpha:Number = 0.25;
+		public static var k_DimLayerWidth:Number = 480;
+		public static var k_DimLayerHeight:Number = 320;
+		
 		public static function spitRandomMessage(messages:Array):String
 		{
 			var rand:int = Math.random() * messages.length;
