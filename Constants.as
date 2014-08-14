@@ -116,6 +116,14 @@
 		public static var k_DimLayerWidth:Number = 480;
 		public static var k_DimLayerHeight:Number = 320;
 		
+		public static var k_DeathTimerColor:Number = 0xFFFFFF;
+		public static var k_DeathTimerDangerColor:Number = 0xFF0000;
+		public static var k_DeathTimerDangerLimit:Number = 5.0;
+		public static var k_DeathTimerNormalFontSize:Number = 14;
+		public static var k_DeathTimerMaxDangerFontSize:Number = 40;
+		public static var k_DeathTimerMinDangerFontSize:Number = 5;
+		public static var k_DeathTimerMaxTime:Number = 10;
+		
 		public static function spitRandomMessage(messages:Array):String
 		{
 			var rand:int = Math.random() * messages.length;

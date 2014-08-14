@@ -17,11 +17,14 @@
 		public var paused:Boolean;
 		public var stopped:Boolean;
 		
+		private var m_text:TextField;
+		private var m_seconds_ticker:int;
+		
 		public function DeathTimer() 
 		{
 			super();
-			textField = new TextField(200, 50, String(Constants.DT_MAX_TIME), "popup", 14, Color.RED);
-			addChild(textField);
+			m_text = new TextField(200, 50, String(Constants.k_DeathTimerMaxTime), "Arial", Constants.k_DeathTimerNormalFontSize, Constants.k_DeathTimerColor);
+			addChild(m_text);
 			visible = false; /* Keep invisible for now */
 		}
 
@@ -33,13 +36,29 @@
 			if (running&&!paused)
 			{
 				ticker -= timeDelta;
+				
+
+				/* indicate to player that time is running out! */
+				if (int(ticker) <= Constants.k_DeathTimerDangerLimit)
+				{
+					m_text.color = Constants.k_DeathTimerDangerColor;
+					m_text.fontSize = ticker % 1.0 * (Constants.k_DeathTimerMaxDangerFontSize - Constants.k_DeathTimerMinDangerFontSize) + Constants.k_DeathTimerMinDangerFontSize;
+					
+					if (ticker < m_seconds_ticker && m_seconds_ticker != 0)
+					{
+						m_seconds_ticker = int(ticker);
+						AssetResources.sounds["countdown"].play();
+					}
+					
+				}
+				
 				if (ticker <= 0) {
 					ticker = 0;
 					/* Call back function */
 					callBackFunc();					
 					stopTimer();
 				}
-				textField.text = String(int(ticker));
+				m_text.text = String(int(ticker));
 			}
 			
 		}
@@ -49,7 +68,7 @@
 			running = true;
 			stopped = false;
 			visible = true;
-			ticker = Constants.DT_MAX_TIME;
+			m_seconds_ticker = ticker = Constants.k_DeathTimerMaxTime;
 		}
 		
 		public function pauseTimer():void
@@ -71,7 +90,9 @@
 		
 		public function resetTimer():void
 		{
-			ticker = Constants.DT_MAX_TIME;
+			m_seconds_ticker = ticker = Constants.DT_MAX_TIME;
+			m_text.color = Constants.k_DeathTimerColor;
+			m_text.fontSize = Constants.k_DeathTimerNormalFontSize;
 		}
 		
 		public function addOnStopEventListener(listener:Function):void
